@@ -1,0 +1,43 @@
+\section{A Machine Learning Estimator for Treatment Effects}\label{sec:algorithm} % $\bm{\tau}$
+	
+	One could directly estimate $L$ with $\bm{\tau}$ using the following objective function,
+	%
+	\begin{equation}\label{eqn:obj-mf-fe}
+	    \begin{aligned}
+	         \hat{\bm{\tau}}, \hat{\bm{\alpha}}, \hat{\bm{\beta}}_{(\ell+1):T}, \hat L =& \argmin_{\bm{\tau}, \bm{\alpha}, \bm{\beta}_{(\ell+1):T}, L } \frac{1}{N(T-\ell)}  \\ &  \norm{Y_{:,(\ell+1):T} - \bm{\alpha} \bm{1}_{T-\ell}^\T - \bm{1}_N \bm{\beta}_{(\ell+1):T}^\T -  L - \tau_0 Z_{:,(\ell+1):T} - \tau_1 Z_{:,\ell:(T-1)} - \cdots - \tau_\ell Z_{:,1:(T-\ell)}}_F^2 \\ & \qquad+ \mu \norm{L}_\ast\,,
+	    \end{aligned}
+	\end{equation}
+	%
+	where we refer to this objective as low-rank matrix estimation with fixed effects (LRME). Here, $\norm{L}_\ast$ is the nuclear norm (or trace norm) of matrix $L$, which is equal to the sum of its singular values. Also, $\norm{\cdot}_F$ refers to the Frobenius norm of a matrix. The rank of $\hat L$ tends to decrease with the regularization parameter $\mu$. Note that the bias tends to increase with $\mu$, but the variance tends to decrease with $\mu$. With a properly chosen $\mu$, we can reduce the root mean squared error (RMSE) of $\hat L$, and that of  $\hat{\tau}_0, \hat{\tau}_1, \cdots, \hat{\tau}_\ell$.
+
+	The objective function \eqref{eqn:obj-mf-fe} is convex in $\tau, \alpha, \beta$ and $L$, which has $N(T-\ell) + N + T+1$ variables in total. Finding the global optimal solution of convex program \eqref{eqn:obj-mf-fe} can be slow with off-the-shelf software for convex optimization problems such as {\tt cvxpy}. Alternatively, we propose to use the {\it iterative singular value thresholding and ordinary least squares (iterative SVT and OLS)} algorithm to efficiently solve convex program \eqref{eqn:obj-mf-fe}. The details of this algorithm are described in Algorithm \ref{algo-est-svt-ls}. We can justify SVT using   Theorem 1 in  \cite{hastie2015matrix} that shows the optimal solution of
+	%
+	\[\hat L =  \argmin_{rank(\ell) \leq k_0 } \frac{1}{2} \norm{Y -  L}_F^2 + \mu \norm{L}_\ast, \]
+	%
+	is  $\hat L = U_{k_0} S_{\mu} (D_{k_0}) V_{k_0}^\T$,
+	where the rank-$k_0$ SVD of $Y$ is $U_{k_0} D_{k_0} V_{k_0}^\T$ and $S_{\mu}(D_{k_0}) $ is a diagonal $k_0$ by $k_0$ matrix with its diagonal entries to be $(\sigma_1 - \mu)_+, \cdots, (\sigma_{k_0} - \mu)_+$.
+	When we have historical control data, we can use cross-validation to find the optimal $\mu$ by the grid search algorithm. 
+
+	
+	\begin{algorithm}
+		\SetAlgoLined
+		% \KwResult{Write here the result }
+		\SetKwInOut{Input}{Inputs}
+		\SetKwInOut{Output}{Outputs}
+		\Input{$Y, Z, k_0, \mu_{NT}$, $\Delta_{\tau}$, and $t_{\max}$}
+		$\hat \tau^{(-1)} \leftarrow 0$ \;
+		At $t = 0$, $\hat{\bm{\tau}}^{(0)}, \hat{\bm{\alpha}}^{(0)}, \hat{\bm{\beta}}_{(\ell+1):T}^{(0)} \leftarrow \argmin_{\tau, \alpha, \beta} \frac{1}{2} \norm{Y_{:,(\ell+1):T} - \bm{\alpha} \bm{1}_{T-\ell}^\T - \bm{1}_N \bm{\beta}_{(\ell+1):T}^\T - \tau_0 Z_{:,(\ell+1):T} - \tau_1 Z_{:,\ell:(T-1)} - \cdots - \tau_\ell Z_{:,1:(T-\ell)}}_F^2 $\;
+		$\hat Y_e^{(0)} \leftarrow Y_{:,(\ell+1):T} - \hat{\bm{\alpha}}^{(0)} \bm{1}_{T-\ell}^\T - \bm{1}_N (\hat{\bm{\beta}}^{(0)}_{(\ell+1):T})^\T - \hat{\tau}_0^{(0)} Z_{:,(\ell+1):T} - \hat{\tau}_1^{(0)} Z_{:,\ell:(T-1)} - \cdots - \hat{\tau}_\ell^{(0)} Z_{:,1:(T-\ell)}$ \;
+		
+		\While{ $\max_j |\hat{\tau}_j^{(t)} - \hat{\tau}_j^{(t-1)} | > \Delta_{\tau}$ and $t < t_{\max}$ }{
+			The rank-$k_0$ SVD of $\hat Y_e^{(t)}$ is $U_{k_0}^{(t)} D_{k_0}^{(t)}  (V_{k_0}^{(t)})^\T$, where $D_{k_0}^{(t)}  = \diag(d^{(t)}_1, \cdots, d^{(t)}_{k_0})$ \;
+			$S_{\mu_{NT}} (D_{k_0}^{(t)})  \leftarrow \diag((d^{(t)}_1 - \mu_{NT})_+, \cdots, (d^{(t)}_{k_0} - \mu_{NT})_+)$ \;
+			$\hat L^{(t+1)} = U_{k_0}^{(t)} S_{\mu_{NT}} (D_{k_0}^{(t)}) (V_{k_0}^{(t)})^\T$ \;
+			$\hat{\bm{\tau}}^{(t+1)}, \hat{\bm{\alpha}}^{(t+1)}, \hat{\bm{\beta}}_{(\ell+1):T}^{(t+1)} = \argmin_{\bm{\tau}, \bm{\alpha}, \bm{\beta}_{(\ell+1):T}} \frac{1}{2} \norm{Y_{:,(\ell+1):T} - \bm{\alpha} \bm{1}_{T-\ell}^\T - \bm{1}_N \bm{\beta}_{(\ell+1):T}^\T - \tau_0 Z_{:,(\ell+1):T}  - \cdots - \tau_\ell Z_{:,1:(T-\ell)} - \hat L^{(t+1)} }_F^2 $\;
+			$\hat Y_e^{(t+1)} = Y_{:,(\ell+1):T} -\hat{\bm{\alpha}}^{(t+1)} \bm{1}^\T - \bm{1}(\hat{\bm{\beta}}_{(\ell+1):T}^{(t+1)})^\T - \hat{\tau}_0^{(t+1)} Z_{:,(\ell+1):T} - \cdots - \hat{\tau}_\ell^{(t+1)} Z_{:,1:(T-\ell)}$ \;
+			$t \leftarrow t+1$ \;
+		}
+		\Output{$\hat{\bm{\tau}}^{(t-1)}, \hat{\bm{\alpha}}^{(t-1)}, \hat{\bm{\beta}}_{(\ell+1):T}^{(t-1)}, \hat L^{(t-1)}$}
+		\caption{Iterative SVT and OLS}
+		\label{algo-est-svt-ls}
+	\end{algorithm}

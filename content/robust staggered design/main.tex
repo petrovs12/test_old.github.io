@@ -1,0 +1,312 @@
+\documentclass[mnsc,nonblindrev]{informs3_homepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{natbib}
+\usepackage{adjustbox,float,comment,booktabs,diagbox,caption,subcaption,graphicx,bm, makecell,textcomp,mathtools,multirow,fancyvrb,upgreek,verbatim,longtable
+}
+\usepackage[table]{xcolor}
+\usepackage[hidelinks,breaklinks=true]{hyperref}
+
+\captionsetup[table]{justification=raggedright}
+\captionsetup[subtable]{justification=raggedright}
+
+\TheoremsNumberedBySection
+
+
+\usepackage{tocloft}
+\cftsetindents{section}{0em}{3em}
+\cftsetindents{subsection}{3em}{4em}
+\cftsetindents{subsubsection}{7em}{4.5em}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\newcommand{\hiddensection}[1]{
+    \stepcounter{section}
+    \subsection*{\arabic{section}\hspace{1em}{#1}}
+}
+
+\newcommand{\hiddensubsection}[1]{
+    \stepcounter{subsection}
+    \subsection*{\arabic{section}.\arabic{subsection}\hspace{1em}{#1}}
+}
+
+\newcommand{\hiddensubsubsection}[1]{
+    \stepcounter{subsection}
+    \subsection*{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}\hspace{1em}{#1}}
+}
+
+
+
+\usepackage[ruled,norelsize]{algorithm2e}
+\def\*#1{\mathbf{#1}}
+\def\+#1{\mathbb{#1}}
+\def\wt#1{\widetilde{#1}}
+\def\ol#1{\overline{#1}}
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}
+\newcommand{\I}{{-1}}
+\newcommand{\T}{\top}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Lp}{\left(}
+\newcommand{\Rp}{\right)}
+\newcommand{\Ls}{\left[}
+\newcommand{\Rs}{\right]}
+\newcommand{\tlo}{\mathcal{O}}
+\newcommand{\tlq}{\mathcal{Q}}
+\newcommand{\tls}{\mathcal{S}}
+\newcommand{\tlz}{\mathbb{Z}}
+\newcommand{\dnt}{\delta_{NT}}
+\newcommand{\var}{\mathrm{Var}}
+\newcommand{\Cov}{\textnormal{Cov}}
+\newcommand{\ACov}{\textnormal{ACov}}
+\newcommand{\rnd}{\textnormal{rnd}}
+\newcommand{\OPT}{\textnormal{opt}}
+\newcommand{\OPTP}{\textnormal{opt}+}
+\newcommand{\OPTL}{\textnormal{OPT-CO}}
+\newcommand{\BA}{\mathrm{ba}}
+\newcommand{\FF}{\mathrm{ff}}
+\newcommand{\FFBA}{\mathrm{ffba}}
+\newcommand{\OPTINF}{\mathrm{opt,inf}}
+\newcommand{\OPTFIX}{\mathrm{opt,fix}}
+\newcommand{\FIX}{\mathrm{fix}}
+\newcommand{\INF}{\mathrm{inf}}
+\newcommand{\total}{\mathrm{total}}
+
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\st}{\mathrm{s.t.}}
+
+
+\newcommand{\iv}{\mathrm{iv}}
+\newcommand{\inv}{\mathrm{inv}}
+\newcommand{\avar}{\mathrm{AVar}}
+\newcommand{\plim}{\mathrm{plim}}
+\newcommand{\ci}{\mathrm{ci}}
+\newcommand{\fcs}{\mathrm{ntu}}
+\newcommand{\static}{\mathrm{static}}
+\newcommand{\ad}{\mathrm{atu}}
+\newcommand{\cf}{\mathrm{cf}}
+\newcommand{\iid}{\mathrm{iid}}
+\newcommand{\R}{\mathrm{r}}
+\newcommand{\SR}{\mathrm{sr}}
+\newcommand{\pr}{\mathrm{Pr}}
+\newcommand{\wi}{\mathrm{wi}}
+
+\newcommand{\BM}{\mathrm{bm}}
+\newcommand{\all}{\mathrm{all}}
+\newcommand{\within}{\textsf{within }}
+
+\newcommand{\Prec}{\mathrm{Prec}}
+\newcommand{\funfrac}{g_\tau}
+\newcommand{\estsigmasq}{\widehat{\sigma^2}}
+\newcommand{\samplesigmasq}{\widetilde{\sigma^2}}
+\newcommand{\estxisq}{\widehat{\xi^2}}
+\newcommand{\estxidaggersq}{\widehat{\xi^{\dagger 2}}}
+
+
+\makeatletter
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle, draw, inner sep=1pt, 
+        minimum height={\f@size*1.6},] (char) {\vphantom{WAH1g}#1};}}
+\makeatother
+
+
+\let\oldsection\section% Store \section
+\renewcommand{\section}{% Update \section
+\setcounter{equation}{0}
+  \renewcommand{\theequation}{\thesection.\arabic{equation}}% Update equation number
+  \oldsection}% Regular \section
+
+\def\seqref#1{%
+(\thesection.\ref{#1})
+}
+
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathreplacing,calc}
+
+\newcommand{\tikzmark}[2][-3pt]{\tikz[remember picture, overlay, baseline=-0.5ex]\node[#1](#2){};}
+
+\tikzset{brace/.style={decorate, decoration={brace}},
+	brace mirrored/.style={decorate, decoration={brace,mirror}},
+}
+
+\newcounter{brace}
+\setcounter{brace}{0}
+\newcommand{\drawbrace}[3][brace]{%
+	\refstepcounter{brace}
+	\tikz[remember picture, overlay]\draw[#1] (#2.center)--(#3.center)node[pos=0.5, name=brace-\thebrace]{};
+}
+
+\newcounter{arrow}
+\setcounter{arrow}{0}
+\newcommand{\drawcurvedarrow}[3][]{%
+	\refstepcounter{arrow}
+	\tikz[remember picture, overlay]\draw (#2.center)edge[#1]node[coordinate,pos=0.5, name=arrow-\thearrow]{}(#3.center);
+}
+
+\newcommand{\annote}[3][]{%
+	\tikz[remember picture, overlay]\node[#1] at (#2) {#3};
+}
+
+
+\def\cmt#1{{\textcolor{red}{#1}}}
+\def\cmtfinal#1{{\textcolor{black}{#1}}}
+
+\def\cmtmb#1{{\textcolor{black}{#1}}}
+
+
+\def\new#1{{\textcolor{blue}{NEW: #1}}}
+\def\old#1{{\textcolor{gray}{OLD: #1}}}
+
+\setcitestyle{open={(},close={)}}
+
+\setcounter{MaxMatrixCols}{10}
+
+\bibpunct[, ]{(}{)}{,}{a}{}{,}
+\def\bibfont{\small}
+\def\bibsep{\smallskipamount}
+\def\rmse{\text{RMSE}}
+\def\bibhang{24pt}
+\def\newblock{\ }
+\def\BIBand{and}
+\definecolor{Red}{rgb}{1,0,0}
+\definecolor{Blue}{rgb}{0,0,1}
+\definecolor{Olive}{rgb}{0.41,0.55,0.13}
+\definecolor{Green}{rgb}{0,1,0}
+\definecolor{MGreen}{rgb}{0,0.8,0}
+\definecolor{DGreen}{rgb}{0,0.55,0}
+\definecolor{Yellow}{rgb}{1,1,0}
+\definecolor{Cyan}{rgb}{0,1,1}
+\definecolor{Magenta}{rgb}{1,0,1}
+\definecolor{Orange}{rgb}{1,.5,0}
+\definecolor{Violet}{rgb}{.5,0,.5}
+\definecolor{Purple}{rgb}{.75,0,.25}
+\definecolor{Brown}{rgb}{.75,.5,.25}
+\definecolor{Grey}{rgb}{.5,.5,.5}
+\definecolor{Pink}{rgb}{1,0,1}
+\definecolor{DBrown}{rgb}{.5,.34,.16}
+
+\definecolor{Black}{rgb}{0,0,0}
+
+
+
+\def\change{\color{Red}}
+\def\red{\color{Red}}
+\def\blue{\color{Black}}
+\def\olive{\color{Olive}}
+\def\green{\color{Green}}
+\def\mgreen{\color{MGreen}}
+\def\dgreen{\color{DGreen}}
+\def\yellow{\color{Yellow}}
+\def\cyan{\color{Cyan}}
+\def\magenta{\color{Magenta}}
+\def\orange{\color{Orange}}
+\def\violet{\color{Violet}}
+\def\purple{\color{Purple}}
+\def\brown{\color{Brown}}
+\def\grey{\color{Grey}}
+\def\doubt{\color{Pink}}
+\def\dbrown{\color{DBrown}}
+\def\black{\color{Black}}
+\def\cmtrx#1{{\textcolor{black}{#1}}}
+
+\begin{document}
+	
+	
+	\RUNAUTHOR{}
+	\RUNTITLE{Optimal Experimental Design for Staggered Rollouts}
+	\TITLE{Optimal Experimental Design for Staggered Rollouts{\Large \footnote{We thank seminar participants at Boston University, Columbia, Cornell, Cornell Tech, Emory, University of Florida, London Business School, National University of Singapore, Stanford, Toronto Rotman, University of Washington, UT Austin, Yale, Lyft Rideshare Labs, and participants at several conferences. We thank the editor, associate editor, and two anonymous referees for their insightful and helpful comments. Alphabetical author order other than the first author. Athey 
+		and Imbens were supported by the Office of Naval Research under grant N00014-19-1-2468. Bayati was supported by the National Science Foundation grant CMMI: 1554140.
+		}}}
+	
+	\ARTICLEAUTHORS{
+		\AUTHOR{Ruoxuan Xiong}
+		\AFF{Department of Quantitative Theory and Methods, Emory University, \EMAIL{ruoxuan.xiong@emory.edu}}
+		\AUTHOR{Susan Athey}
+		\AFF{Graduate School of Business, Stanford University, \EMAIL{athey@stanford.edu}}
+		\AUTHOR{Mohsen Bayati}
+		\AFF{Graduate School of Business, Stanford University, \EMAIL{bayati@stanford.edu}}
+		\AUTHOR{Guido Imbens}
+		\AFF{Graduate School of Business, Stanford University, \EMAIL{imbens@stanford.edu}}
+	} % end of the block
+	
+	
+	
+	
+	\ABSTRACT{
+		In this paper, we study the design and analysis of experiments conducted on a set of units over multiple time periods where the starting time of the treatment may vary by unit. The design problem involves selecting an initial treatment time for each unit in order to most precisely estimate both the instantaneous and cumulative effects of the treatment. We first consider non-adaptive experiments, where all treatment assignment decisions  are made prior to the start of the experiment. For this case, we show that the optimization problem is generally NP-hard and we propose a near-optimal solution. Under this solution the fraction entering treatment each period is initially low, then high, and finally low again. Next, we study an adaptive experimental design problem, where both the decision to continue the experiment and treatment assignment decisions are updated after each period's data is collected. For the adaptive case we propose a new algorithm, the Precision-Guided Adaptive Experiment (PGAE) algorithm, that addresses the challenges at both the design stage and at the stage of estimating treatment effects, ensuring valid post-experiment inference accounting for the adaptive nature of the design. Using realistic settings, we demonstrate that our proposed solutions can reduce the opportunity cost of the experiments by over 50\%, compared to static design benchmarks.
+
+
+	}
+	
+	\KEYWORDS{Adaptive Experiments, Treatment Effect Estimation, Cumulative Effects, Panel Data, Dynamic Programming}
+	
+	
+	\maketitle
+ 
+% 	\newpage
+\input{section_1}
+
+    \input{section_2}
+
+    
+    \input{section_3}
+
+
+    \input{section_4}
+    
+
+	\input{section_5}
+
+	
+	\input{section_6}
+	
+	\bibliographystyle{informs2014}
+ % \bibliographystyle{abbrvnat}
+	\bibliography{reference}
+	% \texttt{}\\
+% 	\textbf{Study Approval and Acknowledgement}: This paper used the MarketScan Research Databases. Data access  was provided by the Stanford Center for Population Health Sciences Data Core. The PHS Data Core is supported by a National Institutes of Health National Center for Advancing Translational Science Clinical and Translational Science Award (UL1 TR001085) and internal Stanford funding. The content is solely the responsibility of the authors and does not necessarily represent the official views of the NIH.
+
+    % \newpage
+    \ECSwitch
+    \ECHead{E-Companion}
+
+    
+
+	% \begin{APPENDICES}
+	\input{appendix_A}
+
+    \include{appendix_B}
+    
+	\include{appendix_C}
+
+    \include{appendix_D}
+
+%\iffalse	
+	\include{appendix_E}
+	
+	\include{appendix_F}
+	
+	\include{appendix_G}
+
+
+	
+	
+	
+	
+	
+	
+	
+%\fi
+
+	% \end{APPENDICES}
+
+
+\end{document}

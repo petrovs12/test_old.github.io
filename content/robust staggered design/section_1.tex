@@ -1,0 +1,72 @@
+% \tocless
+\section{Introduction}\label{sec:intro}
+	Large technology companies run tens of thousands of experiments (also known as A/B tests) per year to evaluate the impact of various decisions, new features, or products \citep{gupta2019top}. 
+	In many cases, outcomes are observed 
+  for multiple periods, where the units can change treatment status over time.  We refer to these experiments as \cmtfinal{panel experiments}; variants of these are sometimes referred to as experiments with staggered rollout or staggered adoption \citep{athey2018matrix}, or stepped wedge designs \citep{hemming2015stepped}. 
+	
+	%
+	\begin{example}[Driver Experience]\label{ex:driver-safety}
+	Consider a ride-hailing platform that plans to test the impact of a new app feature that improves driver experience. They wish to run an experiment to estimate the effect of providing the app feature to all drivers. To avoid biases from interference between drivers it is useful to randomize at the city level where the starting time for the intervention may vary by city. 
+	\end{example}
+	%
+	\begin{example}[Public Health Intervention]\label{ex:infectious-disease}
+Consider a country that aims to measure the effect of a new public health intervention ({\it e.g.}, encouraging the use of masks or social distancing policies) on the spread of an infectious disease \citep{abaluck2021impact}. To account for spillovers experimentation should be performed at an aggregate level ({\it e.g.}, cities). To facilitate the estimation of cumulative effects it is useful to vary the starting date. 
+\end{example}	
+	
+The primary objective of this paper is to propose experimental designs to optimize the precision of post-experiment estimates of instantaneous and \cmtfinal{lagged} effects of a treatment. 
+To operationalize this, the experimenter commits in advance to an estimator which  has a precision associated with each experimental design. The challenge is to find a design that optimizes this precision given the estimator.
+
+
+We assume all units start in the control (no treatment) state at the initial time period. The design problem is to select, for each unit, the time period to begin treatment. We assume that units cannot switch back to control during the experiment, and thus remain treated once exposed to the treatment. This is a common setting.\footnote{The setting where units can arbitrarily switch between treatment and control is discussed in Sections \ref{sec:experiment-outcome-estimand} and \ref{subsec:reversible-treatment}, and turns out to be a simpler setting.} 
+The treatment allocation time can vary across units, leading to a \emph{staggered treatment adoption} or \emph{stepped wedge design}.
+    
+    % \tocless
+    \subsection{Summary of Contributions}
+	
+
+    {\bf Non-adaptive experiments. }	
+    We first study the design of non-adaptive experiments, where both the number of units and time periods and treatment decisions are determined prior to the start of the experiment. We focus on  the properties of the generalized least squares (GLS) estimator.
+    We consider a general version of feasible GLS to estimate instantaneous and lagged treatment effects\footnote{Lagged treatment effect measures the effect of this period's treatment on a future period's outcome.} from observed outcomes that can be non-stationary.
+    \cmtrx{The estimator determines the precision of estimated instantaneous and lagged effects. A linear combination of these precisions comprises the objective function for the experimental design problem. }
+     Finding the optimal solution is generally NP-hard. We provide the analytical optimality conditions for the design, and propose an algorithm to choose a treatment design based on the optimality conditions. The precision of our selected design approximates the optimal objective (best achievable precision) within a multiplicative factor of $1+O(1/N^2)$ where $N$ is the number of units.
+    
+	Our solution to the design problem of non-adaptive experiments has two prominent features. First, the fraction of treated units per time period takes an $S$-shaped curve; the treatment rolls out to units more slowly (over time) in the beginning and at the end, but rapidly in the middle, of the experiment. Second, the optimal design imposes this rollout pattern for each stratum, where strata are defined by groups with the same observed and estimated latent covariate values. 
+    
+    
+	{\bf Adaptive experiments.}
+	Next we study the design of adaptive experiments, where the number of units is fixed, but  the experiment can be terminated early and treatment assignment decisions can be adaptively made after each period's data is collected. These experiments are useful when the pre-set duration is more than needed to attain a target precision of treatment effect estimates, and when treatment decisions cannot be optimally made ex ante.  In our main contribution,
+	we propose a new algorithm, the  Precision-Guided Adaptive Experiment or PGAE algorithm, that  adaptively terminates the experiment based on the estimated precision of the estimated treatment effect from partially observed results of the experiment. It employs dynamic programming \cmtfinal{to adaptively optimize}  \cmtfinal{the speed of treatment rollout in} subsequent time periods. The resulting adaptive experiment achieves a target precision, using a shorter duration, or equivalently incurring a lower cost, than the non-adaptive experiment. 
+	    %
+    
+    The adaptive nature of the experiment  creates challenges arising from the fact that the outcomes and assignments that occur early in the experiment affect the treatment assignments to units later in the experiment.
+    Thus, the treatment assignments are not independent of observed outcomes. We propose an estimation method based on sample splitting that ensures that the estimates obtained by PGAE are consistent and asymptotically converge to a normal distribution. 
+     An appealing property of the proposed estimation scheme we propose is that the final treatment effect estimation uses \emph{all} of the data, incurring no efficiency loss compared to an oracle who would have access to the same design at the beginning of the experiment.
+     
+     Finally, we illustrate the superior performance of our solutions, as compared to benchmarks, for non-adaptive and adaptive experiments through synthetic experiments based on four real data sets about flu occurrence rates, home medical visits, grocery expenditure, and Lending Club loans. 
+     
+	
+
+    
+    \subsection{Related Literature}
+	Our \cmtfinal{staggered rollout designs of panel experiments} are related to a number of other experimental designs. They are most closely related to the stepped wedge designs in clinical trials \citep{brown2006stepped}. Stepped wedge designs sequentially roll out an intervention to clusters over several periods. Prior work on optimal stepped wedge design \citep{hussey2007design,hemming2015stepped,li2018optimal} studies optimal treatment assignments of clusters under a linear mixed outcome model that has no observed or latent covariates and assumes constant treatment effect over time  with instantaneous effects only. In contrast, we study the optimal design allowing treatment effects to vary over time ({\it i.e.}, with instantaneous and lagged effects). 
+
+    Related to our design, a few other designs proposed recently are suitable for studying time-varying treatment effects. One design is the synthetic control design \cmtfinal{for} panel experiments \cmtfinal{where the design} selects \cmtfinal{units to be treated}, allocates treatment to \cmtfinal{all of} them \cmtfinal{in a single period}, and forms a synthetic treated and control unit for treatment effect estimation \citep{doudchenkodesigning2021,doudchenko2021synthetic,abadie2021synthetic}. Another design is the switchback design \citep{bojinov2020design,xiong2023bias} for a single experimental unit that can arbitrarily switch between treatment and control. In contrast to these two designs, our designs leverage variation in treatment times across units to increase power. The randomized designs proposed in \cite{basse2019minimax} also allow for cross-unit variation in treatment times, but they are studied under a different framework that minimizes the worst-case risk in randomization-based inference.
+    
+    
+    When interference between units is a concern, our design can be modified by following a conventional approach to avoid biases  by  aggregating units to a level that \cmtfinal{interference} is no longer  a problem. 
+    But we note a growing literature that directly tackles the biases using novel experimental design ideas, such as multiple randomization  \citep{bajari2021multiple,johari2020experimental} and designs \cmtfinal{that perturb treatments near equilibrium outcomes} \citep{wager2021experimenting}. In contrast, our design, by abstracting away from interference, can be used to study the rich dynamics of cumulative effects over time. 
+    
+
+
+
+    Different from all the aforementioned designs, we additionally study the design and analysis of adaptive experiments. Our proposed PGAE algorithm consists of three components: adaptive treatment decisions, an experiment termination rule, and post-experiment inference. The adaptive treatment decision \cmtfinal{component} relates to the literature on adaptive designs in sequential experiments ({\it e.g.,} \cite{efron1971forcing,bhat2019near,glynn2020adaptive}), online learning and multi-armed bandits ({\it e.g.,} \cite{bubeck2012regret,lattimore2018bandit}). \cmtfinal{Distinct} from this literature, we consider a  \cmtfinal{panel setting}, and our design choices
+    allow for experiment termination and ensure that inference is manageable.
+
+    The experiment termination rule \cmtfinal{component} is based on the precision of the treatment effect estimate. \cmtrx{The precision-based termination rule has been used to obtain fixed-volume confidence sets from a sequence of independent random variables {\citep{glynn1992asymptotic,glynn1992asymptoticstopping,singham2012finite}}. We extend the use of this rule to the panel setting.}
+    Our proposed PGAE algorithm decides whether to terminate the experiment at every period, which is related to the sequential testing problem, considered by \cite{siegmund1985sequential,wald2004sequential,bertsekas2012dynamic,johari2017peeking,ju2019sequential} among others. The key challenge in sequential testing is to draw valid inference post-experiment. The PGAE algorithm addresses this challenge through a sample-splitting technique. 
+    
+    We split units into disjoint sets, with each serving a different purpose.
+    The idea of sample splitting has been used in the econometrics literature \cmtrx{(\cite{angrist1995split,angrist1999jackknife,athey2016recursive,chernozhukov2018double} among others)}
+    for valid inference when machine learning methods are used and overfitting is a concern. \cmtmb{In contrast, we use the \emph{full sample} for the final treatment effect estimation that incurs no loss in estimation efficiency}. However, splitting samples into disjoint sets of units is crucial in decoupling experiment termination from inference in PGAE. In multi-armed bandits and other sequential decision problems, the splitting of \cmtfinal{data in adaptive experiments} has been considered by, among others, \cmtmb{\cite{auer2003using,goldenshluger2013linear,bastani2020online,hamidi2019personalizing}} for consistent estimation of the arm parameters. In contrast to this literature, we repeatedly experiment on the same set of units, and split samples in the unit dimension. \cmtmb{Finally, we note that \cite{lai1982least} showed normal approximation for the estimation error of adaptive least squares under a certain stability condition on the inverse covariance matrix. Recently, stronger results were obtained by leveraging debiasing techniques for OLS  \citep{deshpande2017accurate} and LASSO \citep{deshpande2021online}. In our panel setting, the stability condition of \cite{lai1982least} does not hold; however, the multi-unit nature of the problem allows us to avoid debiasing, even without the stability condition. Moreover, in our setting the experiment stopping rule is adaptively selected.
+    }
+	

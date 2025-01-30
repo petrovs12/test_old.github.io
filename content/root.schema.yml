@@ -1,0 +1,10 @@
+version: 1
+imports: []
+schemas:
+  - id: root
+    children:
+      - pattern: '*'
+        children:
+          - pattern: '*'
+    title: root
+    parent: root

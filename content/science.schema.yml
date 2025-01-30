@@ -1,0 +1,10 @@
+version: 1
+imports: []
+schemas:
+  - id: science
+    title: science
+    parent: root
+    children:
+      - pattern: '*'
+        children:
+          - pattern: '*'

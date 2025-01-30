@@ -1,0 +1,392 @@
+\begin{thebibliography}{75}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem[{Abadie et~al.(2010)Abadie, Diamond, \protect\BIBand{}
+  Hainmueller}]{abadie2010synthetic}
+Abadie A, Diamond A, Hainmueller J (2010) Synthetic control methods for
+  comparative case studies: Estimating the effect of california’s tobacco
+  control program. \emph{Journal of the American statistical Association}
+  105(490):493--505.
+
+\bibitem[{Abadie \protect\BIBand{} Zhao(2021)}]{abadie2021synthetic}
+Abadie A, Zhao J (2021) Synthetic controls for experimental design. \emph{arXiv
+  preprint arXiv:2108.02196} .
+
+\bibitem[{Abaluck et~al.(2021)Abaluck, Kwong, Styczynski, Haque, Kabir,
+  Bates-Jefferys, Crawford, Benjamin-Chung, Raihan, Rahman, Benhachmi, Bintee,
+  Winch, Hossain, Reza, Jaber, Momen, Rahman, Banti, Huq, Luby,
+  \protect\BIBand{} Mobarak}]{abaluck2021impact}
+Abaluck J, Kwong LH, Styczynski A, Haque A, Kabir MA, Bates-Jefferys E,
+  Crawford E, Benjamin-Chung J, Raihan S, Rahman S, Benhachmi S, Bintee NZ,
+  Winch PJ, Hossain M, Reza HM, Jaber AA, Momen SG, Rahman A, Banti FL, Huq TS,
+  Luby SP, Mobarak AM (2021) Impact of community masking on covid-19: A
+  cluster-randomized trial in bangladesh. \emph{Science} .
+
+\bibitem[{Angrist et~al.(1999)Angrist, Imbens, \protect\BIBand{}
+  Krueger}]{angrist1999jackknife}
+Angrist JD, Imbens GW, Krueger AB (1999) Jackknife instrumental variables
+  estimation. \emph{Journal of Applied Econometrics} 14(1):57--67.
+
+\bibitem[{Angrist \protect\BIBand{} Krueger(1995)}]{angrist1995split}
+Angrist JD, Krueger AB (1995) Split-sample instrumental variables estimates of
+  the return to schooling. \emph{Journal of Business \& Economic Statistics}
+  13(2):225--235.
+
+\bibitem[{Angrist \protect\BIBand{} Pischke(2008)}]{angrist2008mostly}
+Angrist JD, Pischke JS (2008) \emph{Mostly harmless econometrics: An
+  empiricist's companion} (Princeton university press).
+
+\bibitem[{Athey et~al.(2021)Athey, Bayati, Doudchenko, Imbens,
+  \protect\BIBand{} Khosravi}]{athey2018matrix}
+Athey S, Bayati M, Doudchenko N, Imbens G, Khosravi K (2021) Matrix completion
+  methods for causal panel data models. \emph{Journal of the American
+  Statistical Association} 116(536):1716--1730.
+
+\bibitem[{Athey \protect\BIBand{} Imbens(2016)}]{athey2016recursive}
+Athey S, Imbens G (2016) Recursive partitioning for heterogeneous causal
+  effects. \emph{Proceedings of the National Academy of Sciences}
+  113(27):7353--7360.
+
+\bibitem[{Atkinson et~al.(2007)Atkinson, Donev, \protect\BIBand{}
+  Tobias}]{atkinson2007optimum}
+Atkinson A, Donev A, Tobias R (2007) \emph{Optimum experimental designs, with
+  SAS}, volume~34 (Oxford University Press).
+
+\bibitem[{Atkinson \protect\BIBand{}
+  Fedorov(1975{\natexlab{a}})}]{atkinson1975design}
+Atkinson A, Fedorov V (1975{\natexlab{a}}) The design of experiments for
+  discriminating between two rival models. \emph{Biometrika} 62(1):57--70.
+
+\bibitem[{Atkinson \protect\BIBand{}
+  Fedorov(1975{\natexlab{b}})}]{atkinson1975optimal}
+Atkinson AC, Fedorov VV (1975{\natexlab{b}}) Optimal design: Experiments for
+  discriminating between several models. \emph{Biometrika} 62(2):289--303.
+
+\bibitem[{Auer(2003)}]{auer2003using}
+Auer P (2003) Using confidence bounds for exploitation-exploration trade-offs
+  3(null):397–422, ISSN 1532-4435.
+
+\bibitem[{Bai(2003)}]{bai2003inferential}
+Bai J (2003) Inferential theory for factor models of large dimensions.
+  \emph{Econometrica} 71(1):135--171.
+
+\bibitem[{Bai \protect\BIBand{} Ng(2002)}]{bai2002determining}
+Bai J, Ng S (2002) Determining the number of factors in approximate factor
+  models. \emph{Econometrica} 70(1):191--221.
+
+\bibitem[{Bajari et~al.(2023)Bajari, Burdick, Imbens, Masoero, McQueen,
+  Richardson, \protect\BIBand{} Rosen}]{bajari2021multiple}
+Bajari P, Burdick B, Imbens GW, Masoero L, McQueen J, Richardson TS, Rosen IM
+  (2023) Experimental design in marketplaces. \emph{Statistical Science}
+  1(1):1--19.
+
+\bibitem[{Basse et~al.(2023)Basse, Ding, \protect\BIBand{}
+  Toulis}]{basse2019minimax}
+Basse GW, Ding Y, Toulis P (2023) Minimax designs for causal effects in
+  temporal experiments with treatment habituation. \emph{Biometrika}
+  110(1):155--168.
+
+\bibitem[{Bastani \protect\BIBand{} Bayati(2020)}]{bastani2020online}
+Bastani H, Bayati M (2020) Online decision making with high-dimensional
+  covariates. \emph{Operations Research} 68(1):276--294.
+
+\bibitem[{Bertsekas(2012)}]{bertsekas2012dynamic}
+Bertsekas D (2012) \emph{Dynamic programming and optimal control: Volume I},
+  volume~1 (Athena scientific).
+
+\bibitem[{Bertsimas et~al.(2015)Bertsimas, Johnson, \protect\BIBand{}
+  Kallus}]{bertsimas2015power}
+Bertsimas D, Johnson M, Kallus N (2015) The power of optimization over
+  randomization in designing experiments involving small samples.
+  \emph{Operations Research} 63(4):868--876.
+
+\bibitem[{Bertsimas et~al.(2019)Bertsimas, Korolko, \protect\BIBand{}
+  Weinstein}]{bertsimas2019covariate}
+Bertsimas D, Korolko N, Weinstein AM (2019) Covariate-adaptive optimization in
+  online clinical trials. \emph{Operations Research} .
+
+\bibitem[{Bhat et~al.(2019)Bhat, Farias, Moallemi, \protect\BIBand{}
+  Sinha}]{bhat2019near}
+Bhat N, Farias VF, Moallemi CC, Sinha D (2019) Near optimal ab testing.
+  \emph{Management Science} .
+
+\bibitem[{Bojinov et~al.(2023)Bojinov, Simchi-Levi, \protect\BIBand{}
+  Zhao}]{bojinov2020design}
+Bojinov I, Simchi-Levi D, Zhao J (2023) Design and analysis of switchback
+  experiments. \emph{Management Science} 69(7):3759--3777.
+
+\bibitem[{Brown \protect\BIBand{} Lilford(2006)}]{brown2006stepped}
+Brown CA, Lilford RJ (2006) The stepped wedge trial design: a systematic
+  review. \emph{BMC medical research methodology} 6(1):54.
+
+\bibitem[{Bubeck et~al.(2012)Bubeck, Cesa-Bianchi et~al.}]{bubeck2012regret}
+Bubeck S, Cesa-Bianchi N, et~al. (2012) Regret analysis of stochastic and
+  nonstochastic multi-armed bandit problems. \emph{Foundations and
+  Trends{\textregistered} in Machine Learning} 5(1):1--122.
+
+\bibitem[{Cachon et~al.(2019)Cachon, Gallino, \protect\BIBand{}
+  Olivares}]{cachon2019does}
+Cachon GP, Gallino S, Olivares M (2019) Does adding inventory increase sales?
+  evidence of a scarcity effect in us automobile dealerships. \emph{Management
+  Science} 65(4):1469--1485.
+
+\bibitem[{Card \protect\BIBand{} Krueger(1994)}]{card1994minimum}
+Card D, Krueger AB (1994) Minimum wages and employment: A case study of the
+  fast-food industry in new jersey and pennsylvania. \emph{American Economic
+  Review} 84(4):772--93.
+
+\bibitem[{Chernozhukov et~al.(2018)Chernozhukov, Chetverikov, Demirer, Duflo,
+  Hansen, Newey, \protect\BIBand{} Robins}]{chernozhukov2018double}
+Chernozhukov V, Chetverikov D, Demirer M, Duflo E, Hansen C, Newey W, Robins J
+  (2018) Double/debiased machine learning for treatment and structural
+  parameters: Double/debiased machine learning.
+
+\bibitem[{Chow \protect\BIBand{} Robbins(1965)}]{chow1965asymptotic}
+Chow YS, Robbins H (1965) On the asymptotic theory of fixed-width sequential
+  confidence intervals for the mean. \emph{The Annals of Mathematical
+  Statistics} 36(2):457--462.
+
+\bibitem[{Cui et~al.(2019)Cui, Zhang, \protect\BIBand{}
+  Bassamboo}]{cui2019learning}
+Cui R, Zhang DJ, Bassamboo A (2019) Learning from inventory availability
+  information: Evidence from field experiments on amazon. \emph{Management
+  Science} 65(3):1216--1235.
+
+\bibitem[{De~Stavola \protect\BIBand{} Cox(2008)}]{de2008consequences}
+De~Stavola B, Cox D (2008) On the consequences of overstratification.
+  \emph{Biometrika} 95(4):992--996.
+
+\bibitem[{Deshpande et~al.(2021)Deshpande, Javanmard, \protect\BIBand{}
+  Mehrabi}]{deshpande2021online}
+Deshpande Y, Javanmard A, Mehrabi M (2021) Online debiasing for adaptively
+  collected high-dimensional data with applications to time series analysis.
+  \emph{Journal of the American Statistical Association} 0(0):1--14,
+  \urlprefix\url{http://dx.doi.org/10.1080/01621459.2021.1979011}.
+
+\bibitem[{Deshpande et~al.(2018)Deshpande, Mackey, Syrgkanis, \protect\BIBand{}
+  Taddy}]{deshpande2017accurate}
+Deshpande Y, Mackey L, Syrgkanis V, Taddy M (2018) Accurate inference for
+  adaptive linear models 1194--1203.
+
+\bibitem[{Dette et~al.(2015)Dette, Melas, \protect\BIBand{}
+  Guchenko}]{dette2015bayesian}
+Dette H, Melas VB, Guchenko R (2015) Bayesian t-optimal discriminating designs.
+  \emph{Annals of statistics} 43(5):1959.
+
+\bibitem[{Dette et~al.(2012)Dette, Melas, Shpilev et~al.}]{dette2012t}
+Dette H, Melas VB, Shpilev P, et~al. (2012) T-optimal designs for
+  discrimination between two polynomial models. \emph{The Annals of Statistics}
+  40(1):188--205.
+
+\bibitem[{Dette et~al.(2013)Dette, Melas, Shpilev et~al.}]{dette2013robust}
+Dette H, Melas VB, Shpilev P, et~al. (2013) Robust $ t $-optimal discriminating
+  designs. \emph{Annals of Statistics} 41(4):1693--1715.
+
+\bibitem[{Doudchenko et~al.(2019)Doudchenko, Gilinson, Taylor,
+  \protect\BIBand{} Wernerfelt}]{doudchenkodesigning2021}
+Doudchenko N, Gilinson D, Taylor S, Wernerfelt N (2019) Designing experiments
+  with synthetic controls .
+
+\bibitem[{Doudchenko et~al.(2021)Doudchenko, Khosravi, Pouget-Abadie, Lahaie,
+  Lubin, Mirrokni, Spiess et~al.}]{doudchenko2021synthetic}
+Doudchenko N, Khosravi K, Pouget-Abadie J, Lahaie S, Lubin M, Mirrokni V,
+  Spiess J, et~al. (2021) Synthetic design: An optimization approach to
+  experimental design with synthetic controls. \emph{Advances in Neural
+  Information Processing Systems} 34:8691--8701.
+
+\bibitem[{Efron(1971)}]{efron1971forcing}
+Efron B (1971) Forcing a sequential experiment to be balanced.
+  \emph{Biometrika} 58(3):403--417.
+
+\bibitem[{Fox(2000)}]{fox2000separability}
+Fox BL (2000) Separability in optimal allocation. \emph{Operations Research}
+  48(1):173--176.
+
+\bibitem[{Girling \protect\BIBand{} Hemming(2016)}]{girling2016statistical}
+Girling AJ, Hemming K (2016) Statistical efficiency and optimal design for
+  stepped cluster studies under linear mixed effects models. \emph{Statistics
+  in medicine} 35(13):2149--2166.
+
+\bibitem[{Glynn et~al.(2020)Glynn, Johari, \protect\BIBand{}
+  Rasouli}]{glynn2020adaptive}
+Glynn PW, Johari R, Rasouli M (2020) Adaptive experimental design with temporal
+  interference: A maximum likelihood approach. \emph{Advances in Neural
+  Information Processing Systems} 33:15054--15064.
+
+\bibitem[{Glynn \protect\BIBand{}
+  Whitt(1992{\natexlab{a}})}]{glynn1992asymptotic}
+Glynn PW, Whitt W (1992{\natexlab{a}}) The asymptotic efficiency of simulation
+  estimators. \emph{Operations research} 40(3):505--520.
+
+\bibitem[{Glynn \protect\BIBand{}
+  Whitt(1992{\natexlab{b}})}]{glynn1992asymptoticstopping}
+Glynn PW, Whitt W (1992{\natexlab{b}}) The asymptotic validity of sequential
+  stopping rules for stochastic simulations. \emph{The Annals of Applied
+  Probability} 2(1):180--198.
+
+\bibitem[{Goldenshluger \protect\BIBand{}
+  Zeevi(2013)}]{goldenshluger2013linear}
+Goldenshluger A, Zeevi A (2013) A linear response bandit problem.
+  \emph{Stochastic Systems} 3(1):230--261.
+
+\bibitem[{Gupta et~al.(2019)Gupta, Kohavi, Tang, Xu, Andersen, Bakshy, Cardin,
+  Chandran, Chen, Coey, Curtis, Deng, Duan, Forbes, Frasca, Guy, Imbens,
+  Saint~Jacques, Kantawala, Katsev, Katzwer, Konutgan, Kunakova, Lee, Lee, Liu,
+  McQueen, Najmi, Smith, Trehan, Vermeer, Walker, Wong, \protect\BIBand{}
+  Yashkov}]{gupta2019top}
+Gupta S, Kohavi R, Tang D, Xu Y, Andersen R, Bakshy E, Cardin N, Chandran S,
+  Chen N, Coey D, Curtis M, Deng A, Duan W, Forbes P, Frasca B, Guy T, Imbens
+  GW, Saint~Jacques G, Kantawala P, Katsev I, Katzwer M, Konutgan M, Kunakova
+  E, Lee M, Lee M, Liu J, McQueen J, Najmi A, Smith B, Trehan V, Vermeer L,
+  Walker T, Wong J, Yashkov I (2019) Top challenges from the first practical
+  online controlled experiments summit. \emph{SIGKDD Explor. Newsl.}
+  21(1):20–35, ISSN 1931-0145.
+
+\bibitem[{Hamidi et~al.(2019)Hamidi, Bayati, \protect\BIBand{}
+  Gupta}]{hamidi2019personalizing}
+Hamidi N, Bayati M, Gupta K (2019) Personalizing many decisions with
+  high-dimensional covariates. volume~32.
+
+\bibitem[{Hastie et~al.(2015)Hastie, Mazumder, Lee, \protect\BIBand{}
+  Zadeh}]{hastie2015matrix}
+Hastie T, Mazumder R, Lee JD, Zadeh R (2015) Matrix completion and low-rank svd
+  via fast alternating least squares. \emph{The Journal of Machine Learning
+  Research} 16(1):3367--3402.
+
+\bibitem[{Hayes(2002)}]{hayes2002computing}
+Hayes B (2002) Computing science: The easiest hard problem. \emph{American
+  Scientist} 90(2):113--117.
+
+\bibitem[{Hayes \protect\BIBand{} Moulton(2017)}]{hayes2017cluster}
+Hayes RJ, Moulton LH (2017) \emph{Cluster randomised trials} (Chapman and
+  Hall/CRC).
+
+\bibitem[{Hemming et~al.(2015)Hemming, Haines, Chilton, Girling,
+  \protect\BIBand{} Lilford}]{hemming2015stepped}
+Hemming K, Haines TP, Chilton PJ, Girling AJ, Lilford RJ (2015) The stepped
+  wedge cluster randomised trial: rationale, design, analysis, and reporting.
+  \emph{Bmj} 350:h391.
+
+\bibitem[{Hussey \protect\BIBand{} Hughes(2007)}]{hussey2007design}
+Hussey MA, Hughes JP (2007) Design and analysis of stepped wedge cluster
+  randomized trials. \emph{Contemporary Clinical Trials} 28(2):182--191.
+
+\bibitem[{Imbens \protect\BIBand{} Rubin(2015)}]{imbens2015causal}
+Imbens GW, Rubin DB (2015) \emph{Causal inference in statistics, social, and
+  biomedical sciences} (Cambridge University Press).
+
+\bibitem[{Johari et~al.(2017)Johari, Koomen, Pekelis, \protect\BIBand{}
+  Walsh}]{johari2017peeking}
+Johari R, Koomen P, Pekelis L, Walsh D (2017) Peeking at a/b tests: Why it
+  matters, and what to do about it. \emph{Proceedings of the 23rd ACM SIGKDD
+  International Conference on Knowledge Discovery and Data Mining}, 1517--1525.
+
+\bibitem[{Johari et~al.(2022)Johari, Li, Liskovich, \protect\BIBand{}
+  Weintraub}]{johari2020experimental}
+Johari R, Li H, Liskovich I, Weintraub G (2022) Experimental design in
+  two-sided platforms: An analysis of bias. \emph{Management Science} .
+
+\bibitem[{Ju et~al.(2019)Ju, Hu, Henderson, \protect\BIBand{}
+  Hong}]{ju2019sequential}
+Ju N, Hu D, Henderson A, Hong L (2019) A sequential test for selecting the
+  better variant: Online a/b testing, adaptive allocation, and continuous
+  monitoring. \emph{Proceedings of the Twelfth ACM International Conference on
+  Web Search and Data Mining}, 492--500.
+
+\bibitem[{Kernan et~al.(1999)Kernan, Viscoli, Makuch, Brass, \protect\BIBand{}
+  Horwitz}]{kernan1999stratified}
+Kernan WN, Viscoli CM, Makuch RW, Brass LM, Horwitz RI (1999) Stratified
+  randomization for clinical trials. \emph{Journal of clinical epidemiology}
+  52(1):19--26.
+
+\bibitem[{Lai \protect\BIBand{} Wei(1982)}]{lai1982least}
+Lai TL, Wei CZ (1982) {Least Squares Estimates in Stochastic Regression Models
+  with Applications to Identification and Control of Dynamic Systems}.
+  \emph{The Annals of Statistics} 10(1):154 -- 166,
+  \urlprefix\url{http://dx.doi.org/10.1214/aos/1176345697}.
+
+\bibitem[{Lattimore \protect\BIBand{}
+  Szepesv{\'a}ri(2020)}]{lattimore2018bandit}
+Lattimore T, Szepesv{\'a}ri C (2020) Bandit algorithms .
+
+\bibitem[{Lawrie et~al.(2015)Lawrie, Carlin, \protect\BIBand{}
+  Forbes}]{lawrie2015optimal}
+Lawrie J, Carlin JB, Forbes AB (2015) Optimal stepped wedge designs.
+  \emph{Statistics \& Probability Letters} 99:210--214.
+
+\bibitem[{Li et~al.(2018)Li, Turner, \protect\BIBand{}
+  Preisser}]{li2018optimal}
+Li F, Turner EL, Preisser JS (2018) Optimal allocation of clusters in cohort
+  stepped wedge designs. \emph{Statistics \& Probability Letters} 137:257--263.
+
+\bibitem[{Mertens(2006)}]{mertens2006easiest}
+Mertens S (2006) The easiest hard problem: Number partitioning.
+  \emph{Computational Complexity and Statistical Physics} 125(2):125--139.
+
+\bibitem[{Mulvey(1983)}]{mulvey1983multivariate}
+Mulvey JM (1983) Multivariate stratified sampling by optimization.
+  \emph{Management Science} 29(6):715--724.
+
+\bibitem[{Ng et~al.(2001)Ng, Jordan, \protect\BIBand{} Weiss}]{ng2001spectral}
+Ng A, Jordan M, Weiss Y (2001) On spectral clustering: Analysis and an
+  algorithm. \emph{Advances in neural information processing systems} 14.
+
+\bibitem[{Nikolaev et~al.(2013)Nikolaev, Jacobson, Cho, Sauppe,
+  \protect\BIBand{} Sewell}]{nikolaev2013balance}
+Nikolaev AG, Jacobson SH, Cho WKT, Sauppe JJ, Sewell EC (2013) Balance
+  optimization subset selection (boss): An alternative approach for causal
+  inference with observational data. \emph{Operations Research} 61(2):398--412.
+
+\bibitem[{Robinson(1988)}]{robinson1988root}
+Robinson PM (1988) Root-n-consistent semiparametric regression.
+  \emph{Econometrica: Journal of the Econometric Society} 931--954.
+
+\bibitem[{Siegmund(1985)}]{siegmund1985sequential}
+Siegmund D (1985) \emph{Sequential analysis: tests and confidence intervals}
+  (Springer Science \& Business Media).
+
+\bibitem[{Singham \protect\BIBand{} Schruben(2012)}]{singham2012finite}
+Singham DI, Schruben LW (2012) Finite-sample performance of absolute precision
+  stopping rules. \emph{INFORMS Journal on Computing} 24(4):624--635.
+
+\bibitem[{Uci{\'n}ski \protect\BIBand{} Bogacka(2005)}]{ucinski2005t}
+Uci{\'n}ski D, Bogacka B (2005) T-optimum designs for discrimination between
+  two multiresponse dynamic models. \emph{Journal of the Royal Statistical
+  Society: Series B (Statistical Methodology)} 67(1):3--18.
+
+\bibitem[{Wager \protect\BIBand{} Athey(2018)}]{wager2018estimation}
+Wager S, Athey S (2018) Estimation and inference of heterogeneous treatment
+  effects using random forests. \emph{Journal of the American Statistical
+  Association} 113(523):1228--1242.
+
+\bibitem[{Wager \protect\BIBand{} Xu(2021)}]{wager2021experimenting}
+Wager S, Xu K (2021) Experimenting in equilibrium. \emph{Management Science}
+  67(11):6694--6715.
+
+\bibitem[{Wald(2004)}]{wald2004sequential}
+Wald A (2004) \emph{Sequential analysis} (Courier Corporation).
+
+\bibitem[{Wallace \protect\BIBand{} Hussain(1969)}]{wallace1969use}
+Wallace TD, Hussain A (1969) The use of error components models in combining
+  cross section with time series data. \emph{Econometrica: Journal of the
+  Econometric Society} 55--72.
+
+\bibitem[{Wiens(2009)}]{wiens2009robust}
+Wiens DP (2009) Robust discrimination designs. \emph{Journal of the Royal
+  Statistical Society: Series B (Statistical Methodology)} 71(4):805--829.
+
+\bibitem[{Woertman et~al.(2013)Woertman, de~Hoop, Moerbeek, Zuidema, Gerritsen,
+  \protect\BIBand{} Teerenstra}]{woertman2013stepped}
+Woertman W, de~Hoop E, Moerbeek M, Zuidema SU, Gerritsen DL, Teerenstra S
+  (2013) Stepped wedge designs could reduce the required sample size in cluster
+  randomized trials. \emph{Journal of Clinical Epidemiology} 66(7):752--758.
+
+\bibitem[{Xiong et~al.(2023)Xiong, Chin, \protect\BIBand{}
+  Taylor}]{xiong2023bias}
+Xiong R, Chin A, Taylor S (2023) Bias-variance tradeoffs for designing
+  simultaneous temporal experiments. \emph{The KDD'23 Workshop on Causal
+  Discovery, Prediction and Decision}, 115--131 (PMLR).
+
+\end{thebibliography}

@@ -1,0 +1,608 @@
+\section{Proof of Results for Non-Adaptive Experiments}\label{sec:constant-proof}
+
+    
+    
+    
+    We can combine $\beta_t$ with $\bm{\theta}_t$ in the specification \eqref{eqn:model-setup}, that is, 
+		\[Y_{it}= \alpha_i + \underbrace{\begin{bmatrix}
+			1 & \*X^\T_i
+			\end{bmatrix}}_{\tilde{\*X}_i^\T}  \begin{bmatrix}
+		\beta_t \\ \bm{\theta}_t
+		\end{bmatrix} + \tau_0 z_{it} + \tau_1 z_{i,t-1} + \cdots + \tau_{\ell} z_{i,t-\ell} + \underbrace{\*u_i^\T \*v_t  + \varepsilon_{it}}_{e_{it}}.\]
+		Denote $p \coloneqq d_x + 1$, and then $\tilde{\*X}_i \in \+R^{p}$. Denote  $\zeta_i = \frac{1}{T} \sum_{t = 1}^T z_{it} $ for all $i$ and $\tilde \omega_t = \frac{1}{N} \sum_{i=1}^N \tilde{\*X}_i z_{it} \in \+R^{p}$ for all $t$.
+    
+    
+    We write the potential outcomes from time $\ell+1$ to $T$ into a vectorized form, and then we have 
+    \[\bm{y}_{(\ell+1):T} = \begin{bmatrix} \bm{z}_{1:(T-\ell)} &  \cdots &  \bm{z}_{\ell:(T-1)} & \bm{z}_{(\ell+1):T} & 
+    \bm{\Gamma}
+    \end{bmatrix} \begin{bmatrix}
+    \bm{\tau} \\ \bm{\alpha}_{1:(N-p)} \\ \bm{\beta}_{(\ell+1):T} \\ \bm{\theta}_{(\ell+1):T}
+    \end{bmatrix} + \bm{e}_{(\ell+1):T}, \]
+    where $\hat{\bm{\tau}} = \begin{pmatrix} \tau_\ell & , & \cdots, & \tau_0   \end{pmatrix}$,
+    
+    \[ \bm{\Gamma} = 
+		\begin{bmatrix}
+		\tilde{\*I}_{N-p} & \bm{1}_N & \*X  &  &  &  \\
+		\tilde{\*I}_{N-p} & & &    \bm{1}_N  &  \*X & \\
+		\vdots & & & & & &  \ddots \\
+		\tilde{\*I}_{N-p} & & & &   & & & & \bm{1}_N & \*X\\
+		\end{bmatrix}  = \begin{bmatrix}
+		\tilde{\*I}_{N-p} & \tilde{\*X} \\
+		\tilde{\*I}_{N-p} & & \tilde{\*X} \\
+		\vdots & & & \ddots \\
+		\tilde{\*I}_{N-p} & & & & \tilde{\*X} \\
+		\end{bmatrix}\in \+R^{(N(T - \ell)) \times (N+(T - \ell-1)p)}, \]
+		
+		$\tilde{\*I}_{N-p} = \begin{bmatrix} \*I_{N-p} & \mathbf{0}_{N-p,p} \end{bmatrix}^\T  \in \+R^{N \times (N-p)}$, $\*I_{N-p}$ is an identity matix of dimension $(N-p)\times (N-p)$ and $\mathbf{0}_{N-p,p}$ is a matrix of $0$. Note that we restrict $\bm\alpha_{(N-p+1):N} = 0$ such that all other $\alpha_i$ and $\beta_t$ can be uniquely identified.
+		
+		Let 
+		\[\bm{Z}_\ell = \begin{bmatrix}
+		 \bm{z}_{(\ell+1):T} & \bm{z}_{\ell:(T-1)} & \cdots & \bm{z}_{1:(T-\ell)}
+		\end{bmatrix}. \]
+		
+		Then the precision of the estimated $\big( \hat{\bm{\tau}}, \hat{\bm{\alpha}}, \hat{\bm{\beta}}_{(\ell+1):T}, \hat{\bm{\theta}}_{(\ell+1):T} \big)$ from \eqref{eqn:gls}
+    \begin{align}\label{eqn:vcov-matrix}
+        \var\left(\begin{bmatrix}
+        \hat{\bm{\tau}} \\ \hat{\bm{\alpha}}_{1:(N-p)} \\ \hat{\bm{\beta}}_{(\ell+1):T} \\ \hat{\bm{\theta}}_{(\ell+1):T}
+        \end{bmatrix} \right) = \left(\begin{bmatrix}
+        \bm{Z}_\ell^\T \\ \bm{\Gamma}^\T 
+        \end{bmatrix} 
+        \cdot \bm{\Sigma}^\I_e \cdot
+        \begin{bmatrix}
+        \bm{Z}_\ell & \bm{\Gamma}
+        \end{bmatrix} \right)^\I \, ,
+    \end{align}
+    where $\bm{\Sigma}_e = \diag(\bm{\Psi}, \bm{\Psi}, \cdots, \bm{\Psi}) \in \+R^{(N(T - \ell)) \times (N(T - \ell))}$ and $\bm{\Psi} = \*U \*\Sigma_v \*U^\T + \sigma_\varepsilon^2 \*I_N$ from Assumption \ref{ass:constant-error}.
+    
+    
+    From block matrix inversion, we have 
+    %
+    \begin{align}\label{eqn:precision-matrix}
+        \Prec\left( \hat{\bm{\tau}}\right) ^\I = \var\left( \hat{\bm{\tau}}\right) = \left(\bm{Z}_\ell^\T  \bm{\Sigma}^\I_e  ( \bm{\Sigma}_e - \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \bm{\Gamma}^\T) \bm{\Sigma}^\I_e  \bm{Z}_\ell \right)^\I 
+    \end{align}
+
+    
+
+    
+    \subsection{Proof of Lemma \ref{lemma:simplify-obj}}
+    
+    
+    To prove the separable quadratic representation of $\Prec\left( \hat{\bm{\tau}}\right)$, we first state and prove a useful lemma.  
+    \begin{lemma}\label{eqn:carryover-separate-obj}
+    Suppose the assumptions in Lemma \ref{lemma:simplify-obj} hold and $\sigma_\varepsilon^2 = 1$. For the entries in $\Prec\left( \hat{\bm{\tau}}\right)$ in Equation \eqref{eqn:precision-matrix}, we have 
+    \begin{enumerate}
+        \item The $(j,m)$-th entry in $\bm{Z}_\ell^\T \bm{\Sigma}_e  \bm{Z}_\ell$ equals
+        \begin{equation}\label{eqn:precision-entries-1}
+            \sum_{t=1}^{T-\ell} \bm{z}_{j-1+t}^\T \left( \*I_N - \*U(\*I_k + \*U^\T \*U)^\I \*U^\T  \right) \bm{z}_{m-1+t} 
+        \end{equation}
+        \item The $(j,m)$-th entry in $\bm{Z}_\ell^\T  \bm{\Sigma}^\I_e  \bm{\Gamma} \cdot (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \cdot \bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{Z}_\ell $ equals
+        \begin{equation}\label{eqn:precision-entries-2}
+            \begin{aligned}
+                & N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T \tilde \omega_{t+m-j}   - \frac{N}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp  \\ & + (T - \ell) (\zeta^{(j)})^\T \Lp \*I_N - \*U (\*I_k + \*U^\T \*U)^\I \*U^\T \Rp \zeta^{(m)} 
+            \end{aligned}
+        \end{equation}
+        where $\tilde \omega_t = \frac{1}{N} \sum_{i = 1}^N \tilde{\*X}_i z_{it} \in \+R^p$ and $\zeta^{(j)} = \frac{1}{T - \ell} \sum_{t=j}^{T - \ell+j-1} \bm{z}_t \in \+R^{N}$.
+    \end{enumerate}
+    
+        
+    \end{lemma}
+    
+    \proof{Proof of Lemma \ref{eqn:carryover-separate-obj}}
+    \texttt{}
+
+     \textbf{Step 1: Prove Lemma \ref{eqn:carryover-separate-obj}.1}
+     
+    Since $\bm{\Sigma}_e = \diag(\bm{\Psi}, \bm{\Psi}, \cdots, \bm{\Psi}) \in \+R^{(N(T - \ell)) \times (N(T - \ell))}$ and $\bm{\Psi} = \*U \*\Sigma_v \*U^\T +\*I_N $ following the assumption that $\Sigma_v = \sigma_\varepsilon^2 \cdot \*I_k$ and $\sigma_\varepsilon^2 = 1$, we have 
+         
+         \[\bm{\Psi}^\I  = \frac{1}{\sigma_\varepsilon^2 } (\*I_N + \*U \*U^\T)^\I = \left( \*I_N - \*U(\*I_k + \*U^\T \*U)^\I \*U^\T  \right)\in \+R^{N \times N}. \]
+         Then 
+         \[\bm{Z}_{\ell,j}^\T \bm{\Sigma}_e  \bm{Z}_{\ell,m} = \sum_{t=1}^{T-\ell} \bm{z}_{j-1+t}^\T \bm{\Psi} \bm{z}_{m-1+t}.  \]
+
+    \textbf{Step 2: Prove Lemma \ref{eqn:carryover-separate-obj}.2.}
+    
+    We show the $(j,m)$-th entry in $\bm{Z}_\ell^\T  \bm{\Sigma}^\I_e  \bm{\Gamma} \cdot (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \cdot \bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{Z}_\ell $. This consists of the following three steps. 
+
+    \textbf{Step 2.1: Provide the expression of $\bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma}$ for all $j$.}
+    
+    $\bm{Z}_{\ell}^\T \bm{\Sigma}_e^\I \bm{\Gamma}$ has
+		\begin{align*}
+		    \bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma} =&  \bm{Z}_{\ell,j}^\T \begin{bmatrix} \bm{\Psi}  \tilde{\*I}_{N-p} & \bm{\Psi} \tilde{\*X} \\ \bm{\Psi} \tilde{\*I}_{N-p} & & \bm{\Psi} \tilde{\*X} \\ \vdots  & & & \ddots  \\ \bm{\Psi} \tilde{\*I}_{N-p} && & &\Psi \tilde{\*X} \end{bmatrix} \\ =&
+		\begin{bmatrix} \sum_{t=1}^{T - \ell} \bm{z}_{j-1+t}^\T \bm{\Psi} \tilde{\*I}_{N-p},  & \bm{z}_j^\T \bm{\Psi} \tilde{\*X}, & \cdots, &  \bm{z}_{T - \ell+j-1}^\T \bm{\Psi} \tilde{\*X} \end{bmatrix} \\ =& \begin{bmatrix}
+		(\phi^{(j)})^\T & (\iota^{(j)})^\T
+		\end{bmatrix}, 
+		\end{align*}
+		%
+		where
+  \[(\phi^{(j)})^\T = \sum_{t=1}^{T - \ell} \bm{z}_{j-1+t}^\T \bm{\Psi} \tilde{\*I}_{N-p}  = (\sum_{t=1}^{T - \ell} \bm{z}_{j-1+t})^\T \bm{\Psi} \tilde{\*I}_{N-p} \]
+  and
+  \[(\iota^{(j)})^\T = \begin{bmatrix}
+		\bm{z}_j^\T \bm{\Psi} \tilde{\*X}, & \cdots, &  \bm{z}_{T - \ell+j-1}^\T \bm{\Psi} \tilde{\*X}
+		\end{bmatrix}. \]
+		
+		Since $\zeta^{(j)} = \frac{1}{T - \ell} \sum_{t=j}^{T - \ell+j-1} \bm{z}_t \in \+R^{N}$, we have
+		%
+		\[\phi^{(j)} = T (\zeta^{(j)})^\T \bm{\Psi} \tilde{\*I}_{N-p}.\]
+		
+		
+		Note that $\*U$ and $\tilde{\*X}$ are orthogonal (from the assumptions in Lemma \ref{lemma:simplify-obj}), we have
+		%
+		\begin{align}\label{eqn:psi-simplify}
+		    \bm{\Psi} \tilde{\*X} = \tilde{\*X} \qquad \text{and} \qquad \tilde{\*X}^\T \bm{\Psi} \tilde{\*X} = N \cdot \*I_p 
+		\end{align}
+		
+		Then $$(\iota^{(j)})^\T = \begin{bmatrix}
+		\bm{z}_j^\T \tilde{\*X}, & \cdots, &  \bm{z}_{T - \ell+j-1}^\T  \tilde{\*X}
+		\end{bmatrix} = \begin{bmatrix}
+		N \tilde \omega_j^\T, & \cdots, & N \tilde \omega_{T - \ell+j-1}^\T
+		\end{bmatrix} = N \tilde{\bm{\omega}}_{j:j_\ell}^\T  \in \+R^{(T-\ell)p},$$
+		where $\tilde \omega_t = \frac{1}{N} \sum_{i = 1}^N \tilde{\*X}_i z_{it} \in \+R^p$, and $\tilde{\bm{\omega}}_{j:j_\ell}^\T $ is defined as $\begin{bmatrix}
+		\tilde \omega_j^\T, & \cdots, &  \tilde \omega_{T - \ell+j-1}^\T
+		\end{bmatrix} $.
+		
+		In summary, 
+		%
+		\[\bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma} = \begin{bmatrix}
+		T (\zeta^{(j)})^\T \bm{\Psi} \tilde{\*I}_{N-p}, & N \tilde{\bm{\omega}}_{j:j_\ell}^\T
+		\end{bmatrix}. \]
+		
+    \textbf{Step 2.2: Provide the expression of $(\bm{\Gamma}^\T \bm{\Sigma}_e \bm{\Gamma})^\I$.}
+  
+	Using block matrix inverse, we decompose  $(\bm{\Gamma}^\T \bm{\Sigma}_e^\I \bm{\Gamma} )^\I$ as 
+		\[(\bm{\Gamma}^\T \bm{\Sigma}_e \bm{\Gamma})^\I =  \begin{bmatrix} \bm{\Xi}_{11} & \bm{\Xi}_{12} \\ \bm{\Xi}_{21} & \bm{\Xi}_{22} \end{bmatrix}  \in \+R^{(N+(T - \ell-1)p)) \times (N+(T - \ell-1)p)},  \]
+		where
+  \begin{align*}
+      \bm{\Xi}_{11} =& \*M \\
+      \bm{\Xi}_{12} =&  - \*M \tilde{\*M} \\
+      \bm{\Xi}_{21} =& \bm{\Xi}_{12}^\T \\
+      \bm{\Xi}_{22} =& \bar{\*M} +\tilde{\*M}^\T \*M \tilde{\*M}
+  \end{align*}
+ with
+		\begin{align*}
+		    \*M =&   \frac{1}{T - \ell} \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} -\tilde{\*I}_{N-p}^\T \bm{\Psi}\tilde{\*X} (\tilde{\*X}^\T \bm{\Psi}  \tilde{\*X})^\I \tilde{\*X}^\T \bm{\Psi} \tilde{\*I}_{N-p}  \Rp^\I  \\
+      =& \frac{1}{T - \ell} \Lp  \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} - \frac{1}{N} \tilde{\*X} \tilde{\*X}^\T \Rp^\I \in \+R^{(N-p) \times (N-p)}  
+		\end{align*}
+  and 
+  \begin{align*}
+      \tilde{\*M} =& \begin{bmatrix}\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*X} (\tilde{\*X}^\T \bm{\Psi}  \tilde{\*X})^\I, & \cdots,  & \tilde{\*I}_{N-p}^\T \bm{\Psi}\tilde{\*X} (\tilde{\*X}^\T \bm{\Psi}  \tilde{\*X})^\I \end{bmatrix} = \begin{bmatrix}
+				\frac{1}{N} \tilde{\*X} & \cdots & \frac{1}{N} \tilde{\*X}
+			\end{bmatrix} \in \+R^{(N-p)\times ((T - \ell)p)} 
+  \end{align*}
+  and 
+  \begin{align*}
+      \bar{\*M} =& \diag((\tilde{\*X}^\T \bm{\Psi} \tilde{\*X})^\I, (\tilde{\*X}^\T \bm{\Psi} \tilde{\*X})^\I,
+			\cdots, (\tilde{\*X}^\T \bm{\Psi} \tilde{\*X})^\I) = \frac{1}{N} \*I_{((T - \ell)p)} \in \+R^{((T - \ell)p) \times ((T - \ell)p)}
+  \end{align*}
+
+  
+		%
+		and we use \eqref{eqn:psi-simplify} in the simplification.
+
+		We can further simplify $\*M$ using the Woodbury matrix identity
+		%
+		\begin{align*}
+		    \*M = \frac{1}{T - \ell} \Ls \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} \Rp^\I + \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} \Rp^\I \tilde{\*X} \Lp N - \tilde{\*X}^\T \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} \Rp^\I  \tilde{\*X} \Rp^\I \tilde{\*X}^\T \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} \Rp^\I   \Rs 
+		\end{align*}
+		where 
+		\begin{align*}
+		    \Lp \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} \Rp^\I = \Lp \*I_{N-p} - \*U_{(1)} (\*I_k + \*U^\T \*U)^\I \*U_{(1)}^\T \Rp^\I = \*I_{N-p} + \*U_{(1)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I \*U_{(1)}^\T,
+		\end{align*}
+  with $\*U = \begin{bmatrix}
+		\*U_{(1)}^\T & \*U_{(2)}^\T  
+		\end{bmatrix}^\T$ and 
+  \begin{align*}
+      \*U_{(1)} =& \begin{bmatrix}
+		\*u_1 & \*u_2 & \cdots & \*u_{N-p}
+		\end{bmatrix}^\T \in \+R^{(N-p) \times k} \\
+  \*U_{(2)} =& \begin{bmatrix}
+		\*u_{N-p+1}  & \cdots & \*u_{N}
+		\end{bmatrix}^\T \in \+R^{p \times k}
+  \end{align*}
+
+    \textbf{Step 2.3: Provide the expression of $\bm{Z}_{\ell,j}^\T  \bm{\Sigma}^\I_e  \bm{\Gamma} \cdot (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \cdot \bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{Z}_{\ell,m}$. }
+    
+  We combine steps (a) and (b) to calculate $\bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}_e^\I \bm{\Gamma} )^\I \bm{\Gamma}^\T \bm{\Sigma}_e^\I  \bm{Z}_{\ell,m}$ for $1\leq j, m \leq \ell+1$.
+		
+		From step (a), it is equivalent to calculating each term in
+		\[\begin{bmatrix}
+		(\phi^{(j)})^\T & (\iota^{(j)})^\T
+		\end{bmatrix}  \begin{bmatrix} \bm{\Xi}_{11} & \bm{\Xi}_{12} \\ \bm{\Xi}_{21} & \bm{\Xi}_{22} \end{bmatrix} \begin{bmatrix}
+		\phi^{(m)} \\ \iota^{(m)}
+		\end{bmatrix} = (\phi^{(j)})^\T \bm{\Xi}_{11} \phi^{(m)} + (\phi^{(j)})^\T \bm{\Xi}_{12} \iota^{(m)} +  (\iota^{(j)})^\T \bm{\Xi}_{21} \phi^{(m)} +  (\iota^{(j)})^\T \bm{\Xi}_{22} \iota^{(m)} \]
+		
+		Each term has 
+		\begin{eqnarray*}
+			(\phi^{(j)})^\T \bm{\Xi}_{11} \phi^{(m)} &=& (T - \ell)^2 (\zeta^{(j)})^\T \bm{\Psi} \tilde{\*I}_{N-p} \*M \tilde{\*I}_{N-p}^\T \bm{\Psi} \zeta^{(m)} \\
+			(\phi^{(j)})^\T \bm{\Xi}_{12} \iota^{(m)} &=& - N (T - \ell) (\zeta^{(j)})^\T\Psi \tilde{\*I}_{N-p} \*M \tilde{\*M} \tilde{\bm{\omega}}_{m:m_\ell} = -(T - \ell)  (\zeta^{(j)})\Psi \tilde{\*I}_{N-p} \*M \tilde{\*X} \Lp \sum_{t=m}^{T - \ell+m-1} \tilde{{\omega} }_{m-1+t} \Rp  \\
+			(\iota^{(j)})^\T \bm{\Xi}_{21} \phi^{(m)} &=& -N (T - \ell) \tilde{\bm{\omega}}_{j:j_\ell}^\T \tilde{\*M}^\T \*M \bm{\Psi} \tilde{\*I}_{N-p} \zeta^{(m)} = - (T - \ell) \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t \Rp  \tilde{\*X}^\T \*M \bm{\Psi} \tilde{\*I}_{N-p}^\T \zeta^{(m)} \\
+			(\iota^{(j)})^\T \bm{\Xi}_{22} \iota^{(m)} &=& N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_{t}^\T \tilde \omega_{t+m-j}  + \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T \Rp  \tilde{\*X}^\T \*M \tilde{\*X}  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp
+		\end{eqnarray*}
+		
+		where we use  $\zeta^{(j)} = \frac{1}{T - \ell} \sum_{t=j}^{T - \ell+j-1} \bm{z}_t$ and $\tilde{\bm{\omega}}_{j:j_\ell} = \begin{bmatrix}
+		\tilde \omega_j^\T & \cdots \tilde \omega_{T - \ell+j-1}^\T
+		\end{bmatrix} $.
+		
+		
+		We partition $\tilde{\*X}$ as $\tilde{\*X} = \begin{bmatrix}
+			\tilde{\*X}_{(1)}^\T & \tilde{\*X}_{(2)}^\T  
+			\end{bmatrix}^\T$, where 
+   \begin{align*}
+       \tilde{\*X}_{(1)} \coloneqq&  \begin{bmatrix}
+			\tilde{\*X}_1 & \tilde{\*X}_2 & \cdots & \tilde{\*X}_{N-p}
+			\end{bmatrix}^\T \in \+R^{(N-p) \times p} \\
+   \tilde{\*X}_{(2)} \coloneqq& \begin{bmatrix}
+			\tilde{\*X}_{N-p+1}  & \cdots & \tilde{\*X}_{N} \end{bmatrix}^\T \in \+R^{p \times p}
+   \end{align*}
+    We can simplify $(\phi^{(j)})^\T \bm{\Xi}_{11} \phi^{(m)}, (\phi^{(j)})^\T \bm{\Xi}_{12} \iota^{(m)}, (\iota^{(j)})^\T \bm{\Xi}_{21} \phi^{(m)}$ and $(\iota^{(j)})^\T \bm{\Xi}_{22} \iota^{(m)}$  by calculating the following terms
+			\begin{align*}
+			&	\tilde{\*I}_{N-p} (\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*I}_{N-p}^\T = \begin{bmatrix}
+					\*I_{N-p} + \*U_{(1)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I \*U_{(1)}^\T & \bm{0} \\ \bm{0}^\T & \bm{0}
+				\end{bmatrix} \in \+R^{N \times N} 
+			\end{align*}
+			and
+			\begin{align*}
+			    \bm{\Omega} \coloneqq& \*\Psi \tilde{\*I}_{N-p} ( \tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*I}_{N-p}^\T  \*\Psi \\
+				=&  \begin{bmatrix}
+					\*I_{N-p}  & \bm{0} \\ - \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I \*U_{(1)}^\T & \bm{0}
+				\end{bmatrix} \*\Psi \\ =& \begin{bmatrix}
+					\*I_{N-p} - \*U_{(1)}(\*I_k +  \*U^\T \*U)^\I \*U_{(1)}^\T & -\*U_{(1)} (\*I_k + \*U^\T \*U)^\I \*U_{(2)}^\T \\
+					- \*U_{(2)} (\*I_k +  \*U^\T \*U)^\I \*U_{(1)}^\T & \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I \*U_{(1)}^\T \*U_{(1)} (\*I_k +  \*U^\T \*U)^\I \*U_{(2)}^\T
+				\end{bmatrix} \in \+R^{N \times N}  
+			\end{align*}
+			and
+			\begin{align*}
+			    (\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*X}_{(1)} =&\tilde{\*X}_{(1)} - \*U_{(1)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T \tilde{\*X}_{(2)}  \in \+R^{(N-p) \times p} \\
+				 \tilde{\*I}_{N-p} (\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*X}_{(1)}  =& \begin{bmatrix}
+					\tilde{\*X}_{(1)} - \*U_{(1)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T \tilde{\*X}_{(2)}   \\ 0
+				\end{bmatrix}  \in \+R^{N \times p} 
+			\end{align*}
+			and
+			\begin{align*}
+			&	\bm{\delta} \coloneqq \tilde{\*X}_{(1)}^\T (\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*X}_{(1)}  = N \*I_p - (\tilde{\*X}_{(2)}^\T \tilde{\*X}_{(2)}  - \tilde{\*X}_{(2)}^\T \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T \tilde{\*X}_{(2)} ) \in \+R^{p \times p} \\
+		&		\bm{\gamma} \coloneqq \*\Psi \tilde{\*I}_{N-p} (\tilde{\*I}_{N-p}^\T \bm{\Psi} \tilde{\*I}_{N-p} )^\I \tilde{\*X}_{(1)}  = \begin{bmatrix}
+					\tilde{\*X}_{(1)} \\  \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T \tilde{\*X}_{(2)} 
+				\end{bmatrix}\in \+R^{N \times p}.
+			\end{align*}
+	
+		From the definition of $\zeta_i^{(j)} $ and $\omega_t$, we have $(T - \ell) \sum_{i = 1}^N \zeta_i^{(j)} = N \sum_{t=j}^{T - \ell-1+j} \omega_t$ for $j = 1, 2, \cdots, \ell+1$ and $ \sum_{i = 1}^{N-1} \zeta_i^{(j)} = \frac{N}{T - \ell} \sum_{t=j}^{T - \ell-1+j} \omega_t - \zeta_N^{(j)} $. More generally, we have $(T - \ell) \sum_{i = 1}^N \tilde{\*X}_i \zeta_i^{(j)} = N \sum_{t=j}^{T - \ell-1+j}  \tilde{\omega}_t$. 
+		Using these properties, 
+		\begin{eqnarray*}
+			(\phi^{(j)})^\T \bm{\Xi}_{11} \phi^{(m)} &=& (T - \ell)  (\zeta^{(j)})^\T \Lp \*\Omega +  \bm{\gamma} (N \*I_p - \bm{\delta})^\I \bm{\gamma}^\T  \Rp \zeta^{(m)} \\
+			(\phi^{(j)})^\T \bm{\Xi}_{12} \iota^{(m)} &=&  -(T - \ell)  (\zeta^{(j)})^\T \Lp  \bm{\gamma} (N \*I_p - \bm{\delta})^\I \tilde{\*X}^\T \Rp \zeta^{(m)}  \\
+			(\iota^{(j)})^\T \bm{\Xi}_{21} \phi^{(m)} &=&  - (T - \ell) (\zeta^{(j)})^\T \Lp   \tilde{\*X}  (N \*I_p - \bm{\delta})^\I \bm{\gamma}^\T \Rp \zeta^{(m)}  \\
+			(\iota^{(j)})^\T \bm{\Xi}_{22} \iota^{(m)} &=& N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_{t}^\T \tilde \omega_{t+m-j}  + (T - \ell)  (\zeta^{(j)})^\T \Lp   \tilde{\*X} (N \*I_p - \bm{\delta})^\I  \tilde{\*X}^\T \Rp \zeta^{(m)} \\ && - \frac{N}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp
+		\end{eqnarray*}
+		
+		
+		
+		We sum these four terms together and obtain
+		\begin{eqnarray*}
+				  N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_{t}^\T \tilde \omega_{t+m-j}  - \frac{N}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp \\  + (T-\ell)  (\zeta^{(j)})^\T \Lp \*\Omega + \Lp \bm{\gamma} - \tilde{\*X} \Rp  (N \*I_p - \bm{\delta})^\I \Lp \bm{\gamma} - \tilde{\*X} \Rp^\T  \Rp \zeta^{(m)}.
+			\end{eqnarray*}
+			with
+			\begin{eqnarray*}
+				&&  \*\Omega + \Lp \bm{\gamma} - \tilde{\*X} \Rp  (N \*I_p - \bm{\delta})^\I \Lp \bm{\gamma} - \tilde{\*X} \Rp \\
+				&=&  \*\Omega + \begin{bmatrix}
+					0 & \bm{0} \\ \bm{0}^\T & \*I_p - \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T 
+				\end{bmatrix} \\
+				&=& \*I_N - \*U (\*I_k + \*U^\T \*U)^\I \*U^\T,
+			\end{eqnarray*}
+			following $\*U^\T \*U = \*U_{(1)}^\T \*U_{(1)} + \*U_{(2)}^\T \*U_{(2)}$ and
+			\begin{eqnarray*}
+				&& \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I \*U_{(1)}^\T \*U_{(1)} (\*I_k +  \*U^\T \*U)^\I \*U_{(2)}^\T  - \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)} )^\I \*U_{(2)}^\T  \\
+				&=& \*U_{(2)} (\*I_k + \*U_{(2)}^\T \*U_{(2)})^\I ( \*U_{(1)}^\T \*U_{(1)} - \*I_k- \*U^\T \*U )(\*I_k +  \*U^\T \*U)^\I \*U_{(2)}^\T \\
+				&=& - \*U_{(2)} (\*I_k +  \*U^\T \*U)^\I \*U_{(2)}^\T.
+			\end{eqnarray*}
+			In summary  $\bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}_e^\I \bm{\Gamma} )^\I \bm{\Gamma}^\T \bm{\Sigma}_e^\I  \bm{Z}_{\ell,m}$ equals
+			\begin{align*}
+			    N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_{t}^\T \tilde \omega_{t+m-j} -  \frac{N}{T - \ell}   \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp 
+			 + (T - \ell)  (\zeta^{(j)})^\T \Lp I_N - \*U (\*I_k + \*U^\T \*U)^\I \*U^\T \Rp \zeta^{(m)}.
+			\end{align*}
+		
+         
+    \Halmos
+    \endproof
+    
+    
+    
+    
+    Next we prove Lemma \ref{lemma:simplify-obj}. In this proof, we can simultaneously obtain Equation \eqref{eqn:d-optimal-precision} for the D-optimal design.
+    
+    	\proof{Proof of Lemma \ref{lemma:simplify-obj} and Equation \eqref{eqn:d-optimal-precision}}
+     \texttt{} 
+		
+		From Lemma \ref{eqn:carryover-separate-obj}, when $\sigma_\varepsilon^2 = 1$, the $(j,m)$-th entry in $\Prec(\hat{\bm{\tau}})$ is $ \bm{Z}_\ell^\T  \bm{\Sigma}^\I_e  ( \bm{\Sigma}_e - \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \bm{\Gamma}^\T) \bm{\Sigma}^\I_e  \bm{Z}_\ell$ and equals
+		\begin{eqnarray*}
+			&& \bm{Z}_{\ell,j}^\T  \bm{\Sigma}_e^\I \bm{Z}_{\ell,m} - \bm{Z}_{\ell,j}^\T \bm{\Sigma}_e^\I \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}_e^\I \bm{\Gamma})^\I \bm{\Gamma}^\T \bm{\Sigma}_e^\I \bm{Z}_{\ell,m}  \\
+			&=& \sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \left( \*I_N - \*U(\*I_k + \*U^\T \*U)^\I \*U^\T  \right) \bm{z}_{m-1+t} \\
+			&& - N \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T \tilde \omega_{t+m-j} +  \frac{N}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \tilde \omega_t^\T  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \tilde \omega_t \Rp  \\ &&  - (T - \ell)  (\zeta^{(j)})^\T \Lp I_N - \*U (\*I_k + \*U^\T \*U)^\I \*U^\T \Rp \zeta^{(m)} \\
+			&=& \underbrace{\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{m-1+t}  - \Bigg[ (T - \ell)  (\zeta^{(j)})^\T    \zeta^{(m)}   -  \frac{N}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \omega_t  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \omega_t \Rp + N \sum_{t=j}^{T - \ell+j-1} \omega_t \omega_{t+m-j}  \Bigg] }_{\coloneqq a^{(j,m)}} \\
+			&& + \underbrace{N \cdot  \sum_{q=1}^{d_x} \Bigg[  -\sum_{t=j}^{T - \ell+j-1} \omega_t^{x_q} \omega^{x_q}_{t+m-j}   + \frac{1}{T - \ell}  \Lp \sum_{t=j}^{T - \ell+j-1} \omega^{x_q}_t  \Rp  \Lp \sum_{t=m}^{T - \ell+m-1} \omega^{x_q}_t \Rp  \Bigg] }_{\coloneqq b^{(j,m)}} \\
+			&& + \underbrace{(T - \ell)  (\zeta^{(j)})^\T  \*U (\*I_k + \*U^\T \*U)^\I \*U^\T  \zeta^{(m)}  - \sum_{t=j}^{T - \ell+j-1} \bm{z}_t^\T U (\*I_k +  \*U^\T \*U)^\I U^\T \bm{z}_{t+m-j}  }_{\coloneqq c^{(j,m)}},   
+		\end{eqnarray*}
+		where $\omega_t = \frac{1}{N} \sum_{i = 1}^N z_{it}$ and $\omega_t^{x_q} = \frac{1}{N} \sum_{i = 1}^N X_{iq} z_{it}$ for $q = 1, \cdots, d_x$. 
+		
+		
+		When there are no covariates, we only have the term $a^{(j,m)}$. We can write $\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{m-1+t} $ and $(\zeta^{(j)})^\T    \zeta^{(m)} $ in $a^{(j,m)}$ in terms of $\omega_1, \cdots, \omega_T$.
+		
+		First, for the term $\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{m-1+t} $ and $(\zeta^{(j)})^\T    \zeta^{(m)} $,  if $j = m$, then  $\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{j-1+t} = N(T - \ell)$. if $j \neq m$, suppose $j < m$, then we have 
+		\[\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{m-1+t} = N \Ls (T - \ell) + \sum_{t = j}^{m-1} (\omega_t  -  \omega_{T - \ell+t})\Rs.  \]
+		
+		Second, let us write $(\zeta^{(j)})^\T \zeta^{(m)}$ in terms of $\omega_1, \cdots, \omega_T$.
+		Recall the definition $\zeta^{(j)}_i = \frac{1}{T - \ell} \sum_{t=j}^{T - \ell-1+j} z_{1t} $, there are $T+1$ different values that $\zeta_i^{(j)} \zeta_i^{(m)}$ can take, denoted as $\upsilon_0^{(j,m)}, \upsilon_1^{(j,m)}, \cdots, \upsilon_T^{(j,m)}$, where $\upsilon_t^{(j,m)}$ denotes the value of $\zeta_i^{(j)} \zeta_i^{(m)}$ when unit $i$ starts to get  the treatment at time period $T+1-t$ (and $\upsilon_0^{(j,m)}$ represents the value of $\zeta_i^{(j)} \zeta_i^{(m)}$ when unit $i$ stays in the control group for all time periods). Without loss of generality, we assume $j \leq m$ and have
+		\begin{eqnarray*}
+			\upsilon_t^{(j,m)} = \begin{cases}
+				1 &  t \leq \ell+1-m\\
+				-\Lp -1 + \frac{2(t-1-\ell+m)}{T - \ell} \Rp & \ell+1-m < t \leq \ell+1-j \\
+				\Lp  -1 + \frac{2(t-1-\ell+m)}{T - \ell} \Rp \Lp  -1 + \frac{2(t-1-\ell+j)}{T - \ell} \Rp & \ell+1-j < t \leq T+1-k \\
+				\Lp  -1 + \frac{2(t-1-\ell+j)}{T - \ell} \Rp & T+1-m < t \leq T+1-j \\
+				1 & T+1-j < t \\
+			\end{cases}
+		\end{eqnarray*}
+		Given $\omega_t$, there are $\frac{N(1+ \omega_1)}{2}, \frac{N(1+\omega_2)}{2}, \cdots \frac{N(1+\omega_T)}{2}$ treated units in time period $1, 2, \cdots, T$. It is equivalent to having  $\frac{N(1+\omega_1)}{2}, \frac{N(\omega_2 - \omega_1)}{2}, \cdots,\frac{N(\omega_T-\omega_{T-1})}{2}$ untreated units to start the treatment in time period $1, 2, \cdots, T$ and leaving $\frac{N(1-\omega_T)}{2}$ units in the control group in the end. 
+		\begin{eqnarray*}
+			(\zeta^{(j)})^\T \zeta^{(m)} = \sum_{i = 1}^{N} \zeta_i^{(j)} \zeta_i^{(m)}  &=& N \left[ \frac{1 + \omega_1}{2} \cdot \upsilon^{(j,m)}_T + \frac{ \omega_2 -  \omega_1}{2} \upsilon^{(j,m)}_{T-1} + \cdots  + \frac{1 - \omega_T}{2} \cdot \upsilon^{(j,m)}_0 \right] \\
+			&=& N \left[ 1 + \frac{\upsilon^{(j,m)}_T - \upsilon^{(j,m)}_{T-1}}{2}  \omega_1 + \frac{\upsilon^{(j,m)}_{T-1} - \upsilon^{(j,m)}_{T-2}}{2}  \omega_2  + \cdots + \frac{\upsilon^{(j,m)}_1 - \upsilon^{(j,m)}_0}{2} \omega_T  \right],
+		\end{eqnarray*}
+		following $\upsilon^{(j,m)}_0 = \upsilon^{(j,m)}
+		_T = 1$.  
+
+		We plug the expression of $\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{m-1+t} $ and $(\zeta^{(j)})^\T \zeta^{(m)} $ into $a^{(j,m)}$ and multiply $a^{(j,m)}$ by $1/\sigma_\varepsilon^2$ to account for $\sigma_\varepsilon^2 \neq 1$, then we obtain Equation \eqref{eqn:d-optimal-precision}.
+		
+		To show Lemma \ref{lemma:simplify-obj}, we plug the expression of $\sum_{t=j}^{T - \ell+j-1} \bm{z}_{j-1+t}^\T \bm{z}_{j-1+t} $ and $(\zeta^{(j)})^\T \zeta^{(j)} $ into $a^{(j,j)}$, and multiply $a^{(j,j)}$, $b^{(j,j)}$ and $c^{(j,j)}$ by $1/\sigma_\varepsilon^2$ to account for $\sigma_\varepsilon^2 \neq 1$
+		then we have 
+  {\small 
+		\begin{align*}
+		    & \tr \left( \bm{Z}_\ell^\T  \bm{\Sigma}^\I_e  ( \bm{\Sigma}_e - \bm{\Gamma} (\bm{\Gamma}^\T \bm{\Sigma}^\I_e  \bm{\Gamma})^\I \bm{\Gamma}^\T) \bm{\Sigma}^\I_e  \bm{Z}_\ell\right) \\
+		    =&\frac{1}{\sigma_\varepsilon^2}  \sum_{j = 1}^{\ell+1} \left(a^{(j,j)} + b^{(j,j)} + c^{(j,j)} \right) \\
+		  =&  -   \frac{N}{\sigma_\varepsilon^2} \cdot  \sum_{j = 1}^{\ell+1} \underbrace{\Ls \sum_{t = j}^{T - \ell-1+j} \omega_t^2  - \frac{1}{T - \ell} \Lp  \sum_{t=j}^{T - \ell-1+j} \omega_t  \Rp^2 +  \sum_{t = j}^{T - \ell-1+j} \frac{2(T - \ell-1+2j-2t)}{T - \ell}  \omega_t   \Rs}_{f_{j,\bm{1}}(Z)}  \\
+		    & -  \frac{N}{\sigma_\varepsilon^2} \cdot   \sum_{j = 1}^{\ell+1} \underbrace{\sum_{k=1}^{d_x} \Bigg[  \sum_{t=j}^{T - \ell+j-1} \left(\frac{1}{N} \sum_{i = 1}^N X_{ik} z_{it} \right)^2  - \frac{1}{T - \ell}  \Lp \frac{1}{N} \sum_{t=j}^{T - \ell+j-1} \sum_{i = 1}^N X_{ik} z_{it}  \Rp^2  \Bigg]}_{f_{j,\*X}(Z)}  \\
+		    & - \frac{N}{\sigma_\varepsilon^2} \sum_{j = 1}^{\ell+1} \underbrace{\Bigg[ \frac{1}{N} \sum_{t=j}^{T - \ell+j-1} \bm{z}_t^\T \*U (\*I_k +  \*U^\T \*U)^\I \*U^\T \bm{z}_{t} -  \frac{1}{N(T - \ell)} \bigg( \sum_{t=j}^{T - \ell+j-1} \bm{z}_t \bigg)^\T  \*U (\*I_k + \*U^\T \*U)^\I \*U^\T   \bigg( \sum_{t=j}^{T - \ell+j-1} \bm{z}_t \bigg)  \Bigg] }_{f_{j,\*U}(Z)},
+		\end{align*} }
+		where $f_{j,\*X}(Z) $ can be written as $ \sum_{k=1}^{d_x}  (\bm{\omega}_{j:j_\ell}^{x_k})^\T \*P_{\bm{1}_{T_\ell}}  \bm{\omega}_{j:j_\ell}^{x_k} $, and $f_{j,\*U}(Z) $ can be written as $f_{j,\*U}(Z) = \frac{1}{N} \bm{z}_{j:j_\ell}^\T\*M_{\*U}  \bm{z}_{j:j_\ell} $ with $\*M_{\*U} = \*P_{\bm{1}_{T-\ell}} \otimes \*U (\*I_{d_u} + \*U^\T \*U)^\I \*U^\T$.
+		
+	
+		\Halmos
+		\endproof
+    
+		
+		\subsection{Proof of Theorem \ref{thm:obs-latent-carryover-model}}
+		
+		
+		\proof{Proof of Theorem \ref{thm:obs-latent-carryover-model}}
+		
+		As described in Section \ref{subsec:separate-quadratic}, if we can find a design that can separately minimize $f_{j,\bm{1}}(Z)$, $f_{j,\*X}(Z)$, $f_{j,\*U}(Z)$, then this design can maximize the precision $\Prec(\hat{\bm{\tau}})$. 
+		
+		
+		Let us first consider the design that minimizes $f_{j,\bm{1}}(Z)$. We can write it out as
+		\begin{align}\label{eqn:fj1z}
+		    f_{j,\bm{1}}(Z) = \sum_{j = 1}^{\ell+1} \Ls \sum_{t = j}^{T - \ell-1+j} \omega_t^2  - \frac{1}{T - \ell} \Lp  \sum_{t=j}^{T - \ell-1+j} \omega_t \Rp^2 +  \sum_{t = 1}^{T - \ell-1+j} \frac{2(T - \ell-1+2j-2t)}{T - \ell}  \omega_t  \Rs.
+		\end{align}
+		
+		The Lagrangian of $f_{j,\bm{1}}(Z)$ is 
+		\begin{align*}
+			\mathcal{L}(\bm{\omega}, \bm{\lambda}, \bm{\kappa}, \bm{\iota}) &= \sum_{j = 1}^{\ell+1} \Ls \sum_{t = j}^{T - \ell-1+j} \omega_t^2  - \frac{1}{T - \ell} \Lp  \sum_{t=j}^{T - \ell-1+j} \omega_t \Rp^2 +  \sum_{t = 1}^T \frac{2(T - \ell-1+2j-2t)}{T - \ell}  \omega_t  \Rs \\
+			&  + \sum_{t=1}^T \lambda_t (-1 - \omega_t) + \sum_{t=1}^T \kappa_t (\omega_t - 1) + \sum_{t=1}^{T-1} \iota_t ( \omega_t - \omega_{t+1}). 
+		\end{align*}
+		
+		
+		The KKT conditions of $\mathcal{L}(\bm{\omega}, \bm{\lambda}, \bm{\kappa}, \bm{\iota})$ are
+		\begin{align}
+		\frac{\partial \mathcal{L}}{\partial \omega_t } =& t \omega_t - \frac{\sum_{j=1}^t s_j}{T - \ell}  + \frac{(T - \ell - t)t}{T - \ell} - \lambda_t + \kappa_t + \iota_t - \iota_{t-1} = 0, \quad t \leq \ell \label{eqn:kkt-small-t} \\
+		\frac{\partial \mathcal{L}}{\partial \omega_t } =& (\ell+1) \omega_t - \frac{\sum_{j=1}^{\ell+1} s_j }{T - \ell} + \frac{(\ell+1)(T+1-2t)}{T - \ell}  - \lambda_t + \kappa_t + \iota_t - \iota_{t-1} = 0, \quad \ell <  t \leq T - \ell \label{eqn:kkt-medium-t} \\
+		\frac{\partial \mathcal{L}}{\partial \omega_t } =& (T+1-t) \omega_t - \frac{\sum_{j=1}^{T+1-t} s_j}{T - \ell}  + \frac{(T - \ell - 1)(T+1-t)}{T - \ell}  - \lambda_t + \kappa_t + \iota_t - \iota_{t-1} = 0, \, t >  T - \ell  \label{eqn:kkt-large-t} \\
+		\nonumber & \lambda_t (-1 - \omega_t) = 0, \quad \kappa_t (\omega_t - 1) = 0, \quad \iota_t ( \omega_t - \omega_{t+1}) = 0 \\
+		\nonumber & -1 \leq \omega_t \leq 1, \quad \omega_t \leq \omega_{t+1},\quad  \lambda_t \geq 0, \quad \kappa_t \geq 0, \quad \iota_t \geq 0
+		\end{align}
+		where $s_j = \sum_{t=j}^{T - \ell-1+j} \omega_t$ for $j = 1, \cdots, \ell+1$ and $\iota_0 = 0$.
+		
+		The Hessian of $f(\bm{\omega})$ is positive semi-definite. Any solution that satisfies the KKT conditions is optimal. 
+		
+		First, we can show the optimal solution is symmetric with respect to the origin. The proof is as follows. If $\bm{\omega}^\ddagger$ is the optimal solution that minimizes \eqref{eqn:fj1z}, then we can show $\bm{\omega}^\dagger = \begin{bmatrix}
+		-\omega^\ddagger_T & -\omega^\ddagger_{T-1} & \cdots & -\omega^\ddagger_1
+		\end{bmatrix}$ has the same  value in the objective function as $\bm{\omega}^\ddagger$ because $\sum_{j = 1}^{\ell+1} \sum_{t = 1}^{T - \ell-1+j} \frac{2(T - \ell-1+2j-2t)}{T - \ell}  \omega_t $ in $f(\bm{\omega})$ is symmetric with respect to the origin and similarly for the other two terms in $f(\bm{\omega})$. Since \eqref{eqn:fj1z} is convex, 
+		$f\Lp \frac{\bm{\omega}^\ddagger + \bm{\omega}^\dagger }{2} \Rp \leq \frac{1}{2} \big[ f(\bm{\omega}^\ddagger) + f(\bm{\omega}^\dagger)  \big]  = f(\bm{\omega}^\ddagger).$
+		Then if $\bm{\omega}^\ddagger$ is optimal, $\bm{\omega}^\dagger = \bm{\omega}^\ddagger$. 
+		
+		Now we can focus on the $\omega$ that satisfies $\begin{bmatrix}
+		\omega_1 & \omega_2 & \cdots & \omega_T 
+		\end{bmatrix} = \begin{bmatrix}
+		-\omega_T & -\omega_{T-1} & \cdots & -\omega_1
+		\end{bmatrix}$. From the definition of $s_j = \sum_{t=j}^{T - \ell-1+j} \omega_t$, we have $s_j = -s_{\ell+1-j}$. If $\ell$ is even, $s_{\ell/2+1} = 0$.
+		
+		
+		Now we are going to verify $\bm{\omega}^\ast = \begin{bmatrix}
+		\omega_1^\ast & \omega_2^\ast & \cdots & \omega_T^\ast
+		\end{bmatrix}$ defined in Equation \eqref{eqn:omega-carryover} satisfies the KKT conditions with feasible $\bm{\lambda}, \bm{\kappa}, \bm{\iota}$. 
+		
+
+        \textbf{Case 1: $\omega_t^\ast$ for $\ell < t \leq T - \ell$.}
+        
+        $\omega_t^\ast = -1 + \frac{2t - (\ell+1)}{T - \ell}  $ satisfies Equation \eqref{eqn:kkt-medium-t} with $\lambda_t = \kappa_t = \iota_t = 0$ and $\iota_{\ell} = 0$.
+	
+        \textbf{Case 2: $\omega_t^\ast$ for $t \leq \ell$.}
+        
+        Given $\omega_t = - \omega_{T+1-t}$. We can simplify $s_j$  to
+			\begin{eqnarray*}
+				s_j = \begin{cases} 
+					\sum_{t = j}^{\ell+1-j} \omega_t & \text{ for } j = 1, \cdots, \lfloor (\ell+1)/2 \rfloor \\
+					\sum_{t = T-j}^{T - \ell+j} \omega_t & \text{ for } j = \lfloor (\ell+1)/2 \rfloor+1, \cdots, \ell+1 \, .  
+				\end{cases}
+			\end{eqnarray*}
+			As an example, when $\ell = 2$,  we have $s_1 = \omega_1 + \omega_2$, $s_2 = 0$ and $s_3 = \omega_{T-1}+\omega_T$; when $\ell = 3$,  we have $s_1 = \omega_1 + \omega_2 + \omega_3$, $s_2 = \omega_2$, $s_3 = \omega_{T-1}$ and  $s_4 = \omega_{T-2}+\omega_{T-1}+\omega_T$. Furthermore, $s_j + s_{\ell+2-j} = 0$ for $1 \leq j \leq  \ell+1$. Using this property, for $\lfloor \ell/2 \rfloor < t \leq \ell$, we have $\sum_{j = 1}^t s_j = \sum_{j = 1}^{\ell+1-t} s_j$.
+			
+			Next we show when $ \omega_t = -1$ for $t \leq \lfloor \ell/2 \rfloor$, there exist some $\omega_t$  for $ \lfloor \ell/2 \rfloor < t \leq \ell$ and some feasible $\lambda_t, \kappa_t, \iota_t$ that satisfy Equation \eqref{eqn:kkt-small-t}. 
+			
+			When  $\omega_t = -1$ for $t \leq \lfloor \ell/2 \rfloor$, then for $ \lfloor \ell/2 \rfloor < t \leq \ell$, $\sum_{j=1}^t s_j = \sum_{j = 1}^{\ell+1-t} s_j = \big[ \sum_{j = 1}^{\ell+1-t} (\lfloor \ell/2 \rfloor + 1 - j) \big] + \min(\ell+1-t, \ell - \lfloor \ell/2 \rfloor) \cdot \omega_{\lfloor \ell/2 \rfloor+1} + \cdots + \min(\ell+1-t, 2) \cdot   \omega_{\ell-1} + \min(\ell+1-t, 1) \cdot \omega_{\ell}$. As an example, when $\ell = 2$, $s_2=-1+\omega_2$; when $\ell = 3$, $s_1+s_2 = -1+2\omega_2+\omega_3$, $s_1+s_2+s_3 = -1 + \omega_2 + \omega_3$. We can rewrite Equation \eqref{eqn:kkt-small-t} for  $ \lfloor \ell/2 \rfloor < t \leq \ell$ in a vectorized form as the following (we will consider Equation \eqref{eqn:kkt-small-t} for $t \leq \lfloor \ell/2 \rfloor$ in the later part of this proof)
+			\begin{equation} 
+			\begin{bmatrix}
+			\frac{\partial \mathcal{L}}{\partial \omega_{\lfloor \ell/2 \rfloor+1} }\\ \vdots \\  \frac{\partial \mathcal{L}}{\partial  \omega_{\ell} }
+			\end{bmatrix} = A^{(\ell)} \begin{bmatrix}
+			\omega_{\lfloor \ell/2 \rfloor+1} \\ \vdots \\   \omega_{\ell}
+			\end{bmatrix} - b^{(\ell)} - \begin{bmatrix}
+			\lambda_{\lfloor \ell/2 \rfloor+1} \\ \vdots \\ \lambda_{\ell}
+			\end{bmatrix} + \begin{bmatrix}
+			\kappa_{\lfloor \ell/2 \rfloor+1} \\ \vdots \\ \kappa_{\ell}
+			\end{bmatrix} + \begin{bmatrix}
+			\iota_{\lfloor \ell/2 \rfloor+1} \\ \vdots \\ \iota_{\ell}
+			\end{bmatrix} - \begin{bmatrix}
+			\iota_{\lfloor \ell/2 \rfloor} \\ \vdots \\ \iota_{\ell-1}
+			\end{bmatrix} = 0 \label{eqn:kkt-small-t-simplified},
+			\end{equation}
+			where $A^{(\ell)}$ and $b^{(\ell)}$ are defined in Equation \eqref{eqn:A-ell} and Equation \eqref{eqn:b-ell}.
+			When $\begin{bmatrix} \omega_{\lfloor \ell/2 \rfloor+1}  & \cdots &  \omega_{\ell} \end{bmatrix}^\T  = (A^{(\ell)})^{-1} b^{(\ell)}$, Equation \eqref{eqn:kkt-small-t-simplified} holds with $\lambda_t = \kappa_t = \iota_t = 0$ for $t = \lfloor \ell/2 \rfloor + 1, \cdots, \ell$ and $\iota_{\lfloor \ell/2 \rfloor} = 0$. The remaining step is to verify the constraints $-1 \leq \omega_t \leq -1 + \frac{\ell+1}{T - \ell}$ and $\omega_t \leq \omega_{t+1}$ hold if $\begin{bmatrix} \omega_{\lfloor \ell/2 \rfloor+1}  & \cdots &  \omega_{\ell} \end{bmatrix}^\T  = (A^{(\ell)})^{-1} b^{(\ell)}$.
+			
+		\textbf{Step 1: Show $- A^{(\ell)} \bm{1} \leq b^{(\ell)} \leq (-1 + \frac{\ell+1}{T - \ell}) A^{(\ell)}  \bm{1}$.}
+  
+  Note that the diagonal entries in $A^{(\ell)}$ are positive while the off-diagonal entries in $A^{(\ell)}$ are negative, then $A_{t^\prime, :}^{(\ell)} \bm{\omega}_{(\lfloor \ell/2 \rfloor+1): L}$ is increasing in $\omega_{t}$ and decreasing in $\omega_s$ for $t^\prime = 1, \cdots, \ell - \lfloor \ell/2 \rfloor$, $t = t^\prime+ \lfloor \ell/2 \rfloor$ and $s \neq t^\prime+ \lfloor \ell/2 \rfloor $. If $- A^{(\ell)} \bm{1} \leq b^{(\ell)} \leq (-1 + \frac{\ell+1}{T - \ell}) A^{(\ell)}  \bm{1}$  hold, then $\omega_t$ defined in $\begin{bmatrix} \omega_{\lfloor \ell/2 \rfloor+1}  & \cdots &  \omega_{\ell} \end{bmatrix}^\T  = (A^{(\ell)})^{-1} b^{(\ell)}$  is between $-1$ and $-1 + \frac{\ell+1}{T - \ell}$ for $t = \lfloor \ell/2 \rfloor + 1, \cdots, \ell$.
+				
+				First, let us show $- A^{(\ell)} \bm{1} \leq b^{(\ell)} $, which is equivalent to showing every entry in $A^{(\ell)} \bm{1} + b^{(\ell)} $ is non-negative, that is, for $t^\prime = 1, \cdots, \ell - \lfloor \ell/2 \rfloor$, $( A^{(\ell)} \bm{1})_{t^\prime} +  b^{(\ell)}_{t^\prime} \geq 0$. If $\ell$ is even, $\sum_{l=1}^{\ell-t} (\ell - \lfloor \ell/2 \rfloor + 1 - l) = \frac{t(\ell+1-t)}{2}$ and $\sum_{l=1}^{\ell-t} ( \lfloor \ell/2 \rfloor  + 1 - l) = \frac{t(\ell+1-t)}{2} $. Let $t = t^\prime + \lfloor \ell/2 \rfloor$. We have 
+				\[ ( A^{(\ell)} \bm{1})_{t^\prime} +  b^{(\ell)}_{t^\prime}  = t - \frac{1}{T - \ell} \frac{t(\ell+1-t)}{2} - t + \frac{t^2}{T - \ell} - \frac{1}{T - \ell} \frac{t(\ell+1-t)}{2} = \frac{t(2T - \ell-1)}{T - \ell} \geq 0. \]
+				If $\ell$ is odd, $\sum_{j=1}^{\ell-t} (\ell - \lfloor \ell/2 \rfloor + 1 - j) = \frac{(t+1)(\ell+1-t)}{2}$ and $\sum_{j=1}^{\ell-t} ( \lfloor \ell/2 \rfloor  + 1 - j) = \frac{(t-1)(\ell+1-t)}{2} $. We have 
+				\[ ( A^{(\ell)} \bm{1})_{t^\prime} +  b^{(\ell)}_{t^\prime}  = t - \frac{1}{T - \ell} \frac{(t+1)(\ell+1-t)}{2} - t + \frac{t^2}{T - \ell} - \frac{1}{T - \ell} \frac{(t-1)(\ell+1-t)}{2} = \frac{t(2T - \ell-1)}{T - \ell} \geq 0. \]
+				
+				Second, let us show $ b^{(\ell)} \leq (-1 + \frac{\ell+1}{T - \ell}) A^{(\ell)}  \bm{1}$, which is equivalent to showing every entry in $ (1 - \frac{\ell+1}{T - \ell}) A^{(\ell)}  \bm{1} + b^{(\ell)} $ is non-positive, that is, for $t^\prime = 1, \cdots, \ell - \lfloor \ell/2 \rfloor$, $\big( A^{(\ell)} (1-\frac{\ell+1}{T - \ell}) \bm{1} \big)_{t^\prime} +  b^{(\ell)}_{t^\prime} \leq 0$. 
+				If $\ell$ is even
+				\[ \Big( A^{(\ell)} (1-\frac{\ell+1}{T - \ell}) \bm{1} \Big)_{t^\prime} +  b^{(\ell)}_{t^\prime} = \frac{t(2T - \ell-1)}{T - \ell} - \frac{\ell+1}{T - \ell} \Big(t - \frac{t(\ell+1-t)}{2(T - \ell)}\Big) = \frac{t(T - \ell-1)}{T - \ell} \Big(2- \frac{1}{2}\frac{\ell+1}{T - \ell}\Big) < 0 \]
+				following $t(T - \ell-1) < 0$ and $2- \frac{1}{2}\frac{\ell+1}{T - \ell} > 0$. If $\ell$ is odd, 
+				\[ \Big( A^{(\ell)} (1-\frac{\ell+1}{T - \ell}) \bm{1} \Big)_{t^\prime} +  b^{(\ell)}_{t^\prime} = \frac{t(2T - \ell-1)}{T - \ell} - \frac{\ell+1}{T - \ell} \Big(t - \frac{(t+1)(\ell+1-t)}{2(T - \ell)}\Big) = \frac{t(T - \ell-1)}{T - \ell} \Big(2- \frac{t+1}{2t}\frac{\ell+1}{T - \ell}\Big) < 0 \]
+				following $t(T - \ell-1) < 0$ and $2- \frac{t+1}{2t}\frac{\ell+1}{T - \ell} > 0$.
+
+			\textbf{Step 2: Show $- b^{(\ell)}_{t^\prime}/ (A^{(\ell)} \bm{1})_{t^\prime}$ is non-decreasing in $t^\prime$ for $t^\prime = 1, \cdots, \ell - \lfloor \ell/2 \rfloor$. } 
+   
+   Note that the diagonal entries in $A^{(\ell)}$ are positive while the off-diagonal entries in $A^{(\ell)}$ are negative, then $A_{t^\prime, :}^{(\ell)} \bm{\omega}_{(\lfloor \ell/2 \rfloor+1): L}$ is increasing in $\omega_{t}$ and decreasing in $\omega_s$ for $t^\prime = 1, \cdots, \ell - \lfloor \ell/2 \rfloor$, $t = t^\prime+ \lfloor \ell/2 \rfloor$ and $s \neq t^\prime+ \lfloor \ell/2 \rfloor $. If $- b^{(\ell)}_{t^\prime}/ (A^{(\ell)} \bm{1})_{t^\prime}$ is non-decreasing in $t^\prime$, then  $\omega_t$ is non-decreasing in $t$, where $t = t^\prime+ \lfloor \ell/2 \rfloor$. 
+				
+				Let $c_{t^\prime}$ be the   $c_{t^\prime}$ that satisfies $(A^{(\ell)} (-1 + \frac{c_{t^\prime}}{T - \ell}) \bm{1})_{t^\prime} =  b^{(\ell)}_{t^\prime}$ and let $t = t^\prime+ \lfloor \ell/2 \rfloor$. If $\ell$ is even, we have
+				\begin{eqnarray*}
+					&& \frac{t(2T - \ell-1)}{T - \ell}  = \frac{c_{t^\prime}}{T - \ell} \Lp  t - \frac{1}{T - \ell} \frac{t(\ell+1-t)}{2} \Rp \\
+					&\Leftrightarrow& 2T - \ell-1 = c_{t^\prime} \frac{t+2T-3\ell-1}{2(T - \ell)}.
+				\end{eqnarray*}
+				Since $\frac{\partial (2T - \ell-1)}{\partial t}= 2$, $\frac{\partial \frac{t+2T-3\ell-1}{2(T - \ell)}}{\partial t} = \frac{1}{2(T - \ell)}$, and $2 > \frac{1}{2(T - \ell)}$, we have $c_{t^\prime}$ increases in $t$ and $t^\prime$.  This implies $- b^{(\ell)}_{t^\prime}/ (A^{(\ell)} \bm{1})_{t^\prime}$ is non-decreasing in $t^\prime$ for even $\ell$. 
+				
+				If $\ell$ is odd, we have 
+				\begin{eqnarray*}
+					&& \frac{t(2T - \ell-1)}{T - \ell}  = \frac{c_{t^\prime}}{T - \ell} \Lp  t - \frac{1}{T - \ell} \frac{(t+1)(\ell+1-t)}{2} \Rp \\
+					&\Leftrightarrow& 2T - \ell-1 = c_{t^\prime} \Lp 1 + \frac{(t+1)(T - \ell-1)}{2t(T - \ell)} \Rp.
+				\end{eqnarray*}
+				Since $\frac{\partial (2T - \ell-1)}{\partial t}= 2$, $\frac{\partial \frac{t+2T-3\ell-1}{2(T - \ell)}}{\partial t} \leq \frac{\ell+3}{\ell+1} \frac{1}{T - \ell}$, and $2 > \frac{\ell+3}{(T - \ell)(\ell+1)}$, we have $c_{t^\prime}$ increases in $t$ and $t^\prime$. This again implies $- b^{(\ell)}_{t^\prime}/ (A^{(\ell)} \bm{1})_{t^\prime}$ is non-decreasing in $t^\prime$ for odd $\ell$. 
+			
+			We have verified that for  $ \lfloor \ell/2 \rfloor < t \leq \ell$,  $\omega_t$ defined in $\begin{bmatrix} \omega_{\lfloor \ell/2 \rfloor+1}  & \cdots &  \omega_{\ell} \end{bmatrix}^\T  = (A^{(\ell)})^{-1} b^{(\ell)}$ satisfies the KKT conditions. The remaining step is to verify for $t \leq \lfloor \ell/2 \rfloor$,  $\omega_t$ defined as $\omega_t = -1$  satisfies the KKT conditions. When $\omega_t = -1$, constraints $-1 \leq \omega_t \leq 1$, $\omega_t \leq \omega_{t+1}$ for $t \leq \lfloor \ell/2 \rfloor$  and $\omega_{ \lfloor \ell/2 \rfloor}\leq \omega+_{ \lfloor \ell/2 \rfloor+1}$ are satisfied. We only need to verify that we can find  feasible $\lambda_t, \kappa_t, \iota_t$ to satisfy Equation  \eqref{eqn:kkt-small-t}. Since $\omega_t = -1$, from complementary slackness, $\kappa_t = 0$. Plug $\omega_t = -1$ into Equation \eqref{eqn:kkt-small-t}, we have 
+			\begin{eqnarray*}
+				\lambda_1  - \iota_1 &=& -\frac{1+ s_1}{T - \ell} \\
+				\lambda_t  - \iota_t + \iota_{t-1} &=& -\frac{t^2 + \sum_{j=1}^t s_j}{T - \ell} \text{ for } t = 2, \cdots \lfloor \ell/2 \rfloor - 1 \\
+				\lambda_t   + \iota_{t-1} &=& -\frac{t^2 + \sum_{j=1}^t s_j}{T - \ell} \text{ for } t =  \lfloor \ell/2 \rfloor 
+			\end{eqnarray*}
+			We only need to verify $-\frac{t^2 + \sum_{j=1}^t s_j}{T - \ell} \geq 0$ for $t = \lfloor \ell/2 \rfloor $ as for the other conditions, $\lambda_1 - \iota$ and $\lambda_t  - \iota_t + \iota_{t-1}$ can take any value by properly choosing $\lambda_t$ and $\iota$. 
+			
+			Note that $\frac{1}{T - \ell} \sum_{j=1}^{\lfloor \ell/2 \rfloor} s_j = \frac{1}{T - \ell} \sum_{j = 1}^{L +1 - \lfloor \ell/2 \rfloor} s_j = (\ell+1 - \lfloor \ell/2 \rfloor ) (\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1) - \frac{(\ell+1- \lfloor \ell/2 \rfloor )^2}{T - \ell}$. Furthermore, if we can show  $\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{1}{\ell+1 - \lfloor \ell/2\rfloor}$ for even $\ell$ and $\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{2}{\ell+1 - \lfloor \ell/2\rfloor}$ for odd $\ell$, then we have 
+			\begin{eqnarray*}
+				&& - \frac{\lfloor \ell/2 \rfloor^2}{T - \ell} - (\ell+1 - \lfloor \ell/2 \rfloor ) (\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1) + \frac{(\ell+1- \lfloor \ell/2 \rfloor )^2}{T - \ell} \\
+				&=& \frac{(\ell+1- 2\lfloor \ell/2 \rfloor) (\ell+1)}{T - \ell} - (\ell+1 - \lfloor \ell/2 \rfloor ) (\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1) \geq 0
+			\end{eqnarray*}
+			and therefore $-\frac{t^2 + \sum_{j=1}^t s_j}{T - \ell} \geq 0$.
+			
+			Next is to show ``$\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{1}{\ell+1 - \lfloor \ell/2\rfloor}$ for even $\ell$ and $\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{2}{\ell+1 - \lfloor \ell/2\rfloor}$ for odd $\ell$.'' Denote $c^u_t \coloneqq -1 + \frac{\ell+1}{T - \ell} \frac{t^\prime}{\lfloor (\ell+1)/2 \rfloor+1} $. If we can show $\omega_t \leq -1 + \frac{\ell+1}{T - \ell} \frac{t^\prime}{\lfloor (\ell+1)/2 \rfloor+1} \coloneqq c^u_t$ for $t = t^\prime + \lfloor \ell/2 \rfloor$, then it implies ``$\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{1}{\ell+1 - \lfloor \ell/2\rfloor}$ for even $\ell$ and $\omega_{\ell+1 - \lfloor \ell/2 \rfloor} +1 \leq \frac{\ell+1}{T - \ell} \frac{2}{\ell+1 - \lfloor \ell/2\rfloor}$ for odd $\ell$.'' Note that the diagonal entries in $A^{(\ell)}$ are positive while the off-diagonal entries in $A^{(\ell)}$ are negative, then $A_{t^\prime, :}^{(\ell)} \bm{\omega}_{(\lfloor \ell/2 \rfloor+1): L}$ is increasing in $\omega_{t}$ and decreasing in $\omega_s$ for $t = t^\prime+ \lfloor \ell/2 \rfloor$ and $s \neq t^\prime+ \lfloor \ell/2 \rfloor $.  We only need to show $ (A^{(\ell)} c^u)_{\ell-\lfloor \ell/2 \rfloor} \geq b^{(\ell)}_{\ell-\lfloor \ell/2 \rfloor}$, where $c^u = \begin{bmatrix}
+			c^u_{\lfloor \ell/2 \rfloor+1} & \cdots & c^u_{\ell- \lfloor \ell/2 \rfloor}
+			\end{bmatrix}^\T $. If $\ell$ is even, and when $T > \frac{\ell^2 + 11\ell + 2}{8}$,
+			\[  -(A^{(\ell)} c^u)_{\ell-\lfloor \ell/2 \rfloor} + b^{(\ell)}_{\ell-\lfloor \ell/2 \rfloor} = \frac{\ell(\ell-1)}{T - \ell} - \frac{\ell(\ell+1)}{T - \ell} \Lp \frac{\ell}{\ell+2} - \frac{4}{T - \ell} \Rp = - \frac{\ell}{T - \ell} \Lp \frac{2}{\ell+2} - \frac{\ell+1}{4(T - \ell)} \Rp  < 0. \]
+			If $\ell$ is odd, and when $T > \frac{\ell^3+13\ell^2+7\ell+3}{8\ell}$ (note that $\frac{\ell^3+13\ell^2+7\ell+3}{8\ell} > \frac{\ell^2 + 11\ell + 2}{8}$), 
+			\[-(A^{(\ell)} c^u)_{\ell-\lfloor \ell/2 \rfloor} + b^{(\ell)}_{\ell-\lfloor \ell/2 \rfloor} =  \frac{\ell(\ell-1)}{T - \ell} - \frac{\ell(\ell+1)}{T - \ell} \frac{\ell+1}{\ell+3} + \frac{(\ell+1)^2}{4(T - \ell)^2} = - \frac{1}{T - \ell} \Lp \frac{2\ell}{\ell+3} - \frac{(L+2)^2}{4(T - \ell)} \Rp < 0.\]
+			
+			
+			
+			
+    \textbf{Case 3: $\omega_t^\ast$ for $t > T - \ell$.}	
+ 
+    This is a symmetric case of $\omega_t^\ast$ for $t < \ell$. The proof of $\omega_t^\ast$ for $t > T - \ell$ carries over to this case. 
+    
+	Combining three cases together,	we have verified that the $\bm{\omega}^\ast$ defined in Equation \eqref{eqn:carryover-t-optimal-obs-latent-thm} satisfies the KKT conditions and the Hessian of \eqref{eqn:fj1z} is positive semi-definite, then  $\bm{\omega}^\ast$ is an optimal solution that minimizes $f_{j,\bm{1}}(Z)$.
+
+    Next is to find a solution that minimizes $f_{j,\*X}(Z)$. Note that $f_{j,\*X}(Z) $ can be written as $ \sum_{k=1}^{d_x}  (\bm{\omega}_{j:j_\ell}^{x_k})^\T \*P_{\bm{1}_{T_\ell}}  \bm{\omega}_{j:j_\ell}^{x_k} $. $\*P_{\bm{1}_{T_\ell}}$ is a positive semi-definite matrix with one eigenvalue to be $0$ and the corresponding eigenvector to be $\bm{1}$. Therefore, $(\bm{\omega}_{j:j_\ell}^{x_k})^\T \*P_{\bm{1}_{T_\ell}}  \bm{\omega}_{j:j_\ell}^{x_k}  \geq 0$  for all $\bm{z}$ and the minimum value is attained when $\*X^\T \*z_t$ is the same for all $t$, or equivalently $\frac{1}{N} \sum_{i = 1}^N X_{i} z_{it} = \mu_X$ for some $\mu_X \in \+R^{d_x}$. 
+
+    
+    Finally is to find a solution that minimizes $f_{j,\*U}(Z)$. Note that $f_{j,\*U}(Z) $ can be written as $f_{j,\*U}(Z) = \frac{1}{N} \bm{z}_{j:j_\ell}^\T\*M_{\*U}  \bm{z}_{j:j_\ell} $ with $\*M_{\*U} = \*P_{\bm{1}_{T-\ell}} \otimes \*U (\*I_{d_u} + \*U^\T \*U)^\I \*U^\T$. Similar to $f_{j,\*X}(Z)$,  $\bm{z}^\T M_U \bm{z} \geq 0$ for all $\bm{z}$ and the minimum value is  attained when $ \*U^\T \*z_t$  is the same for all $t$, or equivalently, $\frac{1}{N} \sum_{i = 1}^N u_{i} z_{it} = \mu_U$ for some $\mu_U \in \+R^{d_u}$.
+		
+	Combining the optimality conditions for $f_{j,\bm{1}}(Z)$ $f_{j,\*X}(Z)$ and $f_{j,\*U}(Z)$. A solution is optimal if it satisfies
+		\begin{eqnarray}
+		\frac{1}{N} \sum_{i = 1}^N z_{it} = \omega_t^\ast, \quad \quad \frac{1}{N} \sum_{i = 1}^N X_i z_{it} = \mu_X , \quad \frac{1}{N} \sum_{i = 1}^N u_{i} z_{it} = \mu_U, \quad  \text{ for all } t.
+		\end{eqnarray}
+		
+		We, therefore, finish the proof of Theorem \ref{thm:obs-latent-carryover-model}.
+		\Halmos
+		\endproof
+		
+		
+		
+		\subsection{Proof of Proposition \ref{prop:rounding-error-obs-cov}}
+		
+
+		
+				\proof{Proof of Proposition \ref{prop:rounding-error-obs-cov}}
+				Let $Z^\ast$ be the optimal solution to \eqref{eqn:obj} with relaxed constraint $z_{it} \in [-1,+1]$, and therefore $Z^\ast$ is feasible and satisfies all the conditions in Theorem \ref{thm:obs-latent-carryover-model}. Note that 
+				\[ \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\ast}  \geq \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^{\mathrm{int}\ast}} \geq \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd}. \]
+				We can provide a bound of $\tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^{\mathrm{int}\ast}} - \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd}$ by bounding 
+				\[ \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\ast}  - \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd},\]
+				which is what we are going to do in the following.
+				
+				Note that when $d_u = 0$, 
+				\[\tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z}  = - \frac{N}{\sigma_{\varepsilon}^2} \left(f_{\bm{1}}(Z) + f_{\*X}(Z) \right), \]
+				where 
+				\begin{align*}
+				 f_{\bm{1}}(Z)   =&   \sum_{j = 1}^{\ell+1} \underbrace{\Ls \sum_{t = j}^{T - \ell-1+j} \omega_t^2  - \frac{1}{T - \ell} \Lp  \sum_{t=j}^{T - \ell-1+j} \omega_t  \Rp^2 +  \sum_{t = j}^{T - \ell-1+j} \frac{2(T - \ell-1+2j-2t)}{T - \ell}  \omega_t   \Rs}_{f_{j,\bm{1}}(Z)}  \\
+		     f_{\*X}(Z) =&    \sum_{j = 1}^{\ell+1} \underbrace{\sum_{k=1}^{d_x} \Bigg[  \sum_{t=j}^{T - \ell+j-1} \left(\frac{1}{N} \sum_{i = 1}^N X_{ik} z_{it} \right)^2  - \frac{1}{T - \ell}  \Lp \frac{1}{N} \sum_{t=j}^{T - \ell+j-1} \sum_{i = 1}^N X_{ik} z_{it}  \Rp^2  \Bigg]}_{f_{j,\*X}(Z)}.
+				\end{align*}
+				We can bound $\tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\ast}  - \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd}$ by bounding $f_{\bm{1}}(Z^\rnd) - f_{\bm{1}}(Z^\ast)$
+				and $f_{\*X}(Z^\rnd) - f_{\*X}(Z^\ast)$.
+				
+				
+				Let us bound the gap between $f_{\bm{1}}(Z^\rnd)$ and $f_{\bm{1}}(Z^\ast)$. 
+				
+				
+				Note that $\omega_t$ is bounded between $-1$ and $+1$ and the eigenvalues of the Hessian of $f_{j,\bm{1}}(Z) $ are either $1$ or $0$. Therefore, for all $j$,
+				\[f_{j,\bm{1}}(Z) = O(T - \ell ). \]
+				Next let us bound the difference between $\omega_t^\rnd$ and $\omega^\ast_t$. We introduce the notation $\omega_{g,t}$:
+				
+				\[\omega_{g,t} = \frac{1}{|\tlo_g|} \sum_{i \in \tlo_g} \underbrace{(2 \cdot \boldsymbol{1}_{A_i \leq t} - 1)}_{z_{it}} \]
+				be the treated fraction of units in stratum $g$ scaled between $-1$ and $+1$. Let $\omega_{g,t}^\rnd$ be the value of $\omega_{g,t}$ evaluated at the rounded feasible solution $\{A^\rnd_i\}_{i=1}^N$. 
+				
+				
+				Since we use the nearest rounding rule to get a feasible $Z^\rnd$, we have $|\omega^\rnd_{g,t} -  \omega^\ast_{g,t}| \leq \frac{1}{|\tlo_g|}$ for all $t$ and $g$, and therefore,
+				% $|\sum_{t=1}^T \omega^\rnd_{g,t}| \leq \frac{1}{|\tlo_g|}$ .
+		\[|w^\rnd_{\ell,t} - w^\ast_{\ell,t}| = |\sum_{g = 1}^G p_g (\omega^\rnd_{g,t} - \omega^\ast_{g,t}) | \leq \sum_{g = 1}^G p_g |\omega^\rnd_{g,t} -\omega^\ast_{g,t}|  \leq \sum_{g = 1}^G \frac{p_g }{N_{\min}} = O\left(\frac{1}{N_{\min}} \right). \]
+		Let $\delta_t = w^\rnd_{t} - w^\ast_t$.
+		The difference between $f_{j,\bm{1}}(Z^\rnd)+f_{\ell+1-j,\bm{1}}(Z^\rnd)$ and $f_{j,\bm{1}}(Z^\ast)+f_{\ell+1-j,\bm{1}}(Z^\ast)$ equals
+		\begin{align*}
+		    & \big(f_{j,\bm{1}}(Z^\rnd)+f_{\ell+1-j,\bm{1}}(Z^\rnd) \big) - \big(f_{j,\bm{1}}(Z^\ast)+f_{\ell+1-j,\bm{1}}(Z^\ast) \big) \\
+		    =& \underbrace{2 \left( \sum_{t = j}^{T - \ell-1+j} \omega^\ast_{\ell,t} \delta_t + \sum_{t = \ell+1-j}^{T - j} \omega^\ast_{\ell,t} \delta_t \right)}_{a_1} \\
+      & - \underbrace{\frac{2}{T-\ell} \left[ \left( \sum_{t = j}^{T - \ell-1+j} \omega^\ast_{\ell,t} \right) \left( \sum_{t = j}^{T - \ell-1+j} \delta_t \right) +  \left( \sum_{t = \ell+1-j}^{T - j} \omega^\ast_{\ell,t} \right) \left( \sum_{t = \ell+1-j}^{T - j} \delta_t \right) \right]}_{a_2}  \\
+		    & + \underbrace{ \left( \sum_{t = j}^{T - \ell-1+j} \delta^2_t + \sum_{t = \ell+1-j}^{T - j}  \delta^2_t \right)}_{a_3}  -  \underbrace{\frac{1}{T-\ell} \left[  \left( \sum_{t = j}^{T - \ell-1+j} \delta_t \right)^2 +   \left( \sum_{t = \ell+1-j}^{T - j} \delta_t \right)^2 \right]}_{a_4}   \\
+		    & + \underbrace{\left(\sum_{t = j}^{T - \ell-1+j}  b_{\ell,t} \delta_t + \sum_{t = \ell+1-j}^{T - j}b_{\ell,t} \delta_t  \right)}_{a_5} 
+		\end{align*}
+		Since $\omega^\ast_{\ell,t} = - \omega^\ast_{\ell,T+1-t}$ for all $t$, we have $\omega^\ast_{\ell,t} \delta_t  + \omega^\ast_{\ell,T+1-t} \delta_{T+1-t} = 0$ and $b_{\ell,t} \delta_t  + b_{\ell,T+1-t} \delta_{T+1-t} = 0$ following the property of our rounding algorithm. Therefore, assuming $N$ is even, we have
+		\[ a_1 = 0 \qquad a_2 = 0 \qquad  a_5 = 0 \]
+		and 
+        \begin{align*}
+		    & \big(f_{j,\bm{1}}(Z^\rnd)+f_{\ell+1-j,\bm{1}}(Z^\rnd) \big) - \big(f_{j,\bm{1}}(Z^\ast)+f_{\ell+1-j,\bm{1}}(Z^\ast) \big) = a_3 + a_4 = O\left(\frac{2 (T-\ell)}{N^2_{\min}} \right).
+		\end{align*}
+		We sum $j$ together and obtain
+		\[ f_{\bm{1}}(Z^\rnd) - f_{\bm{1}}(Z^\ast) = O\left(\frac{(\ell+1) (T-\ell)}{N^2_{\min}} \right). \]
+		Next let us bound the gap between $\sum_{j = 1}^{\ell+1} f_{j,\*X}(Z^\rnd)$ and $\sum_{j = 1}^{\ell+1} f_{j,\*X}(Z^\ast)$. Then for each covariate $X_{ik}$, 
+				\[|w^{x_k,\rnd}_{\ell,t} - w^{x_k,\ast}_{\ell,t}| = |\sum_{g = 1}^G p_g x_{gk} (\omega^\rnd_{g,t} - \omega^\ast_{g,t}) | \leq \sum_{g = 1}^G p_g x_{j,\max} |\omega^\rnd_{g,t} -\omega^\ast_{g,t}|  \leq \sum_{g = 1}^G \frac{p_g x_{k,\max}}{N_{\min}} = O\left(\frac{x_{k,\max}}{N_{\min}} \right). \]
+				We use a similar procedure as above and obtain that for covariate $X_{ik}$, 
+				\begin{align*}
+		    & \big(f_{j,\*X_{k}}(Z^\rnd)+f_{\ell+1-j,\*X_{k}}(Z^\rnd) \big) - \big(f_{j,\*X_{k}}(Z^\ast)+f_{\ell+1-j,\*X_{k}}(Z^\ast) \big)  = O\left(\frac{2 x_{k,\max}^2 (T-\ell)}{N^2_{\min}} \right).
+		\end{align*}
+		We sum over $k$ (all covariates) and $j$ (all treatment effects) together and obtain
+		\[  f_{\*X}(Z^\rnd) - f_{\*X}(Z^\ast) = O\left(\frac{(\ell+1) (T-\ell) \sum_{k=1}^{d_x} x_{k,\max}^2}{N^2_{\min}} \right). \]
+		Since both $f_{\*X}(Z^\ast)$ and $ f_{\*X}(Z^\ast)$ are at the order of $O((\ell+1) (T-\ell))$, we have 
+		\begin{align*}
+		   f_{\bm{1}}(Z^\rnd)+  f_{\*X}(Z^\rnd) = \left(  f_{\bm{1}}(Z^\rnd)+  f_{\*X}(Z^\rnd)\right) \cdot\left(1+ O\left(\frac{1+ \sum_{k=1}^{d_x} x_{k,\max}^2}{N^2_{\min}} \right) \right)
+		\end{align*}
+		and from the definition of $\tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z} $ we have 
+		\[ \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd} = \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\ast}  \cdot\left(1+ O\left(\frac{1+ \sum_{k=1}^{d_x} x_{k,\max}^2}{N^2_{\min}} \right) \right).\]
+		Together with $\tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\ast}  \geq \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^{\mathrm{int}\ast}}$, we have
+		\[ \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^\rnd} = \tr \big(\mathrm{Prec}(\hat{\bm{\tau}})  \big)_{Z^{\mathrm{int}\ast}}  \cdot\left(1+ \mathcal{O}\left(\frac{1+ \sum_{k=1}^{d_x} x_{k,\max}^2}{N^2_{\min}} \right) \right).\]
+  This concludes the proof of Proposition \ref{prop:rounding-error-obs-cov}.
+\Halmos
+		\endproof
+		
+		

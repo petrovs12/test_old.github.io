@@ -1,0 +1,199 @@
+\section{Supplementary Material for Adaptive Experiments}\label{sec:more-detail-sequential}
+
+{\blue 
+\subsection{Dynamic Program to Solve $\omega_{t+1}$}\label{subsec:dp-omega}
+In this section, we provide supplementary details on the dynamic program used to make adaptive treatment decisions for ATU.
+%
+In this dynamic program, let the dynamic system be
+\[x_{s+1} = \tilde{f}(x_s, \omega_{s+1}, \eta_{s+1}), \qquad \forall  s \leq T_{\max}-1, \]
+where $x_s$ is the state of the system and summarizes the information up to time $s$ with the definition provided below, $\omega_{s+1}$ is our decision variable at time $s$, $\eta_{s+1} \in \{0,1\}$ is a random variable with $\eta_{s+1} = 0$ indicating that the experiment has been terminated at time $s+1$, and $\eta_{s+1} = 1$ denoting otherwise. The sequence of random variables $\{\eta_s\}_{s \in [T_{\max}]}$ are sampled as follows. We first sample a termination time $\tilde T$ from $P_t(\tilde T)$, and $\xi_s$ equals to
+\[\eta_s = \bm{1}_{s \leq \tilde T}, \qquad \forall  s \in [T_{\max}]. \]
+
+Given $\omega_{s}$ and $\eta_{s}$, we define $x_s$ as a tuple with two elements
+\[x_s = \bigg( \underbrace{\vphantom{\sum_{q = 1}^s \xi_q}\bm{\omega}_{1:s}}_{x_{s1}},\,\,\,\, \underbrace{\sum_{q = 1}^s \eta_q}_{x_{s2}} \bigg). \]
+The first element $x_{s1}$ is $\bm{\omega}_{1:s} = (\omega_1, \cdots, \omega_s)$. The second element $x_{s2}$ is the number of periods that the experiment has run up to time $s$. If $s > \tilde T$, then  $x_{s2} = \tilde T$. Given the definition of $x_s$, the function $\tilde{f}(\cdot)$ works as follows.  $\tilde{f}(\cdot)$ appends $\omega_s$ to $x_{s1}$ to obtain $x_{s+1,1}$, and adds $\xi_{s+1}$ to $x_{s2}$ to obtain $x_{s+1,2}$. 
+
+Finally we define the cost function for the dynamic program. Let $h_{T_{\max}}(x_{T_{\max}})$ be the terminal cost incurred at the end of the experiment, which is defined as
+\[h_{T_{\max}}(x_{T_{\max}})= - \tilde T\cdot \funfrac(\bm{\omega}, \tilde T), \]
+where $\tilde T = x_{T_{\max}2} = \sum_{q=1}^{T_{max}} \eta_q$. The definition of cost is aligned with our objective to maximize the estimation precision post experiment. We do not have an intermediate cost in this dynamic program.
+
+We can formulate the dynamic program as an optimization of the expected cost
+\[\+E_{\{\eta_s\}_{s \in [T_{\max}]}} \left[ h_{T_{\max}}(x_{T_{\max}}) \right], \]
+where the expectation is with respect to the joint distribution of $\{\xi_s\}_{s \in [T_{\max}]}$. This expected value is equivalent to that in Section \ref{subsec:adaptive-algorithm}. The optimization is with respect to the decision variables $\omega_{t+1}, \cdots \omega_{T_{\max}}$ subject to the constraints
+\[ \omega_{\ad,t} \leq  \omega_{t+1} \leq  \omega_{t+2} \leq \cdots \leq \omega_{T_{\max}}  \leq 1. \]
+The optimal $\omega_{t+1}$ is then used to make treatment decisions for ATU, such that the average of $z_{i,t+1}$ over $i$ equals to $\omega_{t+1}^\ast$. 
+}
+
+\subsection{Additional Results}\label{subsec:sequential-additional-results}
+
+\begin{proposition}\label{prop:precision-ordering}
+Suppose the Assumptions in Lemma \ref{lemma:asymptotic-tau-sigma} hold. Suppose $\tilde T < T_{\max}$. For a sufficiently large $N$, conditional on $\tilde T = T$, 
+\[\mathrm{Prec}(\hat{\tau}_{\all,T}) > \frac{N T}{\sigma^2_{\varepsilon}} \funfrac(\bm{\omega}_{\mathrm{bm},1:T}, T). \]
+\end{proposition}
+
+\begin{proposition}\label{prop:precision-guarantee}
+    Suppose the Assumptions in Lemma \ref{lemma:asymptotic-tau-sigma} hold, and $\varepsilon_{is}$ is i.i.d. bounded $\sigma$-sub-gaussian random variables with mean zero and variance $\sigma^2_\varepsilon$. If the estimated precision exceeds the threshold $c_0$, that is, $NT/\estsigmasq_{\ad,1,T} \cdot \funfrac(\bm{\omega}, T) \geq c_0 + \delta$, then the corresponding true precision with the same $\bm{\omega}$ exceeds the threshold $c_0$, $NT/\sigma_\varepsilon^2 \cdot \funfrac(\bm{\omega}, T) \geq c_0 $ with probability at least 
+    \begin{align}\label{eqn:precision-probability}
+        1 - \left(4 + 2T \right) \exp\left(-N  p_{\ad,1} \cdot T c_1^2/(2\sigma^2) \right) = 1 - O\left(  \exp\left(-N^2 T^2 \right) \right)
+    \end{align}
+    for 
+    \begin{align*}
+        c_1 = \frac{\sqrt{\left(1+\sigma_\varepsilon \sqrt{2/(T-1)}  \right)^2 + 4 \Delta (2T-1)/(T-1) } -  \left(1+\sigma \sqrt{2/(T-1)}  \right)}{2  (2T-1)/(T-1) }
+    \end{align*}
+    with 
+    \begin{align*}
+        \Delta = NT\left(\frac{1}{c_0 + \delta} - \frac{1}{c_0}  \right)\cdot \funfrac(\bm{\omega}_{\mathrm{bm}}, T)
+    \end{align*}
+\end{proposition}
+
+
+\proof{Proof of Proposition \ref{prop:precision-ordering}}
+Recall that the definition of $\mathrm{Prec}(\hat{\tau}_{\all,T})$ is 
+\[\mathrm{Prec}(\hat{\tau}_{\all,T}) = \frac{N T}{\sigma^2_{\varepsilon}} \funfrac(\bm{\omega}_{\all,1:T}, T).  \]
+Then proving this proposition is equivalent to proving 
+\[\funfrac(\bm{\omega}_{\all,T}, T) > \funfrac(\bm{\omega}_{\mathrm{bm},1:T}, T). \]
+Since $\bm{\omega}_{\all,1:T}$ is the average of $Z_{it}$ over $i$ in both ATU and NTU for every $t$, we have  
+\[\bm{\omega}_{\all,1:T} = p_{\fcs} \bm{\omega}_{\mathrm{bm},1:T}  + (1- p_{\fcs}) \cdot \bm{\omega}_{\ad,1:T},  \]
+where $\omega_{\ad,t+1}$ is solved from a dynamic program based on the empirical distribution of experiment duration, $P_t(\cdot)$. When $N$ is sufficiently large (as assumed in the proposition), the confidence interval for $\estsigmasq_{\fcs,t}$ used to obtain  $P_t(\cdot)$ is sufficiently narrow. Then $P_t(\cdot)$ has probability one at $T$ and zero elsewhere for all $t$. Using this property, and the cost function of the dynamic program, $\omega_{\ad,t+1}$ is the solution that minimizes
+\[
+\+E_{\tilde{T} \sim P_t(\tilde{T})} \left[ - 
+\tilde{T} \cdot \funfrac\left((\bm{\omega}_{\ad,1:t}, \bm{\omega}_{(t+1):\tilde{T}}), \tilde{T}\right) \right] = - T \cdot \funfrac\left((\bm{\omega}_{\ad,1:t}, \bm{\omega}_{(t+1):T}), T\right),  \]
+for all $t \geq t_0$ ($t_0$ is the first period to make adaptive treatment decisions for subsequent periods). For the first $t_0$ periods, $\bm{\omega}_{\ad,1:t_0} = \bm{\omega}_{\mathrm{bm}, 1;t_0}$. Therefore, $\bm{\omega}_{\mathrm{bm}}$ is also a feasible solution for the dynamic program. However, $\bm{\omega}_{\ad}$ is solution with lower cost (when $T < T_{\max}$), and then
+\[\funfrac(\bm{\omega}_{\ad}, T) > \funfrac(\bm{\omega}_{\mathrm{bm}}, T) \]
+Recall that for a generic $\bm{\omega}$, $\funfrac(\bm{\omega}, T) = - 2 \*b^\T \bm{\omega} - \bm{\omega}^\T P_{\bm{1}_T} \bm{\omega}$, which is a concave function of $\bm{\omega}$. Therefore, 
+\begin{align*}
+    \funfrac(\bm{\omega}_{\all}, T) >& p_\fcs \funfrac(\bm{\omega}_{\mathrm{bm}}, T) + (1-p_\fcs) \funfrac(\bm{\omega}_{\ad}, T) \\ >& \funfrac(\bm{\omega}_{\mathrm{bm}}, T).
+\end{align*}
+This completes the proof. \halmos
+
+\proof{Proof of Proposition \ref{prop:precision-guarantee}}
+If 
+$NT/\estsigmasq_{\ad,1,T} \cdot \funfrac(\bm{\omega}, T) \geq c_0 + \delta$, then this implies 
+\[\estsigmasq_{\ad,1,T} \leq NT/(c_0 + \delta) \cdot \funfrac(\bm{\omega}, T).   \]
+Similarly, if $NT/\sigma_\varepsilon^2 \cdot \funfrac(\bm{\omega}, T) \geq c_0 $, then this implies 
+\[ \sigma_\varepsilon^2 \leq NT/c_0 \cdot \funfrac(\bm{\omega}, T) \]
+Then showing Proposition \ref{prop:precision-guarantee} is equivalent to showing that 
+\[\sigma_\varepsilon^2 - \estsigmasq_{\ad,1,T} \leq NT\left(\frac{1}{c_0 + \delta} - \frac{1}{c_0}  \right)\cdot \funfrac(\bm{\omega}, T) \]
+with at least the probability in \ref{eqn:precision-probability}.
+
+From the decomposition of the estimation error of $\estsigmasq_{\ad,1,T}$ (following the proof of Lemma \ref{lemma:asymptotic-tau-sigma-general}), we have 
+\begin{align*}
+    \sigma_\varepsilon^2 - \estsigmasq_{\ad,1,T} =& \underbrace{\frac{1}{N  p_{\ad,1} \cdot T} \sum_{i \in \mathcal{S}_{\ad,1}, 1 \leq s \leq T}\left[ \sigma_\varepsilon^2 - \varepsilon_{is}^2 \right] }_{x_1} + \underbrace{\frac{1}{N  p_{\ad,1} \cdot T (T-1) } \sum_{i \in \mathcal{S}_{\ad,1}, 1 \leq s, u \leq t: s\neq u}( - \varepsilon_{is} \varepsilon_{iu})}_{x_2}  \\
+    & + \underbrace{\frac{1}{T-1} \sum_s \bar{\varepsilon}^2_{\cdot,s} }_{x_3}  - \frac{T}{T-1} \bar{\varepsilon}^2 + \underbrace{(\hat{\tau}_{\ad,1,T} - \tau)^2}_{x_4}  \cdot \underbrace{\frac{1}{N(t-1) p_{\ad,1}} \sum_{i,s} \dot{z}_{is}^2 }_{ \leq 1}
+\end{align*}
+If we can show for any $c_1, c_2, c_3$ and $c_4$, there exist $p_1, p_2, p_3$ and $p_4$ such that  
+\begin{enumerate}
+    \item $x_1 \leq c_1$ with probability at least $1 - p_1$
+    \item $x_2 \leq c_2$ with probability at least $1 - p_2$
+    \item $x_3 \leq c_3$ with probability at least $1 - p_3$
+    \item $x_4 \leq c_4$ with probability at least $1 - p_4$,
+\end{enumerate}
+then by union bound, we have 
+\begin{align*}
+    \sigma_\varepsilon^2 - \estsigmasq_{\ad,1,T} \leq x_1 + x_2 + x_3 + x_4 \leq c_1 + c_2 + c_3 + c_4
+\end{align*}
+with probability at least $1 - p_1 - p_2 - p_3 - p_4$.
+
+For $x_1$, it is an average of $N p_{\ad,1} \cdot T$ i.i.d $\sigma$-sub-gaussian random variables with mean $0$. By Hoeffding's inequality, we have 
+\[\*P(x_1 \geq c_1) \leq \exp\left(-N  p_{\ad,1} \cdot T c_1^2/(2\sigma^2) \right) = p_1.\]
+
+For $x_2$, note that it can be written as
+\[\frac{1}{N  p_{\ad,1} \cdot T (T-1) } \sum_{i \in \mathcal{S}_{\ad,1}, 1 \leq s, u \leq t: s\neq u}( - \varepsilon_{is} \varepsilon_{iu}) = \frac{1}{N p_{\ad,1}} \sum_{i \in \mathcal{S}_{\ad,1}} \underbrace{\frac{1}{T(T-1)} \sum_{1 \leq s, u \leq t: s\neq u} ( - \varepsilon_{is} \varepsilon_{iu})}_{\text{mean 0 variance $\frac{2}{T(T-1) } \sigma_\varepsilon^4$}} \]
+following the proof of Lemma \ref{lemma:asymptotic-tau-sigma-general}, implying that it is an average of $N p_{\ad,1}$ i.i.d $2/\sqrt{T(T-1)} \cdot \sigma^2$-sub-gaussian random normal variables with mean $0$. By Hoeffding's inequality, we have 
+\[\*P(x_2 \geq c_2) \leq \exp\left(-N  p_{\ad,1} \cdot T (T-1) c_2^2/(4\sigma^4) \right)= p_2.  \]
+
+For $x_3$, if $|\bar{\varepsilon}_{\cdot,s}| \leq 
+\left(\frac{T-1}{T} c_3\right)^{1/2}$ for all $s$, then $x_3 \leq c_3$. As $\bar{\varepsilon}_{\cdot,s} = 1/(N p_{\ad,1}) \sum_{i \in \mathcal{S}_{\ad,1}} \varepsilon_{is}$. By Hoeffding's inequality, we have 
+\[\*P\left(|\bar{\varepsilon}_{\cdot,s}| \geq \left(\frac{T-1}{T} c_3\right)^{1/2} \right) \leq 2 \exp\left(-N  p_{\ad,1} \cdot (T-1) c_3/(2\sigma^2) \right)\]
+and by union bound
+\[\*P\left(x_3 \geq c_3 \right) \leq 2 T  \exp\left(-N  p_{\ad,1} \cdot (T-1) c_3/(2\sigma^2) \right)= p_3.\]
+For $x_4$, recall that $\hat{\tau}$ takes the form of (see the proof of Lemma \ref{lemma:asymptotic-tau-sigma-general})
+\[\hat{\tau}_{\ad,1,T} - \tau =\frac{1}{N p_{\ad,1} T} \sum_{i,t}  \left(\frac{1}{N p_{\ad,1} T} \sum_{i,t} \dot{z}_{it}^2 \right)^\I \dot{z}_{it} \varepsilon_{it} \]
+Conditional on $Z_{\ad,1}$, $\hat{\tau}_{\ad,1,T} - \tau$ is a sum of $N p_{\ad,1} T$ independent $ \left(1/(N p_{\ad,1} T) \sum_{i,t} \dot{z}_{it}^2 \right)^\I |\dot{z}_{it}| \sigma$ random variables with mean $0$ over $i$ and $t$. Then by Hoeffding's inequality, we have 
+\begin{align*}
+    \*P\left((\hat{\tau}_{\ad,1,T} - \tau)^2 \geq c_4 \right) =& \*P\left(|\hat{\tau} - \tau| \geq  c_4^{1/2} \right) \\
+    \leq& 2 \exp\left(-N^2  p^2_{\ad,1} T^2 \cdot  c_4/\left(2 \left(1/(N p_{\ad,1} T) \sum_{i,t} \sum_{i,t} \dot{z}_{it}^2 \right)^\I \dot{z}_{it}^2 \sigma^2\right) \right) \\
+    =& 2 \exp\left(-N  p_{\ad,1} T \cdot  c_4/\left(2 \sigma^2\right) \right)= p_4
+\end{align*}
+Now we consider the choice of $c_1$, $c_2$, $c_3$ and $c_4$, such that 
+\[c_1 + c_2 + c_3 + c_4 \leq NT\left(\frac{1}{c_0 + \delta} - \frac{1}{c_0}  \right)\cdot \funfrac(\bm{\omega}, T) = \Delta \]
+and $1 - p_1 - p_2 - p_3 - p_4$ is as large as possible. Based on the expression of $c_1$, $c_2$, $c_3$ and $c_4$, we match the exponential terms in $p_1$, $p_2$, $p_3$ and $p_4$ (which is the dominating term), set
+$p_1 = p_2 = p_3/(2T) = p_4/2$, or equivalently, 
+\[c_1^2 = (T-1)/(2\sigma_\varepsilon^2) c_2^2 = (T-1)/T c_3 = c_4, \]
+and solve the $c_1$, $c_2$, $c_3$ and $c_4$ such that
+\[c_1 + c_2 + c_3 + c_4 = \Delta. \]
+Then 
+\[c_1 = \frac{\sqrt{\left(1+\sigma_\varepsilon \sqrt{2/(T-1)}  \right)^2 + 4 \Delta (2T-1)/(T-1) } -  \left(1+\sigma \sqrt{2/(T-1)}  \right)}{2  (2T-1)/(T-1) } \]
+and
+\begin{align*}
+    1 - p_1 - p_2 - p_3 - p_4 = 1 - \left(4 + 2T \right) p_1 =1 - \left(4 + 2T \right) \exp\left(-N  p_{\ad,1} \cdot T c_1^2/(2\sigma^2) \right).
+\end{align*}
+Note that $\Delta = O(NT)$. Then $c_1 = O(\sqrt{NT})$ and 
+\[1 - \left(4 + 2T \right) \exp\left(-N  p_{\ad,1} \cdot T c_1^2/(2\sigma^2) \right) = 1 - O\left(  \exp\left(-N^2 T^2 \right) \right)\]
+%
+This concludes the proof of Proposition \ref{prop:precision-guarantee}.
+\halmos
+
+
+
+
+
+\subsection{Pseudo Code for Functions in PGAE}\label{subsec:pseudo-code}
+
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{Fpart}{partition\_initialize}
+  \SetKwProg{Fn}{Function}{:}{}
+  \Fn{\Fpart{$N, p_{\fcs}, T_{\max}$}}{
+        \nl Randomly partition units into three sets, $\mathcal{S}_{\fcs}$, $\mathcal{S}_{\ad,1}$, and $\mathcal{S}_{\ad,2}$, that satisfy $\mathcal{S}_\fcs \cup \mathcal{S}_{\ad,1} \cup \mathcal{S}_{\ad,2}  =  \{1, \cdots, N\} $,  $|\mathcal{S}_{\ad,1}| = |\mathcal{S}_{\ad,2}|= \lfloor N (1-p_{\fcs})/2 \rfloor$ and $|\mathcal{S}_\fcs|= N - |\mathcal{S}_{\ad,1}| - |\mathcal{S}_{\ad,2}|$\;
+        \nl $\bm{\omega}_{\mathrm{bm}} \leftarrow \left[(2s - 1 - T_{\max})/T_{\max} \right]_{s\in [T_{\max}]} $ \;
+  \nl $Z_{\fcs} \leftarrow$ treatment design for $\mathcal{S}_{\fcs}$ with $ \bm{1}^\T Z_{\fcs,s}=|\mathcal{S}_\fcs| \cdot \bm{\omega}_{\mathrm{bm}}$ (subject to rounding)\;
+  \nl $Z_{\ad,1} \leftarrow$ treatment design for $\mathcal{S}_{\ad,1}$ with $\bm{1}^\T Z_{\ad,1,s} =|\mathcal{S}_{\ad,1}| \cdot \bm{\omega}_{\mathrm{bm}}$ (subject to rounding)\;
+  \nl  $Z_{\ad,2} \leftarrow$ treatment design for $\mathcal{S}_{\ad,2}$ with $\bm{1}^\T Z_{\ad,2,s}=|\mathcal{S}_{\ad,2}| \cdot \bm{\omega}_{\mathrm{bm}}$ (subject to rounding)\;
+\nl \KwRet $Z_{\fcs}$, $Z_{\ad,1}$, $Z_{\ad,2}$\;}
+\end{algorithm}
+
+
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{estbelief}{estimate\_belief}
+  \SetKwProg{Fn}{Function}{:}{}
+  \Fn{\estbelief{$Z, Y, N, \bm{\tilde{\omega}}, T_{\max}, t, m, c$}}{
+  \nl $n \leftarrow $ number of rows in $Z$  \;
+        \nl $\hat{\tau} \leftarrow$ within estimator from $Y$ and $Z$\;
+  \nl $\estsigmasq \leftarrow (n (t-1))^\I \sum_{i=1}^n \sum_{s = 1}^t \big( \dot{y}_{is} - \hat{\tau} \dot{z}_{is} \big)^2$ \;
+\nl $\estxisq \leftarrow t \cdot n^{-1} \cdot (t-1)^{-2} \sum_{i =1}^n  \big[ \sum_{s = 1}^t \left[ \big( \dot{y}_{is} - \hat{\tau}\dot{z}_{is} \right] \big)^2 - \estsigmasq \big]^2 - (3t-2) \cdot ((t-1)^{-2} \cdot (\estsigmasq)^2 $ \;
+\nl $\widehat{\xi^{\dagger2}} = \estxisq + 2/(t-1) \cdot (\estsigmasq)^2$ \;
+\nl $P_t(T) \leftarrow 0$ for $T = 1, \cdots, T_{\max}$ \;
+\nl \For{$j = 1, \cdots, m$}{
+\nl $\samplesigmasq \leftarrow $ draw from $ \mathcal{N} \big(\estsigmasq, \widehat{\xi^{\dagger2}} /(n t) \big)$\;
+\nl $\tilde{T}\leftarrow$ minimum $T$ such that $NT/\samplesigmasq \cdot \funfrac(\tilde{\bm{\omega}}_{1:T}, T) \geq c$  \;
+\nl $\tilde{T}\leftarrow \max( \min(\tilde{T}, T_{\max}),t)$  \;
+\nl $P_t(\tilde{T}) \leftarrow P_t(\tilde{T}) + 1/m$ \;
+}
+\nl \KwRet $P_t(\cdot)$\;}
+\end{algorithm}
+
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{updatedesign}{update\_treatment\_design}
+  \SetKwProg{Fn}{Function}{:}{}
+  \Fn{\updatedesign{$P_t(\cdot) , Z_1, Z_2, \tilde{\bm{\omega}}, T_{\max}, t$}}{
+  $n_1$, $n_2 \leftarrow $ number of rows in $Z_1$, $Z_2$ \;
+  \nl $\omega^\ast_{t+1} \leftarrow$  optimal $\omega_{t+1}$ that minimizes the terminal cost of the dynamic program $\+E_{T \sim P_t(T)} \left[ - T \cdot \funfrac\left((\bm{\omega}_{\ad,1:t}, \bm{\omega}_{(t+1):T}), T\right) \right]$ subject to $\tilde{\omega}_t \leq \omega_{t+1} \leq \omega_{t+1} \leq \cdots \leq \omega_{T_{\max}} \leq 1$ \;
+\nl $Z_{1,t+1}, Z_{2,t+1} \leftarrow$ randomly assign treatment to $n_1 (\omega_{t+1} - \tilde{\omega}_{t}) $ and $n_2 (\omega_{t+1} - \tilde{\omega}_{t}) $ control units at time $t$ in $Z_1$ and $ Z_2$ respectively \;
+  \nl \KwRet $Z_{1,t+1}, Z_{2,t+1}$\;}
+\end{algorithm}
+
+\begin{algorithm}
+  \DontPrintSemicolon
+  \SetKwFunction{estvarprec}{estimate\_var\_prec}
+  \SetKwProg{Fn}{Function}{:}{}
+  \Fn{\estvarprec{$Z, Y, \bm{\omega}, N, n, t$}}{
+        \nl $\hat{\tau} \leftarrow$ within estimator from $Y$ and $Z$\;
+  \nl $\estsigmasq \leftarrow (n (t-1))^\I \sum_{i =1}^n \sum_{s = 1}^t \big( \dot{y}_{is} - \hat{\tau} \dot{z}_{is} \big)^2$ \;
+  \nl $\Prec \leftarrow (N t/\estsigmasq) \cdot \funfrac(\bm{\omega}_{1:t},t)  $\;
+  \nl \KwRet $\estsigmasq, \Prec$\;}
+\end{algorithm}
+
+

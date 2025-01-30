@@ -1,0 +1,786 @@
+\section{Proof of Results for Adaptive Experiments}\label{sec:sequential-proof}
+
+We start with a lemma that provides an expansion of the average of products of two within transformed variables, $\dot{a}_{it} $ and $\dot{b}_{it}$. This lemma will be used to show Lemma \ref{lemma:asymptotic-tau-sigma} and Theorem \ref{theorem:asymptotic-page}.
+\begin{lemma}\label{lemma:within-average}
+    For any $\{a_{it}\}_{(i,t)\in [N_o]\times [T_o]}$ and $\{b_{it}\}_{(i,t)\in \in [N_o]\times [T_o]}$, we have 
+    \begin{align}
+    \frac{1}{N_o T_o}\sum_{i, t} \dot{a}_{it} \dot{b}_{it} = \overline{ab} - \frac{1}{N_o} \sum_i \bar{a}_{i,\cdot} \bar{b}_{i,\cdot} - \frac{1}{T_o} \sum_t \bar{a}_{\cdot,t} \bar{b}_{\cdot,t} + \bar{a} \bar{b},\label{eqn:within-average}
+\end{align}
+where $\overline{ab} = \frac{1}{N_o T_o} \sum_{i,t} a_{it} b_{it}$, $\bar{a}_{i,\cdot} = \frac{1}{T} \sum_t a_{it}$, $\bar{a}_{\cdot,t} = \frac{1}{N_o} \sum_i a_{it}$, and $\bar{a} = \frac{1}{N_o T_o} \sum_{i,t} a_{it}$. $\bar{b}_{i,\cdot}$, $\bar{b}_{\cdot,t}$ and $\bar{b}$ are similarly defined. 
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:within-average}}
+We can prove this lemma by using the definition of $\dot{a}_{it}$ and $\dot{b}_{it}$, and writing the average of products (of $\dot{a}_{it} $ and $\dot{b}_{it}$) as multiple averages of products based on the definition of $\dot{a}_{it}$ and $\dot{b}_{it}$
+    \begin{align*}
+    \frac{1}{N_o T_o}\sum_{i, t} \dot{a}_{it} \dot{b}_{it} =& \frac{1}{N_o T_o}\sum_{i, t} \left(a_{it} - \bar{a}_{i,\cdot} -  \bar{a}_{\cdot,t} + \bar{a}\right) \left(b_{it} - \bar{b}_{i,\cdot} -  \bar{b}_{\cdot,t} + \bar{b}\right)  \\
+    =& \frac{1}{N_o T_o}\sum_{i, t} a_{it} b_{it} - \underbrace{\frac{1}{N_o T_o}\sum_{i, t} a_{it}  \bar{b}_{i,\cdot}}_{\frac{1}{N_o }\sum_{i} \bar{a}_{i,\cdot} \bar{b}_{i,\cdot}}  - \underbrace{\frac{1}{N_o T_o}\sum_{i, t} a_{it}  \bar{b}_{\cdot,t}}_{\frac{1}{T_o}\sum_{t} \bar{a}_{\cdot,t}  \bar{b}_{\cdot,t}}  + \underbrace{\frac{1}{N_o T_o}\sum_{i, t} a_{it}  \bar{b}}_{\bar{a} \bar{b}}  \\
+    & - \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{i,\cdot} b_{it}}_{\frac{1}{N_o }\sum_{i} \bar{a}_{i,\cdot} \bar{b}_{i,\cdot}} + \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{i,\cdot} \bar{b}_{i,\cdot}}_{\frac{1}{N_o }\sum_{i} \bar{a}_{i,\cdot} \bar{b}_{i,\cdot}}  + \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{i,\cdot} \bar{b}_{\cdot,t}}_{\bar{a}  \bar{b}}  - \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{i,\cdot} \bar{b}}_{\bar{a}  \bar{b}}  \\
+    & - \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{\cdot,t} b_{it}}_{\frac{1}{T_o}\sum_{t} \bar{a}_{\cdot,t}  \bar{b}_{\cdot,t}}  + \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{\cdot,t} \bar{b}_{i,\cdot}}_{\bar{a}  \bar{b}}  + \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{\cdot,t} \bar{b}_{\cdot,t}}_{\frac{1}{T_o}\sum_{t} \bar{a}_{\cdot,t}  \bar{b}_{\cdot,t}}  - \underbrace{\frac{1}{N_o T_o}\sum_{i, t}  \bar{a}_{\cdot,t} \bar{b}}_{\bar{a}  \bar{b}}  \\
+    & + \underbrace{\frac{1}{N_o T_o}\sum_{i, t} \bar{a} b_{it}}_{\bar{a}  \bar{b}}  - \underbrace{\frac{1}{N_o T_o}\sum_{i, t} \bar{a}  \bar{b}_{i,\cdot}}_{\bar{a}  \bar{b}}  - \underbrace{\frac{1}{N_o T_o}\sum_{i, t} \bar{a}  \bar{b}_{\cdot,t}}_{\bar{a}  \bar{b}}  + \underbrace{\frac{1}{N_o T_o}\sum_{i, t} \bar{a}  \bar{b}}_{\bar{a}  \bar{b}}  \\
+    =& \overline{ab} - \frac{1}{N_o} \sum_i \bar{a}_{i,\cdot} \bar{b}_{i,\cdot} - \frac{1}{T_o} \sum_t \bar{a}_{\cdot,t} \bar{b}_{\cdot,t} + \bar{a} \bar{b}
+\end{align*}
+This finishes the proof of this lemma. \halmos
+\end{proof}
+
+\subsection{Proof of Lemma \ref{lemma:asymptotic-tau-sigma-general}}
+
+
+
+We first state a more general version of Lemma \ref{lemma:asymptotic-tau-sigma} in Lemma \ref{lemma:asymptotic-tau-sigma-general}. Then we prove Lemma \ref{lemma:asymptotic-tau-sigma-general}, and Lemma \ref{lemma:asymptotic-tau-sigma} follows from Lemma \ref{lemma:asymptotic-tau-sigma-general}.
+
+\begin{lemma}\label{lemma:asymptotic-tau-sigma-general}
+Suppose $\hat{\tau}$ is the \within estimator of $\tau$, $\estsigmasq$ and $\estxisq$ are estimators of $\sigma^2$ and $\xi^2$ using the formula \eqref{eqn:second-moment-sigma-estimator} and formula \eqref{eqn:fourth-moment-sigma-estimator} from any experimental data with $N_o$ units and $T_o$ periods, whose treatment design is selected before the experiment starts. 
+Suppose $\varepsilon_{is}$ is i.i.d. for any $i$ and $s$ with $\+E[\varepsilon_{is}] = 0$, $\+E[\varepsilon^2_{is}] = \sigma_\varepsilon^2$, $\+E[\varepsilon^3_{is}] = 0$,  and $\+E[(\varepsilon^2_{is} - \sigma^2_\varepsilon)^2] = \xi^2_{\varepsilon}$. As $N_o \rightarrow \infty$, for any  $T_o$, conditional on the treatment design $Z$, we have 
+\[\sqrt{N_o T_o} \left(\begin{bmatrix} \hat{\tau} \\ \estsigmasq \end{bmatrix}  - \begin{bmatrix} \tau \\ \sigma^2_\varepsilon  \end{bmatrix}\right)  \xrightarrow{d} \mathcal{N} \left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_\varepsilon^2/\funfrac(\bm{\omega}, T_o) & 0 \\  0 & \xi_\varepsilon^{\dagger2} \end{bmatrix} \right), \]
+where $\xi_\varepsilon^{\dagger2} = \xi^2_\varepsilon + \frac{1}{T_o-1} \sigma_\varepsilon^4$ and $\bm{\omega} = \bm{1}^\T Z/N_o$. Furthermore, $\estxisq$ is consistent and asymptotically normal with 
+\begin{align*}
+    \sqrt{N_o} (\estxisq - \xi_\varepsilon^2) \xrightarrow{d} \mathcal{N}(0, \+E[f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o})^2])
+\end{align*}
+where 
+\begin{align*}
+    f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o}) =&  \frac{T_o}{(T_o - 1)^2}   \Big( \sum_{t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon)^2  + \sum_{t\neq s} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) ( \varepsilon_{is}^2 - \sigma^2_\varepsilon) \Big)  - \frac{2}{(T_o - 1)^2}  \sum_{t,s,u} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \varepsilon_{is} \varepsilon_{iu}  \\
+    &+ \frac{T_o^3}{(T_o - 1)^2} \left(\frac{1}{T_o} \sum_t \varepsilon_{it} \right)^4  - \frac{\sigma_\varepsilon^2}{T_o} \sum_{t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) - \frac{\sigma_\varepsilon^2}{ T_o(T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is} - \xi_\varepsilon^2 -\frac{3T_o-2}{(T_o-1)^2} \sigma_\varepsilon^4.
+\end{align*}
+In addition, $\hat{\tau}$, $\estsigmasq$ and $\estxisq$ are jointly asymptotically normal.
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:asymptotic-tau-sigma-general}}
+
+\textbf{Step 1.1: Show the consistency of $\hat{\tau}$.}
+
+The estimation error of $\hat{\tau}$ from the \within estimator is 
+\begin{align*}
+    \hat{\tau} - \tau = \left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \frac{1}{N_o T_o}\sum_{i, t} \dot{z}_{it} \dot{\varepsilon}_{it}. 
+\end{align*}
+We first show the consistency of $\hat{\tau}$. This is equivalent to showing that the estimation error converges to zero in probability as $N_o \rightarrow \infty$. 
+
+
+The first term in the estimation error of $\hat{\tau}$ equals to
+\begin{align*}
+    \frac{1}{N_o T_o} \sum_{i,t} \dot{z}^2_{it}  =& - \frac{1}{T_o} \bm{\omega}^\T \*P_{\bm{1}_{T_o}}\bm{\omega} - \frac{2}{T_o} \*b_0^\T \bm{\omega} = \funfrac(\bm{\omega}, T_o),
+\end{align*}
+following Lemma \ref{lemma:simplify-obj} (without observed and latent covariates, and $\ell = 0$). This term is nonzero with a properly chosen $\bm{\omega}$.
+The second term in the estimation error of $\hat{\tau}$ has the following decomposition from Lemma \ref{lemma:within-average}
+\begin{align*}
+\frac{1}{N_o T_o} \sum_{i,t} \dot{z}_{it} \dot{\varepsilon}_{it}  =& \underbrace{\frac{1}{N_o T_o} \sum_{i,t} z_{it} \varepsilon_{it}}_{a_1}  - 
+ \underbrace{\frac{1}{N_o} \sum_{i} \bar{z}_{i,\cdot} \bar{\varepsilon}_{i,\cdot}}_{a_2} - \underbrace{\frac{1}{T_o} \sum_{t} \bar{z}_{\cdot,t} \bar{\varepsilon}_{\cdot,t}}_{a_3}  + \underbrace{\bar{z} \bar{\varepsilon}}_{a_4} 
+\end{align*}
+We can show that
+\begin{enumerate}
+    \item $a_1 \xrightarrow{p} 0$
+    \item $a_2 \xrightarrow{p} 0$
+    \item $a_3 \xrightarrow{p} 0$ (follows from $\bar{\varepsilon}_{\cdot,t} \xrightarrow{p} 0$ from the law of large numbers)
+    \item $a_4 \xrightarrow{p} 0$ (follows from $\bar{\varepsilon} \xrightarrow{p} 0$ from the law of large numbers)
+\end{enumerate}
+
+\begin{proof}{Proof of $a_1 \xrightarrow{p} 0$.}
+Note that the mean of $a_1$ is zero 
+\[\+E_{\varepsilon}\left[\frac{1}{N_o T_o} \sum_{i,t} z_{it} \varepsilon_{it} \right] = \frac{1}{N_o T_o} \sum_{i,t} z_{it} \+E\left[\varepsilon_{it} \right] = 0. \]
+The variance of $a_1$ is (using the property that $\varepsilon_{it}$ is i.i.d in $i$ and $t$)
+\begin{align*}
+\var_{\varepsilon}\left(\frac{1}{N_o T_o} \sum_{i,t} z_{it} \varepsilon_{it} \right) = \frac{1}{N^2_o T^2_o} \sum_{i,t} z^2_{it} \var(\varepsilon_{it})  = O\left( \frac{1}{N_o}\right).
+\end{align*}
+From Chebyshev's inequality, we have $a_1 \xrightarrow{p} 0$.
+   \halmos 
+\end{proof}
+
+\begin{proof}{Proof of $a_2 \rightarrow 0$.}
+   The mean of  $a_2$ is zero
+   \[\+E_{\varepsilon}\left[\frac{1}{N_o } \sum_{i} \bar{z}_{i,\cdot} \bar{\varepsilon}_{i,\cdot} \right] = \frac{1}{N_o } \sum_{i,t} \left(\bar{z}_{i,\cdot} \cdot  \frac{1}{T_o} \sum_t \+E\left[ \bar{\varepsilon}_{it}\right] \right)= 0. \]
+   The variance of  $a_2$ is (using the property that $\varepsilon_{it}$ is i.i.d in $i$ and $t$)
+   \begin{align*}
+       \var_{\varepsilon}\left(\frac{1}{N_o } \sum_{i} \bar{z}_{i,\cdot} \bar{\varepsilon}_{i,\cdot} \right) = \frac{1}{N_o^2} \sum_i \bar{z}_{i,\cdot}^2 \var\left( \bar{\varepsilon}_{i,\cdot}\right) = \frac{1}{N_o^2 T_o^2} \sum_i \left(\bar{z}_{i,\cdot}^2 \sum_t \var\left( \varepsilon_{it}\right)\right)= O\left( \frac{1}{N_o}\right).
+   \end{align*}
+   From Chebyshev's inequality, we have $a_2 \xrightarrow{p} 0$.
+   \halmos
+\end{proof}
+Therefore we have shown that all four terms in the decomposition of $\var_{\varepsilon}\left(\frac{1}{N_o T_o} \sum_{i,t} z_{it} \varepsilon_{it} \right)$ converges to zero in probability. This implies the consistency of $\hat{\tau}$.
+
+
+
+\textbf{Step 1.2: Show the asymptotic normal distribution of $\hat{\tau}$.}
+
+For the estimation error of $\hat{\tau}$, we have 
+\begin{flalign*}
+    \hat{\tau} - \tau =& \left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \frac{1}{N_o T_o}\sum_{i, t} \dot{z}_{it} \dot{\varepsilon}_{it} \\
+    =& \left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \frac{1}{N_o T_o}\sum_{i, t} \dot{z}_{it} \varepsilon_{it}  & \tag{by the proof of Lemma \ref{lemma:within-average}} \\
+    =&  \frac{1}{N_o T_o}\sum_{i, t} \underbrace{\left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \left(z_{it} - \frac{1}{N_o} \sum_i \bar{z}_{i,\cdot} - \frac{1}{T_o} \sum_t \bar{z}_{\cdot,t} + \bar{z}\right)}_{\coloneqq \zeta_{it}}\varepsilon_{it} & \tag{ by the definition of $\dot{z}_{it}$} \\
+    =& \frac{1}{N_o T_o}\sum_{i, t} \zeta_{it} \varepsilon_{it},
+\end{flalign*}
+where $\zeta_{it}$
+is a function of $Z$ and is independent of $\varepsilon_{it}$ (as $Z$ is chosen before the experiment starts). 
+
+Since $\varepsilon_{it} \stackrel{\iid}{\sim} (0, \sigma_{\varepsilon}^2)$, the estimation error of $\hat{\tau}$ is an average of $N_o T_o$ independent terms $\zeta_{it} \varepsilon_{it}$. We can apply Lindeberg-Feller CLT to $\hat{\tau}$ as long as the 
+ condition in Lindeberg-Feller CLT 
+holds. Note that the condition in Lindeberg-Feller CLT for the estimation error of $\hat{\tau}$ takes the form of 
+\begin{align*}
+   & \max_{i,t}\frac{\sigma_\varepsilon^2 \zeta_{it}^2}{\sum_{i,t} \sigma_\varepsilon^2 \zeta_{it}^2 } \rightarrow 0 \qquad \text{ as } N_o \rightarrow \infty \\
+    \Leftrightarrow&  \max_{i,t}\frac{\dot{z}_{it}^2}{\sum_{i,t} \dot{z}_{it}^2 } \rightarrow 0 \qquad \text{ as } N_o \rightarrow \infty \\
+     \Leftrightarrow&  \max_{i,t}\frac{\dot{z}_{it}^2}{N_o T_o \funfrac(\bm{\omega}, T_o)} \rightarrow 0 \qquad \text{ as } N_o \rightarrow \infty
+\end{align*}
+where the last line holds as $\dot{z}_{it}$ is bounded and $\funfrac(\bm{\omega}, T_o)$ is bounded away from 0. 
+
+Then we can apply Lindeberg-Feller CLT and show that
+\[\sqrt{N_o T_o} (\hat{\tau} - \tau) \xrightarrow{d} \mathcal{N}(0, \sigma_{\varepsilon}^2 /\funfrac(\bm{\omega}, T_o))\,, \]
+where the asymptotic variance is $\sigma_{\varepsilon}^2 /\funfrac(\bm{\omega}, T_o)$ following that
+\begin{align*}
+    \mathrm{AVar}(\hat{\tau}) =& \left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \+E_\varepsilon\left[ N_o T_o \left(\frac{1}{N_o T_o}\sum_{i, t} \dot{z}_{it} \varepsilon_{it}\right)^2 \right]\left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I \\
+    =& \sigma_\varepsilon^2 \cdot  \left(\frac{1}{N_o T_o} \sum_{i, t} \dot{z}^2_{it} \right)^\I = \sigma_{\varepsilon}^2 /\funfrac(\bm{\omega}, T_o).
+\end{align*}
+
+
+\textbf{Step 2.1: Show the consistency of $\estsigmasq$.}
+
+We can decompose $\estsigmasq$ as 
+\begin{flalign}
+  \nonumber  \estsigmasq =& \frac{1}{N_o(T_o-1)} \sum_{i,t} (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 = \frac{1}{N_o(T_o-1)} \sum_{i,t} (\underbrace{\dot{y}_{it} - \tau \dot{z}_{it}}_{\dot{\varepsilon}_{it}}  - (\hat{\tau} - \tau) \dot{z}_{it})^2 \\
+  \nonumber  =& \frac{1}{N_o(T_o-1)}\sum_{i,t} \dot{\varepsilon}^2_{it} - 2 (\hat{\tau} - \tau) \cdot \underbrace{\frac{1}{N_o(T_o-1)} \sum_{i,t}\dot{z}_{it} \dot{\varepsilon}_{it}}_{\frac{\hat{\tau} - \tau}{N_o(T_o-1)}  \sum_{i,t} \dot{z}_{it}^2 }  + (\hat{\tau} - \tau)^2 \cdot \frac{1}{N_o(T_o-1)} \sum_{i,t} \dot{z}_{it}^2  \label{eqn:exact-decomposition-sigma-sq}
+    \\
+    =& \frac{1}{N_o(T_o-1)}\sum_{i,t} \dot{\varepsilon}^2_{it} - \underbrace{(\hat{\tau} - \tau)^2}_{O_p\left( \frac{1}{N_o} \right)} \cdot \frac{1}{N_o(T_o-1)} \sum_{i,t} \dot{z}_{it}^2  \\  \nonumber =&  \frac{1}{N_o(T_o-1)}\sum_{i,t} \dot{\varepsilon}^2_{it} + O_p\left( \frac{1}{N_o} \right).  
+\end{flalign}
+
+We can further decompose the leading term of
+$\estsigmasq$ as 
+\begin{flalign*}
+    & \frac{1}{N_o(T_o-1)} \sum_{i,t} \dot{\varepsilon}^2_{it} \\ =& \frac{1}{N_o(T_o-1)} \sum_{i,t} \varepsilon_{it}^2 - \frac{T_o}{N_o(T_o-1)} \sum_i \bar{\varepsilon}^2_{i,\cdot}  - \frac{1}{T_o-1} \sum_t \underbrace{\bar{\varepsilon}^2_{\cdot,t}}_{O_p\left( \frac{1}{N_o} \right)}  + \frac{T_o}{T_o-1} \underbrace{\bar{\varepsilon}^2}_{O_p\left( \frac{1}{N_o} \right)}  & \tag{by Lemma \ref{lemma:within-average}} \\
+    =& \frac{1}{N_o(T_o-1)} \sum_{i,t} \varepsilon_{it}^2 - \frac{T_o}{N_o(T_o-1)} \sum_i \left( \frac{1}{T_o^2} \sum_{t} \varepsilon_{it}^2 + \frac{1}{T_o^2} \sum_{t \neq s} \varepsilon_{it} \varepsilon_{is} \right) + O_p\left( \frac{1}{N_o} \right) & \tag{by expanding $\bar{\varepsilon}^2_{i,\cdot}$} \\
+    =& \sigma_\varepsilon^2 +  \frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) - \frac{1}{N_o T_o(T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is}  +  O_p\left( \frac{1}{N_o} \right) & \tag{add and subtract $\sigma_\varepsilon^2$}
+\end{flalign*}
+
+The estimation error of $\estsigmasq$ is $\estsigmasq - \sigma_\varepsilon^2$, whose leading terms are $\frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )$ and $\frac{1}{N_o T_o(T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is} $. Note that $\varepsilon_{it}$ is i.i.d. in $i$ and $t$. Therefore, $\varepsilon_{it}^2 - \sigma_\varepsilon^2 $ is i.i.d. in $i$ and $t$. We can then apply the law of large numbers to the first leading term $\frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )$, and show it converges to zero in probability. Furthermore, $\sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}$ is i.i.d. in $i$. We can also apply the law of large numbers to the second leading term $\frac{1}{N_o T_o(T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is} $, and show it converges to zero in probability.
+
+Since both leading terms converge to zero in probability, we finish the proof of consistency of $\estsigmasq$.
+
+
+\textbf{Step 2.2: Show the asymptotic normal distribution of $\estsigmasq$.}
+
+We can write the estimation error of $\estsigmasq$ as 
+\begin{align*}
+    \estsigmasq -\sigma_\varepsilon^2 = \frac{1}{N_o} \sum_i \left[ \frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )  - \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}\right] +  O_p\left( \frac{1}{N_o} \right) 
+\end{align*}
+As $\varepsilon_{it}$ is i.i.d. in $i$ and $t$, $\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )  - \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}$ is i.i.d. in $i$ with mean zero (following that $\+E[\varepsilon_{it}^2 -\sigma_\varepsilon^2 ] = 0$ and $\+E[\varepsilon_{it} \varepsilon_{is}] = 0$ for $t \neq s$. Then $\estsigmasq$ is asymptotically normal following the standard CLT. Next, we compute the asymptotic variance of $\estsigmasq$, which is equivalent to computing the following term 
+%
+\begin{flalign*}
+    & \var\left(\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )  - \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is} \right) \\
+    =& \underbrace{\var\left(\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \right)}_{a_1}  - 2 \underbrace{\mathrm{Cov}\left(\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ),  \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is} \right)}_{a_2} +\underbrace{\var\left( \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}\right)}_{a_3}  \\
+    =& \frac{1}{T_o} \xi^2_\varepsilon + \frac{2}{T_o(T_o-1)} \sigma_\varepsilon^2 
+\end{flalign*}
+following that term $a_1$ has
+\begin{flalign*}
+    a_1 = \var\left(\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \right) =& \frac{1}{T^2_o} \sum_{t,s} \mathrm{Cov}\left(\varepsilon_{it}^2 - \sigma_\varepsilon^2 , \varepsilon_{is}^2 - \sigma_\varepsilon^2  \right) \\
+    =& \frac{1}{T^2_o} \sum_{t} \var\left(\varepsilon_{it}^2 - \sigma_\varepsilon^2 \right) & \tag{following $\varepsilon_{it}$ is i.i.d.}  \\
+    =& \xi^2_\varepsilon,
+\end{flalign*}
+and term $a_2$ has 
+\begin{flalign*}
+  a_2 = & \mathrm{Cov}\left(\frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ),  \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is} \right) 
+ \\ =& \frac{1}{T^2_o (T_o-1)} \sum_{t, u, s: u \neq s} \mathrm{Cov}\left(\varepsilon_{it}^2 - \sigma_\varepsilon^2 ,  \varepsilon_{iu} \varepsilon_{is} \right) \\
+ =& \frac{1}{T^2_o (T_o-1)} \sum_{t, u, s: u \neq s} \+E\left[(\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \cdot \varepsilon_{iu} \varepsilon_{is} \right] & \tag{both $\varepsilon_{it}^2 - \sigma_\varepsilon^2$ and $\varepsilon_{iu} \varepsilon_{is}$ have mean $0$} \\
+ =& 0 ,
+\end{flalign*}
+where the last line follows that at least one of $\varepsilon_{iu}$ and $\varepsilon_{is}$ differs from $\varepsilon_{it}$ given that $u \neq s$, and therefore $\+E\left[(\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \cdot \varepsilon_{iu} \varepsilon_{is} \right] = 0$. Term $a_3$ has 
+\begin{flalign*}
+    a_3 =& \var\left( \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}\right) \\
+    =& \frac{1}{T_o^2 (T_o - 1)^2} \sum_{t,s,u,v:t\neq s, u\neq v}\+E[\varepsilon_{it} \varepsilon_{is}\varepsilon_{iu} \varepsilon_{iv}]  \\
+    =& \frac{1}{T_o^2 (T_o - 1)^2} \cdot 2 T_o(T_o-1) \+E[\varepsilon^2_{it} \varepsilon^2_{is}] & \tag{$2 T_o(T_o-1)$ terms with mean nonzero} \\
+    =& \frac{2}{T_o(T_o-1)} \sigma_\varepsilon^4 
+\end{flalign*}
+where the third line follows that $2T_o(T_o-1)$ terms in the sum (in the second line) equal to $\+E[\varepsilon^2_{it} \varepsilon^2_{is}]$ and the remaining terms in the sum equal to $0$. The reason for the  $2T_o(T_o-1)$ terms is that for each pair of $(t,s)$, there are two choices of $(u,v)$ such that $\+E[\varepsilon_{it} \varepsilon_{is}\varepsilon_{iu} \varepsilon_{iv}] = \+E[\varepsilon^2_{it} \varepsilon^2_{is}]$. One choice is $t = u$ and $s = v$. The other choice is $t = v$ and $s = u$. Since there are $T_o(T_o - 1)$ pairs of $(t,s)$, there are $2T_o(T_o-1)$ terms 
+in the sum equal to $\+E[\varepsilon^2_{it} \varepsilon^2_{is}]$.
+
+With the asymptotic variance of $\estsigmasq$, we have 
+\[    \sqrt{N_o} (\estsigmasq - \sigma_\varepsilon^2) \xrightarrow{d} \mathcal{N}\left(0,\frac{1}{ T_o} \xi^2_\varepsilon + \frac{2}{  T_o(T_o-1)}\sigma_\varepsilon^4 \right). \]
+
+Multiplying both side by $\sqrt{T_o}$, we have 
+\begin{align*}
+    \sqrt{N_o T_o} (\estsigmasq - \sigma_\varepsilon^2) \xrightarrow{d} \mathcal{N}\left(0, \xi^2_\varepsilon + \frac{2}{T_o-1}\sigma_\varepsilon^4 \right).
+\end{align*}
+
+\textbf{Step 3: Show the joint asymptotic normal distribution of $\hat{\tau}$ and $\estsigmasq$.}
+
+Based on Steps 1.2 and 2.2, we have 
+\begin{align*}
+    \begin{bmatrix}
+        \hat{\tau} \\ \\ \estsigmasq 
+    \end{bmatrix} - \begin{bmatrix}
+       \tau \\ \\ \sigma_\varepsilon^2 
+    \end{bmatrix} = \frac{1}{N_o} \sum_i \begin{bmatrix}
+        \frac{1}{T_o}\sum_{t} \zeta_{it} \varepsilon_{it} \\ \\
+        \frac{1}{T_o} \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )  - \frac{1}{T_o (T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is}
+    \end{bmatrix} + \begin{bmatrix}
+        0 \\  \\ O_p\left( \frac{1}{N_o} \right) 
+    \end{bmatrix}
+\end{align*}
+We can use the same procedure as Step 1.2 to show that the conditions in multivariate Lindeberg-Feller CLT hold and $\hat{\tau}$ and $\estsigmasq$ are jointly asymptotically normal. Then the next step is to compute the asymptotic covariance between $\hat{\tau} - \tau$ and $\estsigmasq - \sigma^2_\varepsilon$. We separate this task into two sub-tasks. The first sub-task is to compute the asymptotic covariance between $\hat{\tau} - \tau$ and the leading terms of $\estsigmasq - \sigma^2_\varepsilon$ (which is at the order of $O_p\left(1/\sqrt{N_o}\right)$). The second sub-task is to compute the asymptotic variance between $\hat{\tau} - \tau$ and the non-leading terms of $\estsigmasq - \sigma^2_\varepsilon$. 
+
+We first consider the second sub-task, which is a simpler task. Note that  the non-leading terms of $\sqrt{N_o} \left(\estsigmasq - \sigma^2_\varepsilon\right)$ is at the order of $O_p\left(1/\sqrt{N_o}\right)$, and the order of $\sqrt{N_o}(\hat{\tau} - \tau)$ is $O_p(1)$. Therefore, their product is at the order of $O_p\left(1/\sqrt{N_o}\right) = o_p(1)$. Equivalently, the asymptotic covariance between non-leading terms of $\estsigmasq - \sigma^2_\varepsilon$ and $\hat{\tau} - \tau$ is $0$. 
+
+Next we consider the first sub-task. There are two leading terms in $\estsigmasq - \sigma^2_\varepsilon$. The first one is $\frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )$. The second one is $ \frac{1}{N_o T_o(T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is}$. 
+
+For the asymptotic covariance between $\hat{\tau} - \tau$ and $\frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 )$, we have 
+
+\begin{align*}
+     & \+E\left[\left( \frac{1}{N_o T_o} \sum_{i,t} \zeta_{it} \varepsilon_{it} \right) \left(  \frac{1}{N_o T_o} \sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \right) \right] \\
+    =& \frac{1}{N^2_o T^2_o} \sum_{i,t} \zeta_{it} \+E\left[\varepsilon_{it} (\varepsilon_{it}^2 - \sigma_\varepsilon^2) \right] + \frac{1}{N^2_o T^2_o} \sum_{(i,t) \neq (j,s)}  \zeta_{it} \+E\left[ \varepsilon_{it} (\varepsilon_{js}^2 - \sigma_\varepsilon^2) \right] 
+    = 0
+\end{align*}
+following that $\+E\left[\varepsilon_{it} (\varepsilon_{it}^2 - \sigma_\varepsilon^2) \right] = \+E[\varepsilon_{it}^3] - \+E[\varepsilon_{it}] \cdot\sigma_\varepsilon^2 = 0$ and $\+E\left[\varepsilon_{it} (\varepsilon_{js}^2 - \sigma_\varepsilon^2) \right] = \+E[\varepsilon_{it}] \cdot \+E[\varepsilon_{js}^2 - \sigma_\varepsilon^2] = 0$. Therefore the asymptotic covariance between these two terms is $0$. 
+
+For the asymptotic covariance between $\hat{\tau} - \tau$ and $\frac{1}{N_o T_o (T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is} $, we have
+\begin{align*}
+        & \+E\left[\left( \frac{1}{N_o T_o} \sum_{i,t} \zeta_{it} \varepsilon_{it} \right) \left( \frac{1}{N^2_o T^2_o (T_o-1)} \sum_{i, t\neq s} \varepsilon_{it} \varepsilon_{is}  \right) \right]
+    = \frac{1}{N_o T_o (T_o-1)} \sum_{i,j, t, u \neq s} \zeta_{it} 
+\+E \left[\varepsilon_{it} \varepsilon_{ju} \varepsilon_{js} \right]= 0
+\end{align*}
+following that $\+E \left[\varepsilon_{it} \varepsilon_{ju} \varepsilon_{js} \right] = 0$ for any $i, j, u, t, s$ with $u \neq s$ (at least one of $\varepsilon_{ju} $ and $\varepsilon_{js}$ differs from $\varepsilon_{it}$, and $\varepsilon_{it}$ is i.i.d. in $i$ and $t$). Therefore the asymptotic covariance between these two terms is $0$. 
+
+We have finished the two sub-tasks, and concluded that asymptotic covariance between $\hat{\tau} - \tau$ and $\estsigmasq - \sigma_\varepsilon^2$ is $0$. Therefore we have finished the proof of the following joint asymptotic normal distribution of $\hat{\tau}$ and $\estsigmasq$ 
+%
+\[\sqrt{N_o T_o} \left(\begin{bmatrix} \hat{\tau} \\ \estsigmasq \end{bmatrix}  - \begin{bmatrix} \tau \\ \sigma^2_\varepsilon  \end{bmatrix}\right)  \xrightarrow{d} \mathcal{N} \left(\begin{bmatrix} 0 \\ 0 \end{bmatrix}, \begin{bmatrix} \sigma_\varepsilon^2/\funfrac(\bm{\omega}, T_o) & 0 \\  0 & \xi_\varepsilon^{\dagger2} \end{bmatrix} \right). \]
+
+
+\textbf{Step 4.1: Show the consistency of $\estxisq$.}
+
+
+Recall the definition of $\estxisq$, 
+\begin{align*}
+    \estxisq =& \frac{T_o}{N_o(T_o-1)^2}  \sum_i \Big(\sum_{t} \big[ (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \estsigmasq \big] \Big)^2 - \frac{3T_o-2}{(T_o-1)^2} (\estsigmasq)^2.
+\end{align*}
+From Step 2.1, we have shown $\estsigmasq - \sigma_\varepsilon^2 = O_p(1/\sqrt{N_o})$, and then we have 
+\begin{flalign*}
+    (\estsigmasq)^2 =&  \sigma^4_\varepsilon + 2\sigma^2_\varepsilon (\estsigmasq - \sigma^2_\varepsilon) + (\estsigmasq - \sigma^2_\varepsilon)^2 \\
+    =&\sigma^4_\varepsilon +O_p\left(\frac{1}{\sqrt{N_o}}\right)
+\end{flalign*}
+
+If we can show
+\begin{align}\label{eqn:xi-proof-step-1}
+        \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} \big[ (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \estsigmasq \big] \Big)^2 = \frac{(T_o-1)^2}{T_o^2} \xi_\varepsilon^2 + \frac{3T_o-2}{T_o^2}\sigma^4_\varepsilon +O_p\left(\frac{1}{\sqrt{N_o}}\right)
+    \end{align}
+then we have
+\begin{align*}
+    \sqrt{N_o} \left(\estxisq - \xi^2_\varepsilon \right) =& \sqrt{N_o} \left( \frac{T_o^2}{(T_o - 1)^2}\frac{1}{N_o T_o}  \sum_i \Big(\sum_{t} \big[ (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \estsigmasq \big] \Big)^2 - \frac{3T_o-2}{(T_o-1)^2} (\estsigmasq)^2 - \xi^2_\varepsilon \right) \\
+    =& \sqrt{N_o} \left( \frac{T_o^2}{(T_o - 1)^2}\left[\frac{(T_o-1)^2}{T_o^2} \xi_\varepsilon^2 + 
+  \frac{3T_o-2}{T_o^2}\sigma^4_\varepsilon \right]  - \frac{3T_o-2}{(T_o-1)^2}\sigma^4_\varepsilon - \xi^2_\varepsilon +O_p\left(\frac{1}{\sqrt{N_o}}\right) \right) \\ =& O_p(1).
+\end{align*}
+
+
+Let us first prove \eqref{eqn:xi-proof-step-1}
+%
+\begin{flalign*}
+   & \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \estsigmasq \big) \Big)^2 \\
+   =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \sigma_\varepsilon^2 - (\estsigmasq - \sigma_\varepsilon^2) \big) \Big)^2 \\
+   =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \sigma_\varepsilon^2 \big) \Big)^2 - \frac{2 (\estsigmasq - \sigma_\varepsilon^2)}{N_o} \sum_i \Big(\sum_{t} \big( (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \sigma_\varepsilon^2 \big) \Big) + T_o (\estsigmasq - \sigma_\varepsilon^2)^2 \\
+   =& \underbrace{\frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( (\dot{y}_{it} - \hat{\tau} \dot{z}_{it})^2 - \sigma_\varepsilon^2 \big) \Big)^2}_{a_1}- T_o \underbrace{(\estsigmasq - \sigma_\varepsilon^2)^2}_{O_p\left(\frac{1}{N_o} \right)}
+\end{flalign*}
+where the last line follows the definition of $\estsigmasq$ and the order $\estsigmasq - \sigma_\varepsilon^2 = O(1/\sqrt{N_o})$.
+
+For $a_1$, we have 
+\begin{flalign}
+   \nonumber a_1 =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( (\dot{\varepsilon}_{it} - (\hat{\tau} - \tau) \dot{z}_{it})^2 - \sigma_\varepsilon^2 \big) \Big)^2 \\
+   \nonumber =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 - 2(\hat{\tau} - \tau) \dot{z}_{it} + \underbrace{(\hat{\tau} - \tau)^2 }_{O_p\left( \frac{1}{N_o}\right)} \dot{z}^2_{it}\big) \Big)^2 \\
+    \nonumber =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 - 2(\hat{\tau} - \tau) \dot{z}_{it} \big) \Big)^2+ O_p\left( \frac{1}{N_o}\right)\\
+   \nonumber =& \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 \big) \Big)^2 + O_p\left( \frac{1}{N_o}\right) & \tag{by $\sum_t \dot{z}_{it} = 0$} 
+\end{flalign}
+To further decompose $a_1$, we prove the the following lemma. 
+
+\begin{lemma}\label{lemma:decompose-xi}
+    In the setting of Lemma \ref{lemma:asymptotic-tau-sigma-general}, we have the following decomposition 
+    \[  \frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 \big) \Big)^2 =  \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} [ ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) -  \bar{\varepsilon}_{i,\cdot}^2] \Big)^2 + O_p\left(\frac{1}{N_o}\right).\]
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:decompose-xi}}
+We first decompose the following summation over $t$
+    \begin{align*}
+& \sum_t \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 \big) = \sum_t \big( (\varepsilon_{it} - \bar{\varepsilon}_{i,\cdot} - \bar{\varepsilon}_{\cdot,t} + \bar{\varepsilon})^2 - \sigma_\varepsilon^2 \big)\\ =& \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2) + T_o \bar{\varepsilon}_{i,\cdot}^2 + \sum_t \bar{\varepsilon}_{\cdot,t}^2 + T_o \bar{\varepsilon}^2  - 2 T_o \bar{\varepsilon}_{i,\cdot}^2 - 2 \sum_t \varepsilon_{it} \bar{\varepsilon}_{\cdot,t} + 2T_o \bar{\varepsilon}_{i,\cdot}\bar{\varepsilon} + 2T_o \bar{\varepsilon}_{i,\cdot}\bar{\varepsilon} -2 T_o \bar{\varepsilon}_{i,\cdot} \bar{\varepsilon} - 2T_o \bar{\varepsilon}^2 \\
+=& \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2) - T_o \bar{\varepsilon}_{i,\cdot}^2 + \underbrace{\sum_t \bar{\varepsilon}_{\cdot,t}^2}_{O_p\left(\frac{1}{N_o} \right)} - T_o \underbrace{\bar{\varepsilon}^2}_{O_p\left(\frac{1}{N_o} \right)} - 2 \sum_t \varepsilon_{it} \bar{\varepsilon}_{\cdot,t}+ 2T_o \bar{\varepsilon}_{i,\cdot}\bar{\varepsilon}  \\
+=& \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2) - T_o \bar{\varepsilon}_{i,\cdot}^2 - 2 \sum_t \varepsilon_{it} \bar{\varepsilon}_{\cdot,t}+ 2T_o \bar{\varepsilon}_{i,\cdot}\bar{\varepsilon} + O_p\left(\frac{1}{N_o} \right)
+\end{align*}
+Using this decomposition, we have the following decomposition
+\begin{align*}
+    &\frac{1}{N_o T_o} \sum_i \Big(\sum_{t} \big( \dot{\varepsilon}^2_{it} - \sigma_\varepsilon^2 \big) \Big)^2 =\frac{1}{N_o T_o} \sum_i \Big(  \sum_t (\varepsilon_{it}^2 - \sigma_\varepsilon^2) - T_o \bar{\varepsilon}_{i,\cdot}^2 - 2 \sum_t \varepsilon_{it} \bar{\varepsilon}_{\cdot,t}+ 2T_o \bar{\varepsilon}_{i,\cdot}\bar{\varepsilon}\Big)^2 + O_p\left(\frac{1}{N_o} \right) \\
+    \stackrel{(a)}{=}&  \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} [ ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) -  \bar{\varepsilon}_{i,\cdot}^2] \Big)^2 \\
+    & -\frac{2}{T_o}  \Big(  \sum_{t,s} \underbrace{\Big(\frac{1}{N_o} \sum_{i} (\varepsilon_{it}^2 - \sigma_\varepsilon^2)\varepsilon_{is} \Big) }_{O_p\left(\frac{1}{\sqrt{N_o}}\right)}\underbrace{\bar{\varepsilon}_{\cdot,s} }_{O_p\left(\frac{1}{\sqrt{N_o}} \right)}- T_o \sum_s \underbrace{\Big( \frac{1}{N_o}\sum_{i} \bar{\varepsilon}_{i,\cdot}^2 \varepsilon_{is}  \Big)}_{O_p\left(\frac{1}{\sqrt{N_o}}\right)} \underbrace{\bar{\varepsilon}_{\cdot,s}}_{O_p\left(\frac{1}{\sqrt{N_o}}\right)}\Big)  \\
+     & + 2 \underbrace{\bar{\varepsilon}}_{O_p\left(\frac{1}{\sqrt{N_o}}\right)} \Big( \underbrace{\frac{1}{N_o}\sum_{i,t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2) \bar{\varepsilon}_{i,\cdot} }_{O_p\left(\frac{1}{\sqrt{N_o}}\right)}- \underbrace{\frac{T_o}{N_o} \sum_i \bar{\varepsilon}_{i,\cdot}^3 \Big)}_{O_p\left(\frac{1}{\sqrt{N_o}}\right)} + O_p\left(\frac{1}{N_o}\right) \\
+     =&  \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} [ ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) -  \bar{\varepsilon}_{i,\cdot}^2] \Big)^2 + O_p\left(\frac{1}{N_o}\right)
+\end{align*}
+where the order of each term in (a) can be shown using $\varepsilon_{it}$ is i.i.d. in $i$ and $t$ with $\+E[\varepsilon_{it}] = \+E[\varepsilon_{it}^3] = 0$ and $\+E[\varepsilon^2_{it}] = \sigma_\varepsilon^2$.  \halmos
+\end{proof}
+
+
+Then we use Lemma \ref{lemma:decompose-xi} to decompose $a_1$, 
+\begin{flalign}
+   \nonumber a_1 =& \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} [ ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) -  \bar{\varepsilon}_{i,\cdot}^2] \Big)^2 + O_p\left(\frac{1}{N_o} \right)   \\ 
+  =& \underbrace{\frac{1}{N_o T_o} \sum_i \Big(\sum_{t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon)  \Big)^2 }_{a_2} - \underbrace{\frac{2}{N_o} \sum_{i,t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \cdot \bar{\varepsilon}_{i,\cdot}^2}_{a_3} + \underbrace{\frac{T_o}{N_o} \sum_i \bar{\varepsilon}_{i,\cdot}^4 }_{a_4} + O_p\left(\frac{1}{N_o} \right),\label{eqn:xi-proof-i}
+\end{flalign}
+
+Below we further decompose each of $a_2$, $a_3$ and $a_4$. For the term $a_2$ in \eqref{eqn:xi-proof-i}, we have
+\begin{align*}
+    a_2 = \frac{1}{N_o T_o} \sum_i \Big( \sum_{t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon)^2  + \sum_{t\neq s} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) ( \varepsilon_{is}^2 - \sigma^2_\varepsilon) \Big) =  \xi_\varepsilon^2 + O_p\left(\frac{1}{\sqrt{N_o}} \right).
+\end{align*}
+following the independence between $\varepsilon_{it}$ and $\varepsilon_{is}$. 
+
+For the term $a_3$ in \eqref{eqn:xi-proof-i}, we have 
+\begin{flalign*}
+    a_3=& \frac{2}{N_o T_o^2} \sum_{i,t,s,u} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \varepsilon_{is} \varepsilon_{iu} \\ =& \frac{2}{N_o T_o^2} \sum_{i,t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \varepsilon_{it}^2 +O_p\left(\frac{1}{\sqrt{N_o}} \right) &\tag{by $\+E[( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \varepsilon_{is} \varepsilon_{iu}]$ if $s\neq t$ or $u \neq t$} \\
+    =& \frac{2}{T_o} \xi_\varepsilon^2 +O_p\left(\frac{1}{\sqrt{N_o}} \right) & \tag{by $\xi_\varepsilon^2 = \+E[\varepsilon_{it}^4] - \sigma_\varepsilon^4$}
+\end{flalign*}
+
+Fo the term $a_4$ in \eqref{eqn:xi-proof-i}, we have 
+\begin{flalign*}
+   a_4 =& \frac{T_o}{N_o} \sum_i \left(\frac{1}{T_o} \sum_t \varepsilon_{it} \right)^4 \\
+   \stackrel{(a)}{=}& \frac{1}{N_o T_o^3} \sum_{i,t} \varepsilon_{it}^4 + \frac{3}{N_o T_o^3} \sum_{i,t \neq s} \varepsilon_{it}^2 \varepsilon_{is}^2 + O_p\left(\frac{1}{\sqrt{N_o}}\right) & \\ \stackrel{(b)}{=}& \frac{1}{T_o^2} (\xi_\varepsilon^2 + \sigma_\varepsilon^4) + \frac{3(T_o-1)}{T_o^2} \sigma_\varepsilon^4 + O_p\left(\frac{1}{\sqrt{N_o}}\right).
+\end{flalign*}
+where (a) follows from the law of large numbers and $\+E[\varepsilon_{it}\varepsilon_{is}\varepsilon_{iu}\varepsilon_{iv}] = 0$ if one of $t,s,u,v$ differs from the rest; (b) follows from the law of large numbers and $\+E[\varepsilon_{it}^4] = \xi_\varepsilon^2 + \sigma_\varepsilon^4$. 
+
+Back to \eqref{eqn:xi-proof-i}, we sum $a_2$, $a_3$ and $a_4$, and have
+\begin{align*}
+    a_1=& \frac{(T_o-1)^2}{T_o^2} \xi_\varepsilon^2 + \frac{3T_o-2}{T_o^2}\sigma^4_\varepsilon +O_p\left(\frac{1}{\sqrt{N_o}}\right).
+\end{align*}
+This concludes the proof of \eqref{eqn:xi-proof-step-1} and the proof of $\sqrt{N_o} \left(\estxisq - \xi^2_\varepsilon \right) = O_p(1)$.
+
+\textbf{Step 4.2: Show the asymptotic normal distribution of $\estxisq$.}
+
+From Step 4.1, the estimation error of $\estxisq$ can be decomposed as
+\begin{align*}
+    &\estxisq - \xi^2_\varepsilon = \frac{1}{N_o} \sum_i  \left[ \frac{T_o}{(T_o - 1)^2}   \Big( \sum_{t} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon)^2  + \sum_{t\neq s} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) ( \varepsilon_{is}^2 - \sigma^2_\varepsilon) \Big)  - \frac{2}{(T_o - 1)^2}  \sum_{t,s,u} ( \varepsilon_{it}^2 - \sigma^2_\varepsilon) \varepsilon_{is} \varepsilon_{iu} \right.  \\
+    & \left. + \frac{T_o^3}{(T_o - 1)^2} \left(\frac{1}{T_o} \sum_t \varepsilon_{it} \right)^4  - \frac{\sigma_\varepsilon^2}{T_o} \sum_{t} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) - \frac{\sigma_\varepsilon^2}{ T_o(T_o-1)} \sum_{t\neq s} \varepsilon_{it} \varepsilon_{is} - \xi_\varepsilon^2 -\frac{3T_o-2}{(T_o-1)^2} \sigma_\varepsilon^4 \right] + O_p\left(\frac{1}{N_o} \right) \\
+    =& \frac{1}{N_o} \sum_i f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o})+ O_p\left(\frac{1}{N_o} \right)
+\end{align*}
+where we denote the term in square bracket as $f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o})$.
+As $\varepsilon_{it}$ is i.i.d. in $i$ and $t$, $f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o})$ is i.i.d. in $i$. We can apply the standard CLT to $\estxisq$, and then $\estxisq$ is asymptotically normal with the asymptotic variance $\+E\left[f_\xi(\varepsilon_{i1}, \cdots, \varepsilon_{i,T_o})^2 \right]$. 
+
+Similar to Step 3, we can apply multivariate Lindeberg-Feller CLT to $\hat{\tau}$, $\estsigmasq$ and $\estxisq$, and obtain the joint asymptotical normality of $\hat{\tau}$, $\estsigmasq$ and $\estxisq$.
+\halmos
+
+\end{proof} 
+
+
+
+\subsection{Proof of Theorem \ref{theorem:asymptotic-page}}
+
+In this section, we prove Theorem \ref{theorem:asymptotic-page}. Before we start, we first state and prove a useful lemma that shows the asymptotic conditional mean and second moment of $\varepsilon_{it}$. This lemma will be an important intermediate step to show the asymptotic distribution of $\hat{\tau}_{\all, T}$ and $\estsigmasq_{\ad,2,T}$.
+
+In the proof of this section, we introduce a random variable $\tilde{N}$ to denote the number of units in the adaptive experiment that can grow to infinity. $N$ denotes any (deterministic) realization of $\tilde{N}$. Furthermore, we let $\bm{\omega}_{\all, 1:T}(N)$ be the unit average of $Z = [Z_\fcs^\T~ Z_{\ad,1}^\T~ Z_{\ad,2}^\T]^\T \in \{-1,+1\}^{N \times T}$ in the experiment with $N$ units over $T$ periods. Similarly we index $\hat{\tau}_{\fcs,t}(N)$, $\hat{\tau}_{\ad,1,t}(N)$, $\estsigmasq_{\fcs,t}(N)$, $\estxisq_{\fcs,t}(N)$ and $\estsigmasq_{\ad,1,t}(N)$ by $N$ to specify the number of units to estimate the corresponding estimator.
+
+For notation simplicity, we introduce 
+\[\bm{\upvarphi}^\prime_T(N) = \left(\estsigmasq_{\fcs,2}(N), \estxisq_{\fcs,2}(N), \estsigmasq_{\ad,1,2}(N), \cdots, \estsigmasq_{\fcs,T}(N), \estxisq_{\fcs,T}(N), \estsigmasq_{\ad,1,T}(N) \right) \]
+that includes all the information used to make the adaptive treatment decisions and to make the experiment termination decision. From Lemma \ref{lemma:asymptotic-tau-sigma-general}, each entry in $\bm{\upvarphi}^\prime_T(N)$ is consistent, and then we let 
+\[\bar{\bm{\upvarphi}}^\prime  = \left(\sigma_\varepsilon^2, \xi_\varepsilon^2, \sigma_\varepsilon^2, \cdots, \sigma_\varepsilon^2, \xi_\varepsilon^2, \sigma_\varepsilon^2 \right) \]
+that is the limit of $\bm{\upvarphi}^\prime_T(N)$ as $N$ grows to infinity. Moreover, we concatenate $\bm{\upvarphi}^\prime_T(N)$ with  $\bm{\omega}_{\all, 1:T}(N)$ and concatenate $\bar{\bm{\upvarphi}}^\prime$ with $\bm{\omega}_{\all, 1:T}$ to encompass the information in $\bm{\omega}_{\all, 1:T}(N)$ that affects the asymptotic distribution of $\hat{\tau}_{\all,1:T}$
+\begin{align*}
+    \bm{\upvarphi}_T(N) =& \left(\bm{\omega}_{\all, 1:T}(N),  \bm{\upvarphi}^\prime_T(N) \right) \\
+    \bar{\bm{\upvarphi}} =& \left(\bm{\omega}_{\all, 1:T}, \bar{\bm{\upvarphi}}^\prime\right).
+\end{align*}
+
+\begin{lemma}\label{lemma:conditional-mean-variance}
+In the setting of Theorem \ref{theorem:asymptotic-page}, 
+the asymptotic conditional mean and second moment of $\varepsilon_{it}$ satisfy
+\begin{enumerate}
+    \item For any $j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}$, 
+\begin{align}
+    \+E\left[\varepsilon_{ju} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm{\epsilon}, Z \right]  =& 0 \label{eqn:lemma-7-3-1-1}
+\end{align}
+  For any $\bm{\epsilon} = (\epsilon_{\omega}, \bm{\epsilon}^\prime)$, and for any $\delta$, there exist $N_0$, such that for $N > N_0$,
+  \begin{align}
+  &\sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, s, u} \left|\+E\left[\varepsilon_{ju} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right] - \sigma_\varepsilon^2\right| < C \norm{\bm{\epsilon}^\prime}_2 + \delta  \label{eqn:lemma-7-3-1-2} \\
+ & \sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, s, u: s\neq u} \left|\+E\left[\varepsilon_{ju} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right] \right| < C \norm{\bm{\epsilon}^\prime}_2 + \delta \label{eqn:lemma-7-3-1-3} \\
+   &   \sup_{j,k \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, s, u: j \neq k} \left|\+E\left[N\varepsilon_{ju} \varepsilon_{ks}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right] \right| < C \norm{\bm{\epsilon}^\prime}_2 + \delta   \label{eqn:lemma-7-3-1-4}
+  \end{align}
+    \item For $i \not \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}$, 
+    \begin{align}
+        &\+E\left[\varepsilon_{is} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm{\epsilon}, Z \right]  =  0 \label{eqn:lemma-7-3-2-1} \\
+        &\+E\left[\varepsilon^2_{is} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm{\epsilon}, Z \right]  = \sigma_\varepsilon^2 \label{eqn:lemma-7-3-2-2} \\
+        &\+E\left[\varepsilon_{is} \varepsilon_{ju}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm{\epsilon}, Z \right]  = 0 & (i,t) \neq (j,s)\label{eqn:lemma-7-3-2-3}
+    \end{align}
+\end{enumerate}
+\end{lemma}
+
+Now we prove Lemma \ref{lemma:conditional-mean-variance}.
+
+
+\begin{proof}{Proof of Lemma \ref{lemma:conditional-mean-variance}.}
+
+\textbf{Step 1: Show Lemma \ref{lemma:conditional-mean-variance}.1.}
+
+
+Given that  $Z_{\fcs}$ is selected to satisfy the treated fraction condition $(2s-1-T_{\max})/T_{\max}$ at time $s$, we can partition the  $Np_{\fcs}$ NTUs into $T+1$ disjoint sets, $\mathcal{K}_{\fcs,1}, \cdots, \mathcal{K}_{\fcs,T+1}$, where units in set $\mathcal{K}_g$ are first treated at time $g$ for $g \leq T$ and units in set $\mathcal{K}_{\fcs,T+1}$ are not treated until the end of the experiment. Similarly, we partition the $Np_{\ad,1}$ ATUs into $T+1$ disjoint sets, $\mathcal{K}_{\ad,1,1} \cdots, \mathcal{K}_{\ad,1,T+1}$. 
+
+If both $i$ and $k$ are in the same set $\mathcal{K}_{\fcs,g}$ or $\mathcal{K}_{\ad,1,g}$ for some $g$, then $\dot{z}_{iu} = \dot{z}_{ku}$ for any $u$. 
+%
+Using this property, if both $i$ and $k$ are NTU, then $\varepsilon_{iu}$ and $\varepsilon_{ku}$ are exchangeable in $\hat{\tau}_{\fcs,t}(N) $ based on the expression of $\hat{\tau}_{\fcs,t}(N) $
+\[ \hat{\tau}_{\fcs,t}(N) - \tau = \left( \sum_{i,s} \dot{z}_{is}^2 \right)^\I \sum_{i,s} \dot{z}_{is} \varepsilon_{is}. \]
+Moreover, $\varepsilon_{iu}$ and $\varepsilon_{ku}$ are exchangeable in $\estsigmasq_{\fcs,t}(N)$ and $\estxisq_{\fcs,t}(N)$ based on the expression of $\estsigmasq_{\fcs,t}(N)$ 
+\begin{align*}
+    &\estsigmasq_{\fcs,t}(N) = \frac{1}{N(t-1) p_{\fcs}} \sum_{i \in \mathcal{S}_{\fcs}, 1 \leq s \leq t} \left(\dot{y}_{is} - \hat{\tau}_{\fcs,t}(N) \cdot \dot{z}_{is} \right)^2 \\
+ =& \frac{1}{N(t-1) p_{\fcs}} \sum_{i,s} \varepsilon_{is}^2 - \frac{t}{N(t-1) p_{\fcs}} \sum_i \bar{\varepsilon}^2_{i,\cdot}  - \frac{1}{t-1} \sum_s \bar{\varepsilon}^2_{\cdot,s}  + \frac{t}{t-1} \bar{\varepsilon}^2 - (\hat{\tau}_{\fcs,t}(N) - \tau)^2 \cdot \frac{1}{N(t-1) p_{\fcs}} \sum_{i,s} \dot{z}_{is}^2  
+\end{align*}
+and the expression of $\estxisq_{\fcs,t}(N)$
+\begin{align*}
+    \estxisq_{\fcs,t}(N) - \xi^2_\varepsilon =&  \frac{t^2}{(t - 1)^2}\frac{1}{N p_{\fcs} t}  \sum_i \Big(\sum_{s} \big[ (\dot{y}_{is} - \hat{\tau}_{\fcs,t}(N) \cdot \dot{z}_{is})^2 - \estsigmasq_{\fcs,t}(N) \big] \Big)^2 \\ & - \frac{3t-2}{(t-1)^2} (\estsigmasq_{\fcs,t}(N))^2 - \xi^2_\varepsilon. 
+\end{align*}
+As we do not use $i$ and $k$ to estimate $\hat{\tau}_{\ad,1,t}(N)$, $\estsigmasq_{\ad,1,t}(N)$ and $\estxisq_{\ad,1,t}(N)$, $i$ and $k$ are also exchangeable in $\hat{\tau}_{\ad,1,t}(N)$, $\estsigmasq_{\ad,1,t}(N)$ and $\estxisq_{\ad,1,t}(N)$. Similarly, we can show that if $i$ and $k$ are both ATU and in the same set $\mathcal{K}_{\ad,1,g}$ for some $g$, $\varepsilon_{iu}$ and $\varepsilon_{ku}$ are exchangeable in $\hat{\tau}_{\ad,1,t}(N)$, $\estsigmasq_{\ad,1,t}(N)$, $\estxisq_{\ad,1,t}(N)$, $\hat{\tau}_{\fcs,t}(N)$, $\estsigmasq_{\fcs,t}(N)$ and $\estxisq_{\fcs,t}(N)$ for all $t$. 
+
+
+We are going to use the set $\mathcal{K}_{\fcs,g}$ and $\mathcal{K}_{\ad,1,g}$ and this exchangeability property to show \eqref{eqn:lemma-7-3-1-2}, \eqref{eqn:lemma-7-3-1-3} and \eqref{eqn:lemma-7-3-1-4}. But before we start, let us first prove \eqref{eqn:lemma-7-3-1-1}.
+
+We first show a useful lemma that is used to prove \eqref{eqn:lemma-7-3-1-1}.
+
+\begin{lemma}\label{lemma:show-lemma-7-3-1-1}
+    In the setting of Lemma \ref{lemma:asymptotic-tau-sigma-general}, let $g(\cdot) : \+R^{NT} \rightarrow \+R^p$ be a function that maps $\bm{\varepsilon} = [\varepsilon_{it}]_{(i,t) \in [N] \times [T]}$ to a $p$-dimensional nonnegative vector. Suppose $g(\bm{\varepsilon}) = g(-\bm{\varepsilon})$. For any $i$, conditional on $g(\bm{\varepsilon}) = \*g_0$ for any $\*g_0 \in \+R^p$, we have 
+    \[\+E\left[\varepsilon_{it} \mid g(\bm{\varepsilon})  \right] = 0\]
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:show-lemma-7-3-1-1}}
+Let the density of $\varepsilon_{it}$ be $f(\varepsilon_{it})$, let the density of $g(\bm{\varepsilon})$ be $f(g(\bm{\varepsilon}))$, and let the conditional density of $\varepsilon_{it}$ on $g(\bm{\varepsilon})$ be $f(\varepsilon_{it} \mid g(\bm{\varepsilon}))$. The conditional expectation equals
+\begin{align*}
+    &\+E\left[\varepsilon_{it} \mid g(\bm{\varepsilon}) = \*g_0\right] = \int_{-\infty}^{\infty} \varepsilon_{it} f(\varepsilon_{it} \mid g(\bm{\varepsilon}) = \*g_0) d\varepsilon_{it} \\
+    =& \int_{-\infty}^{\infty} \varepsilon_{it} \frac{f(\varepsilon_{it}) f(g(\bm{\varepsilon} = \*g_0) \mid \varepsilon_{it})}{f(g(\bm{\varepsilon}))}  d\varepsilon_{it}  \\
+    =& \frac{1}{f(g(\bm{\varepsilon}) = \*g_0)} \left[ \int_0^\infty \varepsilon_{it} f(\varepsilon_{it}) f(g(\bm{\varepsilon}) = \*g_0 \mid \varepsilon_{it}) d\varepsilon_{it} +\int_0^\infty -\varepsilon_{it} f(-\varepsilon_{it}) f(g(\bm{\varepsilon} ) = \*g_0\mid -\varepsilon_{it}) d\varepsilon_{it} \right] 
+\end{align*}
+As $\varepsilon_{it}$ has a symmetric distribution $f(\varepsilon_{it}) =f(-\varepsilon_{it}) $. Let $\bm{\varepsilon}_{-(it)}$ be the vector of $\bm{\varepsilon}$ excluding $\varepsilon_{it}$.  The conditional density $f(g(\bm{\varepsilon} ) = \*g_0 \mid \varepsilon_{it})$ has
+\begin{flalign*}
+    f(g(\bm{\varepsilon} ) = \*g_0 \mid \varepsilon_{it}) =& \int f(g(\bm{\varepsilon})  = \*g_0 \mid \bm{\varepsilon}) \cdot f(\bm{\varepsilon} \mid \varepsilon_{it}) d \bm{\varepsilon}_{-(it)} \\
+    =& \int \bm{1}(g(\bm{\varepsilon})  = \*g_0) \cdot f(\bm{\varepsilon}_{-(it)}) d \bm{\varepsilon}_{-(it)} & \tag{$\varepsilon_{it}$ is i.i.d.} \\
+    =& \int \bm{1}(g(-\bm{\varepsilon})  = \*g_0) \cdot f(\bm{\varepsilon}_{-(it)}) d \bm{\varepsilon}_{-(it)} & \tag{ by $g(\bm{\varepsilon}) = g(-\bm{\varepsilon})$}\\
+    =& \int \bm{1}(g(-\bm{\varepsilon})  = \*g_0) \cdot f(-\bm{\varepsilon}_{-(it)}) d \bm{\varepsilon}_{-(it)} & \tag{$\varepsilon_{it}$ has a symmetric distribution}\\
+    =& \int \bm{1}(g(\bm{-\varepsilon})  = \*g_0) \cdot f(-\bm{\varepsilon} \mid - \varepsilon_{it}) d \bm{\varepsilon}_{-(it)} & \tag{$\varepsilon_{it}$ is i.i.d.} \\
+    =& f(g(\bm{\varepsilon} ) = \*g_0 \mid -\varepsilon_{it}) 
+\end{flalign*}
+Then the conditional expectation has 
+\begin{align*}
+    \+E\left[\varepsilon_{it} \mid g(\bm{\varepsilon}) \right] =& \frac{1}{f(g(\bm{\varepsilon}) = \*g_0)} \left[ \int_0^\infty \varepsilon_{it} f(\varepsilon_{it}) f(g(\bm{\varepsilon}) = \*g_0 \mid \varepsilon_{it}) d\varepsilon_{it} +\int_0^\infty -\varepsilon_{it} f(\varepsilon_{it}) f(g(\bm{\varepsilon} ) = \*g_0\mid \varepsilon_{it}) d\varepsilon_{it} \right] = 0.
+\end{align*}
+We conclude the proof of Lemma \ref{lemma:show-lemma-7-3-1-1}.
+    \halmos
+\end{proof}
+
+Now we apply Lemma \ref{lemma:show-lemma-7-3-1-1} to prove \eqref{eqn:lemma-7-3-1-1}. Let $g(\bm{\varepsilon}) = \bm{\upvarphi}^\prime_T(N)$. For such $g(\bm{\varepsilon})$, the condition $g(\bm{\varepsilon}) = g(-\bm{\varepsilon})$ is satisfied, based on the expression of $\hat{\tau}_{\fcs,t}(N)$,  $\estsigmasq_{\fcs,t}(N)$ and $\estxisq_{\fcs,t}(N)$ and $\estsigmasq_{\ad,1,t}(N)$. 
+Applying Lemma \ref{lemma:show-lemma-7-3-1-1}, we have 
+\[\+E\left[\varepsilon_{it} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) = \bar{\bm{\upvarphi}}^\prime + \bm{\epsilon}^\prime \right] = 0.\]
+Note that $\bm{\upvarphi}_T(N)$ is  $\bm{\upvarphi}^\prime_T(N)$ concatenated with $\bm{\omega}_{\all,1:T}(N)$. $\bm{\upvarphi}^\prime_T(N)$ encompasses all the information in $\bm{\omega}_{\all,1:T}(N)$ that is relevant to $\varepsilon_{it}$. Furthermore, $Z_{\ad}$ is randomly chosen subject to the treated fraction constraints $\bm{\omega}_{\ad,1:T}(N)$. We can then write both $Z$ and $Z_{\ad}$ as a function of  $(\estsigmasq_{\fcs,2}(N),  \estxisq_{\fcs,2}(N), \cdots, \estsigmasq_{\fcs,T}(N), \estxisq_{\fcs,T}(N))$ and some random variable $\eta$ that determines which units are treated and which are not subject to the treated fraction constraints. By definition, $\eta$ is independent of $(\estsigmasq_{\fcs,2}(N),  \estxisq_{\fcs,2}(N), \cdots, \estsigmasq_{\fcs,T}(N), \estxisq_{\fcs,T}(N))$ and $\varepsilon_{ju}$ for any $j$ and $u$. Using $\eta$, we have 
+\begin{align*}
+    & \+E\left[\varepsilon_{ju} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm{\epsilon}, Z \right]  \\
+    =& \+E\left[\varepsilon_{it} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) = \bar{\bm{\upvarphi}}^\prime + \bm{\epsilon}^\prime \right] = 0.
+\end{align*}
+This concludes the proof of \eqref{eqn:lemma-7-3-1-1}.
+
+To show \eqref{eqn:lemma-7-3-1-2}, \eqref{eqn:lemma-7-3-1-3} and \eqref{eqn:lemma-7-3-1-4}, we first show two useful lemmas.
+
+\begin{lemma}\label{lemma:show-lemma-7-3-1-2-4}
+    In the setting of Lemma \ref{lemma:asymptotic-tau-sigma-general}, let $g(\cdot) : \+R^{NT} \rightarrow \+R^p$ be a function that maps $\bm{\varepsilon} = [\varepsilon_{it}]_{(i,t) \in [N] \times [T]}$ to a $p$-dimensional vector, and let $h(\cdot) : \+R^{N} \rightarrow \+R^q$ be a function that maps $\bm{\varepsilon}_i = [\varepsilon_{it}]_{t \in  [T]}$ to a $q$-dimensional vector. Let $\mathcal{S}$ be the set of indices, where for any $i$ and $j$ in $\mathcal{S}$, $\bm{\varepsilon}_i $ and $\bm{\varepsilon}_j $ are exchangeable in $g(\bm{\varepsilon})$. For all $i \in \mathcal{S}$, conditional on $g(\bm{\varepsilon}) = \*g_0$ and $\sum_{i \in \mathcal{S}} h(\bm{\varepsilon}_i) = \*h_0$ for any $\*g_0 \in \+R^p$ and $\*h_0 \in \+R^q$,
+    \begin{align}
+        \+E\left[h(\bm{\varepsilon}_i) \mid  \sum_{k \in \mathcal{S}} h(\bm{\varepsilon}_k) = \*h_0, g(\bm{\varepsilon}) = \*g_0  \right] = \frac{\*h_0}{|\mathcal{S}|}.
+    \end{align}
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:show-lemma-7-3-1-2-4}}
+    Based on the condition in Lemma \ref{lemma:show-lemma-7-3-1-2-4}, if $i$ and $j$ in $\mathcal{S}$, then 
+    \[  \+E\left[h(\bm{\varepsilon}_i) \mid  \sum_{k \in \mathcal{S}} h(\bm{\varepsilon}_k) = \*h_0, g(\bm{\varepsilon}) = \*g_0  \right]  =  \+E\left[h(\bm{\varepsilon}_j) \mid  \sum_{k \in \mathcal{S}} h(\bm{\varepsilon}_k) = \*h_0, g(\bm{\varepsilon}) = \*g_0  \right]. \]
+    Using this property, we have 
+    \begin{align*}
+        \sum_{i \in \mathcal{S}}  \+E\left[h(\bm{\varepsilon}_i) \mid  \sum_{k \in \mathcal{S}} h(\bm{\varepsilon}_k) = \*h_0, g(\bm{\varepsilon}) = \*g_0  \right] =& \*h_0 \\
+        \Leftrightarrow	 |\mathcal{S}| \+E\left[h(\bm{\varepsilon}_i) \mid  \sum_{k \in \mathcal{S}} h(\bm{\varepsilon}_k) = \*h_0, g(\bm{\varepsilon}) = \*g_0  \right] =& \*h_0
+    \end{align*}
+    We conclude the proof of Lemma \ref{lemma:show-lemma-7-3-1-2-4}. \halmos
+\end{proof}
+
+\begin{lemma}\label{lemma:conditional-expectation}
+    Suppose $\{X_n\}$ and $\{Y_n\}$ are sequences of bounded random variables.  As $n \rightarrow \infty$, $\{X_n\}$ and $\{Y_n\}$ converge to a joint normal distribution 
+    \[\sqrt{n}\left( \begin{bmatrix}
+        X_n \\ Y_n
+    \end{bmatrix} - \begin{bmatrix}
+       \mu_X \\ \mu_Y
+    \end{bmatrix}\right) \xrightarrow{d} \mathcal{N} \left(\begin{bmatrix}
+        \bm{0} \\ \bm{0}
+    \end{bmatrix}, \begin{bmatrix}
+        \Sigma_{XX} & \Sigma_{XY} \\ \Sigma_{YX} & \Sigma_{YY}
+    \end{bmatrix} \right) \,\, . \]
+    Then for any $y \in \+R^q$, the asymptotic conditional expectation of  $X$ on $Y_n = y$ is
+    \[ \lim_{n \rightarrow \infty} \+E\left[X_n \mid Y_n = y \right]= \mu_X + \Sigma_{XY} \Sigma_{YY}^\I (y - \mu_Y). \]
+\end{lemma}
+
+\begin{proof}{Proof of Lemma \ref{lemma:conditional-expectation}}
+    Let $Z_n =X_n  + B Y_n $, where $B = - \Sigma_{XY} \Sigma_{YY}^\I$. Then the conditional covariance between $Y_n$ and $Z_n$ is 
+    \begin{align*}
+        \lim_{n \rightarrow \infty}\mathrm{Cov}(Z_n, Y_n) =& \lim_{n \rightarrow \infty} \mathrm{Cov}(X_n, Y_n) +  \lim_{n \rightarrow \infty}  \mathrm{Cov}(B Y_n, Y_n) \\
+        =& \Sigma_{XY}  - \Sigma_{XY} \Sigma_{YY}^\I \Sigma_{YY} = \bm{0} 
+    \end{align*}
+    As $Z_n$ is a linear combination of $X_n$ and $Y_n$, we can show that $Y_n$ and $Z_n$ are joint asymptotically normal. As they are asymptotically uncorrelated, $Y_n$ and $Z_n$ are asymptotically independent. As the asymptotic expectation of $Z_n$ is $ \lim_{n \rightarrow \infty}\+E\left[Z_n  \right] = \mu_X + B \mu_Y$, we have 
+    \begin{align*}
+        \lim_{n \rightarrow \infty}\+E\left[X_n \mid Y_n = y \right] =& \lim_{n \rightarrow \infty}\+E\left[Z_n - B Y_n \mid Y_n = y \right] \\
+        =& \lim_{n \rightarrow \infty}\+E\left[Z_n \mid Y_n = y \right] - B \cdot \lim_{n \rightarrow \infty}\+E\left[ Y_n \mid Y_n = y \right] \\
+        =& \mu_X + B \mu_Y - B y \\
+        =& \mu + \Sigma_{XY} \Sigma_{YY}^\I (\mu_Y - y).
+    \end{align*}
+    This concludes the proof of Lemma \ref{lemma:conditional-expectation}. \halmos
+\end{proof}
+
+
+
+Next, let us consider the asymptotic conditional second moment of $\varepsilon_{ju}$. 
+Suppose $j$ is in $\mathcal{K}$, where $\mathcal{K} \in \{\mathcal{K}_{\fcs,1}, \cdots, \mathcal{K}_{\fcs,T+1}, \mathcal{K}_{\ad,1,1}, \cdots, \mathcal{K}_{\ad,1,T+1}\}$. Let
+\begin{align*}
+    h(\bm{\varepsilon}_i) =& \varepsilon_{iu}^2 - \sigma_\varepsilon^2  \\
+    h_{\mathcal{K}u}(\bm{\varepsilon}) =& \frac{1}{|\mathcal{K}|} \sum_{j \in \mathcal{K}} [\varepsilon_{iu}^2 - \sigma_\varepsilon^2]
+\end{align*}
+By applying Lemma \ref{lemma:show-lemma-7-3-1-2-4}, the conditional second moment equals
+\begin{flalign*}
+    & \+E\left[\varepsilon^2_{ju} \mid \bm{\upvarphi}^\prime_T(N) \right] \\
+    =&  \+E\left[ \+E\left[\varepsilon^2_{ju} \mid h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)  \right] \mid \bm{\upvarphi}^\prime_T(N) \right] \\
+    =& \sigma_\varepsilon^2 + \+E\left[  h_{\mathcal{K}u}(\bm{\varepsilon})  \mid \bm{\upvarphi}^\prime_T(N) \right]
+\end{flalign*}
+As $N \rightarrow \infty$ and $T_{\max}$ is fixed, the number of units in $\mathcal{K}$ grows to infinity, that is, $|\mathcal{K}| \rightarrow \infty$. The randomness of $h_{\mathcal{K}u}(\bm{\varepsilon})$ and $\bm{\upvarphi}^\prime_T(N)$ comes from $\varepsilon_{it}$, where $\varepsilon_{it}$ is i.i.d. in $i$ and $t$. We can apply multivariate CLT to $h_{\mathcal{K}u}(\bm{\varepsilon})$ and $\bm{\upvarphi}^\prime_T(N)$  (similar to Step 4.2 in the proof of Lemma \ref{lemma:asymptotic-tau-sigma-general}), and show that $\sigma_\varepsilon^2$ and $\bm{\upvarphi}^\prime_T(N)$ are consistent and joint asymptotically normal with 
+\begin{equation}\label{eqn:joint-asymptotic-normal-h-g}
+    \begin{aligned}
+        & \sqrt{N p_{\fcs}} \left(\begin{bmatrix}
+    h_{\mathcal{K}u}(\bm{\varepsilon}) \\ \bm{\upvarphi}^\prime_T(N)
+\end{bmatrix} - \begin{bmatrix}
+    0 \\ 
+    \bar{\bm{\upvarphi}}^\prime
+\end{bmatrix} 
+\right) \\ \xrightarrow{d} &\mathcal{N} \left(\begin{bmatrix}
+    0 \\ \bm{0}_{3(T-1)}
+\end{bmatrix}, \begin{bmatrix}
+    A\mathrm{Var}(h_{\mathcal{K}u}(\bm{\varepsilon}))& A\mathrm{Cov} (h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T) \\ A\mathrm{Cov} (\bm{\upvarphi}^\prime_T(N), h_{\mathcal{K}u}(\bm{\varepsilon})) & A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))
+\end{bmatrix} \right) \,\,. 
+    \end{aligned} 
+\end{equation}
+We can then apply Lemma \ref{lemma:conditional-expectation}, as $\varepsilon_{ju}$ is bounded, we have for any $j$ and $u$, 
+\begin{align*}
+    & \lim_{N \rightarrow \infty} \+E\left[\varepsilon^2_{ju}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = \bm{\epsilon}^\prime\right] - \sigma_\varepsilon^2 \\
+    =& \lim_{N \rightarrow \infty} \+E\left[\varepsilon^2_{ju} \mid \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = \bm{\epsilon}^\prime\right]  - \sigma_\varepsilon^2
+    \tag{$\bm{\upvarphi}^\prime_T(N)$ encompasses all the information in $\tilde{T}$} \\
+    =& \lim_{N \rightarrow \infty} \+E\left[h_{\mathcal{K}u}(\bm{\varepsilon}) \mid \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = \bm{\epsilon}^\prime\right]  \\
+    =& A\mathrm{Cov} (h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)  \cdot A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I \cdot \bm{\epsilon}^\prime \,. 
+\end{align*}
+Equivalently for any $\tilde{\delta}$, there exists some $N_0$ such that for $N > N_0$, and for any $j \in \mathcal{K}$ and $u$, 
+\begin{align*}
+    & \left| \+E\left[\varepsilon^2_{ju} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = \bm{\epsilon}^\prime\right] - \sigma_\varepsilon^2 \right| \\
+    < & \left| A\mathrm{Cov} (h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)  \cdot A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I \cdot \bm{\epsilon}^\prime \right|  + {\delta}.
+\end{align*}
+Then we have for any ${\delta}$, there exists some $N_0$ such that for $N > N_0$
+\begin{align*}
+    & \sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1},u} \left|\+E\left[\varepsilon^2_{ju} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = \bm{\epsilon}^\prime\right] - \sigma^2_\varepsilon \right| \\
+    <& \sup_{\mathcal{K},u}  \left| A\mathrm{Cov} (h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)  \cdot A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I \cdot \bm{\epsilon}^\prime \right|  + {\delta}  \\
+    \leq& \left(\sup_{\mathcal{K},u}  \norm{A\mathrm{Cov} (h_{\mathcal{K}u}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)}_2 \right) \cdot \norm{A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I}_2 \cdot \norm{\bm{\epsilon}^\prime}_2 + {\delta}  \\
+    <& C \norm{\bm{\epsilon}^\prime}_2 +  {\delta}.
+\end{align*}
+for some constant $C$.
+
+Following the same argument as the proof of \eqref{eqn:lemma-7-3-1-1}, $\bm{\upvarphi}^\prime_T(N) $ encompasses all the information in $\bm{\omega}_{\all,1:T}(N)$ and $Z$ that is relevant to $\varepsilon_{ju}$. Therefore we have for any ${\delta}$, there exists some $N_0$ such that for $N > N_0$, 
+\begin{align*}
+&\sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, u} \left|\+E\left[\varepsilon_{ju}^2  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right] - \sigma_\varepsilon^2\right| \\
+=&\sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1},u} \left|\+E\left[\varepsilon^2_{ju} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime| \leq \bm{\epsilon}^\prime\right] - \sigma^2_\varepsilon \right| \\
+<& \sup_{\tilde{\bm{\epsilon}}^\prime: |\tilde{\bm{\epsilon}}^\prime| < \bm{\epsilon}^\prime } C \norm{\tilde{\bm{\epsilon}}^\prime}_2 +  {\delta} \\
+=& C \norm{{\bm{\epsilon}}^\prime}_2 +  {\delta}
+\end{align*} 
+We conclude the proof of \eqref{eqn:lemma-7-3-1-2}.
+
+
+Next let us consider the conditional covariance between $\varepsilon_{ju}$ and $\varepsilon_{js}$ for $u \neq s$. Suppose $j$ is in $\mathcal{K}$, where $\mathcal{K} \in \{\mathcal{K}_{\fcs,1}, \cdots, \mathcal{K}_{\fcs,T+1}, \mathcal{K}_{\ad,1,1}, \cdots, \mathcal{K}_{\ad,1,T+1}\}$. Let 
+\begin{align*}
+    h(\bm{\varepsilon}_j) =& \varepsilon_{js}\varepsilon_{ju} \\
+    h_{\mathcal{K}su}(\bm{\varepsilon}) =& \frac{1}{|\mathcal{K}|} \sum_{j \in \mathcal{K}} \varepsilon_{js}\varepsilon_{ju} \,.
+\end{align*}
+For this definition of $h_{\mathcal{K}su}(\bm{\varepsilon})$, we can similarly show a joint asymptotic normal distribution of $h_{\mathcal{K}su}(\bm{\varepsilon})$ and $\bm{\upvarphi}^\prime_T(N)$ as \eqref{eqn:joint-asymptotic-normal-h-g}, and we can use a similar approach as the proof of  \eqref{eqn:lemma-7-3-1-2} to show that for any $\delta$, there exist $N_0$ such that for any $N > N_0$, we have
+\begin{align*}
+    & \sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, s,u} \left|\+E\left[\varepsilon_{ju} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right]\right| \\
+    =& \sup_{j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}, s,u} \left|\+E\left[\varepsilon_{ju} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime| \leq {\bm{\epsilon}}^\prime \right]\right| \\
+    \leq& \sup_{\tilde{\bm{\epsilon}}^\prime: |\tilde{\bm{\epsilon}}^\prime| \leq \bm{\epsilon}^\prime} \left(\sup_{\mathcal{K},s,u}  \norm{A\mathrm{Cov} (h_{\mathcal{K}su}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)}_2 \right) \cdot \norm{A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I}_2 \cdot \norm{\bm{\epsilon}^\prime}_2 + {\delta}   \\
+    \leq& C \norm{\bm{\epsilon}^\prime}_2 + \delta 
+\end{align*}
+for some constant $C$. 
+This concludes the proof of \eqref{eqn:lemma-7-3-1-3}. 
+
+Finally, let us consider the asymptotic covariance between $\varepsilon_{ju}$ and $\varepsilon_{ks}$ for $k \neq j$. Suppose $j$ is in $\mathcal{K}$
+\begin{align*}
+    h(\bm{\varepsilon}) =& \varepsilon_{ju}\varepsilon_{ks} \\
+    h^\prime_{\mathcal{K}su}(\bm{\varepsilon}) =& \frac{1}{|\mathcal{K}|} \sum_{j \in \mathcal{K}}  \varepsilon_{ju}\varepsilon_{k_j s}
+\end{align*}
+where $\{k_l\}_{l \in \mathcal{K}}$ is a randomly selected sequence of indices that satisfy $k_l \in [N]$, satisfy $k_l \neq k_{l^\prime}$ and $k_l \neq m$ for any $l^\prime, m \in \mathcal{K}$ with $l^\prime \neq l$, and satisfy $k_l = k$ for $l = j$. Given this sequence, we have $\varepsilon_{ju}\varepsilon_{k_j s} $ to be i.i.d. for any $j \in \mathcal{K}$. Then $h^\prime_{\mathcal{K}su}(\bm{\varepsilon}) $ is asymptotically normal. We can then show a joint asymptotic normal distribution of $h^\prime_{\mathcal{K}su}(\bm{\varepsilon}) $ and $\bm{\upvarphi}^\prime_T(N)$. In this joint distribution, we note that the covariance between $h^\prime_{\mathcal{K}su}(\bm{\varepsilon}) $ and $\bm{\upvarphi}^\prime_T(N)$ has 
+\[\mathrm{Cov} \left(h_{\mathcal{K}su}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T \right) = O \left({1}/{N} \right) \]
+because $h_{\mathcal{K}su}(\bm{\varepsilon})$ is an average of residuals of two different units and the weight of $h_{\mathcal{K}su}(\bm{\varepsilon})$ in $\bm{\upvarphi}^\prime_T(N)$ is at the order of $O(1/(N p_{\fcs}))$. As $\varepsilon_{ju}$ is bounded, we have 
+\begin{align*}
+    & \sup_{i,j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1},s,u} \left|\+E\left[N\varepsilon_{iu} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq {\bm{\epsilon}}, Z \right]\right| \\
+    =& \sup_{i,j \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1},s,u} \left|\+E\left[N\varepsilon_{iu} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime| \leq {\bm{\epsilon}}^\prime \right]\right| \\
+    \leq& \sup_{\tilde{\bm{\epsilon}}^\prime: |\tilde{\bm{\epsilon}}^\prime| \leq \bm{\epsilon}^\prime} \left(\sup_{\mathcal{K},s,u}  \norm{A\mathrm{Cov} (Nh_{\mathcal{K}jsu}(\bm{\varepsilon}), \bm{\upvarphi}^\prime_T(N)^\T)}_2 \right) \cdot \norm{A\mathrm{Var}(\bm{\upvarphi}^\prime_T(N))^\I}_2 \cdot \norm{\bm{\epsilon}^\prime}_2 + {\delta}   \\
+    \leq& C \norm{\bm{\epsilon}^\prime}_2 + \delta 
+\end{align*}
+This concludes the proof of \eqref{eqn:lemma-7-3-1-4}. 
+
+
+\textbf{Step 2: Show Lemma \ref{lemma:conditional-mean-variance}.2.}
+
+The expectations in Lemma \ref{lemma:conditional-mean-variance}.2 condition on $\estsigmasq_{\fcs,t}(N)$, $\estxisq_{\fcs,t}(N)$ and $\estsigmasq_{\ad,1,t}(N)$, for any $2 \leq t \leq T$. Since both $\estsigmasq_{\fcs,t}(N)$ and $\estxisq_{\fcs,t}(N)$ are estimated using NTU only, the randomness of both $\estsigmasq_{\fcs,t}(N)$ and $\estxisq_{\fcs,t}(N)$ come from $\varepsilon_{is}$ for $i $ in NTU ($i \in \mathcal{S}_\fcs$) and $1 \leq s\leq t$. Similarly, the randomness of $\estsigmasq_{\ad,1,t}(N)$ comes from $\varepsilon_{is}$ for $i \in \mathcal{S}_{\ad,1}$ and $1 \leq s\leq t$.  Furthermore, since $\varepsilon_{it}$ is i.i.d.,  $\varepsilon_{is}$ is independent of $\varepsilon_{ju}$ for $i \in \mathcal{S}_\fcs \cup \mathcal{S}_{\ad,1}$ and $j \not \in \mathcal{S}_\fcs \cup \mathcal{S}_{\ad,1}$, and for any $s$ and $u$. Therefore if $j \not \in \mathcal{S}_{\fcs}  \cup \mathcal{S}_{\ad,1}$ and for $u \in [T]$, the asymptotic expectations conditional on $\estsigmasq_{\fcs,t}(N)$, $\estxisq_{\fcs,t}(N)$ and $\estsigmasq_{\ad,1,t}(N)$ equal to the corresponding unconditional expectations, that is, for $i \not \in \mathcal{S}_{\fcs} \cup \mathcal{S}_{\ad,1}$,
+\begin{align*}
+&\+E\left[\varepsilon_{iu}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}} = {\bm{\epsilon}}, Z \right] = \+E\left[\varepsilon_{iu}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = {\bm{\epsilon}}^\prime \right] = \+E\left[\varepsilon_{iu}  \right] = 0  \\
+&\+E\left[\varepsilon_{iu}^2  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}} = {\bm{\epsilon}}, Z \right] =    \+E\left[\varepsilon_{iu}^2  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = {\bm{\epsilon}}^\prime \right] = \+E\left[\varepsilon_{iu}^2  \right] = \sigma_\varepsilon^2 \\
+& \+E\left[\varepsilon_{iu} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}} = {\bm{\epsilon}}, Z \right] =    \+E\left[\varepsilon_{iu} \varepsilon_{js}  \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}^\prime_T(N) - \bar{\bm{\upvarphi}}^\prime = {\bm{\epsilon}}^\prime \right] = \+E\left[\varepsilon_{iu} \varepsilon_{js}  \right] = 0 
+\end{align*}
+This concludes the proof of \eqref{eqn:lemma-7-3-2-1}, \eqref{eqn:lemma-7-3-2-2}, and \eqref{eqn:lemma-7-3-2-3}. \halmos
+
+\end{proof}
+
+\bigskip
+Now we are ready to present the proof of Theorem \ref{theorem:asymptotic-page}.
+
+\begin{proof}{Proof of Theorem \ref{theorem:asymptotic-page}.} 
+
+
+\textbf{Step 1: Show the asymptotic normal distribution of $\hat{\tau}_{\all,T}$.}
+
+
+Based on Lemma \ref{lemma:asymptotic-tau-sigma-general},
+the estimation error of $\hat{\tau}_{\all,\tilde{T}}$ can be written as 
+\[\hat{\tau}_{\all,\tilde{T}} - \tau = \frac{1}{N \tilde{T}} \sum_{i,s} \underbrace{\left(\frac{1}{N \tilde{T}} \sum_{i,s} \dot{z}^2_{is}  \right)^\I}_{\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})^\I} \underbrace{   \left(z_{is} - \sum_i \bar{z}_{i,\cdot} - \sum_s \bar{z}_{\cdot,s} + \bar{z}\right) }_{\zeta_{is}}
+ \varepsilon_{is}. \]
+
+  Let us consider the mean of the estimation error (multiplied by $N$ and $\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})/\sigma_\varepsilon^2$) 
+ \begin{flalign*}
+ & \+E\left[ N \tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})/\sigma_\varepsilon^2 \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau) \mid \tilde{N} = N \right]\\
+ =& \sum_{T \leq T_{\rm max}} \+E\left[ N \tilde{T}\funfrac(\bm{\omega}_{\all,1:T}(N),{T})/\sigma_\varepsilon^2 \cdot (\hat{\tau}_{\all,{T}} - \tau) \mid \tilde{N} = N, \tilde{T} = T \right] P(\tilde{T} = T \mid \tilde{N} = N)\\
+ =&   \sum_{T \leq T_{\rm max}} \sum_{\bm{\epsilon}  } (\sigma_\varepsilon^2)^{-1} \bigg[  \sum_{i,s \leq T}  \underbrace{\+E\left[\zeta_{is} \cdot \varepsilon_{is} \mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm\epsilon \right]}_{\coloneqq a_{is}} \bigg] \\ & \cdot P(\tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm\epsilon \mid \tilde{N} = N) \\
+ =& 0 
+ \end{flalign*}
+ where the last line uses that for any $i$ and $s$
+\begin{align*}
+    a_{is} =& \+E\Bigg[ \zeta_{is} \cdot \underbrace{\+E\left[\varepsilon_{is} \mid  \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm\epsilon, Z\right]}_{= 0 \text{ from \eqref{eqn:lemma-7-3-1-1} and \eqref{eqn:lemma-7-3-2-1} in Lemma \ref{lemma:conditional-mean-variance}}}\mid \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) = \bar{\bm{\upvarphi}} + \bm\epsilon \Bigg] \\
+    =& 0.
+\end{align*}
+ 
+Let us consider the second moment of the estimation error (multiplied by $N$ and $\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})/\sigma_\varepsilon^2$)
+\begin{align*}
+     & \+E[N \tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})/\sigma_\varepsilon^2 \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau)^2 - 1\mid \tilde{N}= N] \\
+     =& \sum_{T \leq T_{\rm max}} \+E\left[ N \tilde{T}\funfrac(\bm{\omega}_{\all,1:T}(N),\tilde{T})/\sigma_\varepsilon^2 \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau)^2  - 1\mid \tilde{N} = N, \tilde{T} = T \right] P(\tilde{T} = T \mid \tilde{N} = N)\\
+     =& (\sigma_\varepsilon^2)^{-1} \sum_{T \leq T_{\rm max}} \underbrace{\bigg[ \frac{1}{NT}  \sum_{i,s \leq T} \+E\left[ \funfrac(\bm{\omega}_{\all,1:T}(N),{T})^\I \cdot \zeta_{is}^2 (\varepsilon_{is}^2 - \sigma_\varepsilon^2) \mid \tilde{N} = N, \tilde{T} = T \right] \bigg] }_{a_{NT}} P(\tilde{T} = T \mid \tilde{N} = N)\\
+     & + (\sigma_\varepsilon^2)^{-1} \sum_{T \leq T_{\rm max}} \underbrace{\bigg[ \frac{1}{NT} \sum_{i,s,u\leq T} \+E\left[ \funfrac(\bm{\omega}_{\all,1:T}(N),{T})^\I \cdot \zeta_{is} \zeta_{iu}  \varepsilon_{is} \varepsilon_{iu} \mid \tilde{N} = N, \tilde{T} = T \right] \bigg] }_{b_{NT}} P(\tilde{T} = T \mid \tilde{N} = N)\\
+     & + (\sigma_\varepsilon^2)^{-1} \sum_{T \leq T_{\rm max}} \underbrace{\bigg[ \frac{1}{NT} \sum_{i,j: i \neq j,s,u\leq T} \+E\left[ \funfrac(\bm{\omega}_{\all,1:T}(N),{T})^\I \cdot \zeta_{is} \zeta_{ju} \varepsilon_{is} \varepsilon_{ju} \mid \tilde{N} = N, \tilde{T} = T \right] \bigg] }_{c_{NT}}  P(\tilde{T} = T \mid \tilde{N} = N)
+\end{align*}
+
+As each entry $\bm{\upvarphi}_T(N)$ in converge (in probability) to $\bar{\bm{\upvarphi}}$, have for any generic sequence of bounded random variables $X_{NT}$, for any $(\bm\epsilon, \delta)$, there exist $N_0$ such that for any $N > N_0$, we have 
+\begin{align}
+   & \nonumber \left|\+E\left[X_{NT} \mid \tilde{N} = N, \tilde{T} = T\right] \right| \\
+  \nonumber =& |\+E\left[X_{NT} \mid  \tilde{N} = N, \tilde{T} = T, \bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}} \leq  \bm\epsilon \mid \right] \cdot P(|\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq  \bm\epsilon \mid \tilde{N} = N, \tilde{T} = T) \\ 
+   \nonumber & + \+E\left[X_{NT} \mid  \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| >  \bm\epsilon \right] \cdot \underbrace{P(|\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| >  \bm\epsilon \mid \tilde{N} = N, \tilde{T} = T) }_{\substack{< P(|\bm{\upvarphi}_{\fcs,T}(N) - \bar{\bm{\upvarphi}}_{\fcs}| >  \bm\epsilon_{\fcs} \mid \tilde{N} = N, \tilde{T} = T) \\ < P(|\bm{\upvarphi}_{\fcs,T}(N) - \bar{\bm{\upvarphi}}_{\fcs}| >  \bm\epsilon_{\fcs} \mid \tilde{N} = N) < \delta }} \tag{$\bm{\upvarphi}_{\fcs,T}(N)$ is independent of $\tilde T$} \\
+    <& \left|\+E\left[X_{NT}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq  \bm\epsilon \right] \right|\cdot P(|\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq  \bm\epsilon \mid \tilde{N} = N, \tilde{T} = T) + C\delta  \\
+     <& \left|\+E\left[X_{NT}  \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}| \leq  \bm\epsilon \right] \right| + C\delta \label{eqn:abs-prob-bound}
+\end{align}
+for some constant $C$, where 
+\[\bm{\upvarphi}_{\fcs,T}(N) = \left(\estsigmasq_{\fcs,2}(N), \estxisq_{\fcs,2}(N), \cdots, \estsigmasq_{\fcs,T}(N), \estxisq_{\fcs,T}(N) \right) \]
+and $\bar{\bm{\upvarphi}}_{\fcs}$ and $\bm{\epsilon}$ are defined analogously. Note that $\bm{\upvarphi}_{\fcs,T}(N)$ is independent of $\tilde{T}$ because $\bm{\upvarphi}_{\fcs,T}(N)$ is a function of $\varepsilon_{is}$ for $i \in \mathcal{S}_{\fcs}$, $\tilde{T}$ is a function of $\estsigmasq_{\ad,1,2}(N), \cdots, \estsigmasq_{\ad,1,T}(N)$ and therefore a function of $\varepsilon_{js}$ for $j \in \mathcal{S}_{\ad,1}$, and $\varepsilon_{is}$ is i.i.d. for all $i$ and $s$. 
+
+Using \eqref{eqn:abs-prob-bound}, we have for any $(\bm\epsilon, \delta_1, \delta_2)$, there exist $N_0$ such that for any $N > N_0$,
+\begin{align*}
+    |a_{NT}| <& \Bigg|\+E \left[ \frac{1}{NT} \sum_{i,s} \funfrac(\bm{\omega}_{\all,1:T}(N),T)^\I \cdot   \zeta_{is}^2  \cdot (\varepsilon_{is}^2 - \sigma_\varepsilon^2) \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon \right]\Bigg|  + C_1 \delta_1 \\
+    <& C_2 \sup_{i,s} \Bigg|\+E \left[ \varepsilon_{is}^2 - \sigma_\varepsilon^2 \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon, Z \right]\Bigg|  + C_1 \delta_1 \tag{$g_\tau(\cdot)$ and $\zeta_{is}^2$ are bounded positives} \\
+    <& C_2 \left(C_3 \norm{{\bm{\epsilon}}^\prime}_2  + \delta_2\right) + C_1 \delta_1. \tag{from \eqref{eqn:lemma-7-3-1-2} and \eqref{eqn:lemma-7-3-2-2}}
+\end{align*}
+for some constant $C_1, C_2$ and $C_3$, and ${\bm{\epsilon}}^\prime$ is equal to ${\bm{\epsilon}}$ excluding the first coordinate. 
+
+Similarly, for any $(\bm\epsilon, \delta_1, \delta_2)$, there exist $N_0$ such that for any $N > N_0$,
+\begin{align*}
+    |b_{NT}| <& \Bigg|\+E \left[ \frac{1}{NT} \sum_{i,s,u\leq T} \funfrac(\bm{\omega}_{\all,1:T}(N),T)^\I \cdot   \zeta_{is} \zeta_{iu} \varepsilon_{is} \varepsilon_{iu} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon \right]\Bigg|  + C_1 \delta_1 \\
+    <& \left( \sup_{\bm{\omega}_{\all,1:T}(N)}  \funfrac(\bm{\omega}_{\all,1:T}(N),T)^\I \right) \cdot \left(\frac{1}{NT} \sum_{i,s,u\leq T}  \zeta^2_{is} \zeta^2_{iu} \right)^{1/2} \\
+    & \cdot \sup_{i,s,u\leq T} \Bigg|\+E \left[ \varepsilon_{is} \varepsilon_{iu} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon, Z \right]\Bigg|  + C_1 \delta_1 \tag{by Cauchy-Schwarz inequality} \\
+    <& C_2 \sup_{i,s,u\leq T} \Bigg|\+E \left[ \varepsilon_{is} \varepsilon_{iu} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon, Z \right]\Bigg|  + C_1 \delta_1 \tag{$g_\tau(\cdot)$ is bounded positive and $\zeta_{is} \in [-1,1]$} \\
+    <& C_2 \left(C_3 \norm{{\bm{\epsilon}}^\prime}_2  + \delta_2\right) + C_1 \delta_1. \tag{from \eqref{eqn:lemma-7-3-1-3} and \eqref{eqn:lemma-7-3-2-3}}
+\end{align*}
+for some constants $C_1$, $C_2$ and $C_3$, and ${\bm{\epsilon}}^\prime$ is equal to ${\bm{\epsilon}}$ excluding the first coordinate. 
+Moreover, for any $(\bm\epsilon, \delta_1, \delta_2)$, there exist $N_0$ such that for any $N > N_0$,
+\begin{align*}
+    |c_{NT}| <& \Bigg|\+E \left[ \frac{1}{NT} \sum_{i,j:i\neq j,s,u\leq T} \funfrac(\bm{\omega}_{\all,1:T}(N),T) \cdot   \zeta_{is} \zeta_{ju} \varepsilon_{is} \varepsilon_{ju} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon \right]\Bigg|  + C_1 \delta_1 \\
+    <& \left( \sup_{\bm{\omega}_{\all,1:T}(N)}  \funfrac(\bm{\omega}_{\all,1:T}(N),T) \right) \cdot \left(\frac{1}{N^2 T} \sum_{i,j:i\neq j,s,u\leq T}  \zeta^2_{is} \zeta^2_{ju} \right)^{1/2} \\
+    & \cdot \sup_{i,j:i\neq j,s,u\leq T} \Bigg|\+E \left[ N\varepsilon_{is} \varepsilon_{ju} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon, Z \right]\Bigg|  + C_1 \delta_1 \tag{by Cauchy-Schwarz inequality} \\
+    <& C_2 \sup_{i,s,u\leq T} \Bigg|\+E \left[ N\varepsilon_{is} \varepsilon_{iu} \mid \tilde{N} = N, \tilde{T} = T, |\bm{\upvarphi}_T(N) - \bar{\bm{\upvarphi}}|  \leq  \bm\epsilon, Z \right]\Bigg|  + C_1 \delta_1 \tag{$g_\tau(\cdot)$ and $\zeta_{is}$ are bounded} \\
+    <& C_2 \left(C_3 \norm{{\bm{\epsilon}}^\prime}_2  + \delta_2\right) + C_1 \delta_1. \tag{from \eqref{eqn:lemma-7-3-1-4} and \eqref{eqn:lemma-7-3-2-3}}
+\end{align*}
+for some constants $C_1$, $C_2$ and $C_3$, and ${\bm{\epsilon}}^\prime$ is equal to ${\bm{\epsilon}}$ excluding the first coordinate. 
+Combining $a_{NT}$, $b_{NT}$ and $c_{NT}$ together, and since there are only finitely many choices of  $T$ is bounded above, for any $(\bm\epsilon, \delta_1, \delta_2)$, there exist $N_0$ such that for any $N > N_0$,
+\begin{align*}
+    \left|\+E[N \tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})/\sigma_\varepsilon^2 \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau)^2 - 1\mid \tilde{N}= N]\right| < C_2 \left(C_3 \norm{{\bm{\epsilon}}^\prime}_2  + \delta_2\right) + C_1 \delta_1
+\end{align*}
+for some constants $C_1$, $C_2$ and $C_3$. This implies that 
+\begin{align}
+    \lim_{N \rightarrow \infty} \+E\left[N \cdot \left[(\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T}))^{1/2}/\sigma_\varepsilon \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau) \right]^2 \mid \tilde{N}= N\right] = 1 \label{eqn:conditional-mean-square}
+\end{align}
+Therefore $\hat{\tau}_{\all,\tilde{T}}$ converges in mean square. This implies $\hat{\tau}_{\all,\tilde{T}}$ converges in probability ({\it i.e.}, consistency). Following the expression of \eqref{eqn:conditional-mean-square}, the convergence rate of $\hat{\tau}_{\all,\tilde{T}}$ is $\sqrt{N}$. Moreover, both the mean and asymptotic variance of $(\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T}))^{1/2}/\sigma_\varepsilon \cdot (\hat{\tau}_{\all,\tilde{T}} - \tau)$ do not depend on $\tilde{T}$. 
+
+The mean and asymptotic second moment of $\hat{\tau}_{\all,\tilde{T}} - \tau$ is identical to that of $ \hat{\tau} - \tau$ in Lemma \ref{lemma:asymptotic-tau-sigma-general}, where $\hat{\tau}$ is estimated from the non-adaptive experimental data with the same number of units and time periods and with the same $\bm{\omega}$. This implies that the correlations between $\varepsilon_{it}$ and $\varepsilon_{js}$ conditional on $\tilde{T}$ are sufficiently ``weak'', so that the correlations do not change the second moment. We can further verify the conditions in martingale CLT holds and apply the martingale CLT to $\hat{\tau}_{\all,\tilde{T}}$, yielding
+\[\sqrt{N} \big(\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}},\tilde{T})/\sigma_\varepsilon^2\big)^{1/2} (\hat{\tau}_{\all,\tilde{T}} - \tau) \xrightarrow{d} \mathcal{N} \left(0,1 \right), \]
+conditional on $\tilde{T} = T$. As this asymptotic distribution does not depend on the value of $T$, and 
+$\tilde{T}$ can only take finitely many values, the asymptotic distribution of $\hat{\tau}_{\all,\tilde{T}}$ unconditional on $\tilde{T}$ stays the same. 
+This concludes the proof of the asymptotic distribution of $\hat{\tau}_{\all,\tilde{T}}$. 
+
+\textbf{Step 2: Show the asymptotic normal distribution of $\estsigmasq_{\ad,2,\tilde{T}}$.}
+
+Note that $Z_{\ad,2,\tilde{T}}$ is chosen based on $\estsigmasq_{\fcs,2}, \estxisq_{\fcs,2}, \cdots, \estsigmasq_{\fcs,\tilde{T}}, \estxisq_{\fcs,\tilde{T}}$ that are estimated using $\varepsilon_{ju}$ for $j$ in $\mathcal{S}_{\fcs}$. Moreover, the length of $Z_{\ad,2,\tilde{T}}$ is $\tilde{T}$, where $\tilde{T}$ is determinated by $\estsigmasq_{\ad,1,2}, \cdots, \estsigmasq_{\ad,1,\tilde{T}}$ that are estimated using $\varepsilon_{ju}$ using $j$ in $\mathcal{S}_{\ad,1}$.  Therefore, for any $i \in \mathcal{S}_{\ad,2}$ and any $t$, $\varepsilon_{it}$ is independent of $Z_{\ad,2,\tilde{T}}$ conditional on $\tilde{T}$, following that $\varepsilon_{it}$ i.i.d. in $i$ and $t$ for $i$ in both NTU and ATU. Therefore, conditional on $\tilde{T}$, we can directly apply Lemma \ref{lemma:asymptotic-tau-sigma-general}, use Slutsky's theorem, and obtain 
+\[\sqrt{N}  \big(\tilde{T} p_{\ad,2}/\xi^{\dagger 2}_{\varepsilon,\tilde{T}} \big)^{1/2} \cdot \big(\estsigmasq_{\ad,2,\tilde{T}} - \sigma_\varepsilon^2 \big) \xrightarrow{d} N\left(0, 1  \right) \, \]
+where 
+$\xi^{\dagger 2}_{\varepsilon,\tilde{T}}  = \xi_\varepsilon^2 + 2/(\tilde{T}-1) \cdot \sigma_\varepsilon^4 $. As this asymptotic distribution does not depend on the value of $\tilde{T}$ and $\tilde{T}$ can only take finitely many values, this asymptotic distribution also holds unconditional on $\tilde{T}$. 
+This concludes the proof of the asymptotic distribution of $\estsigmasq_{\ad,2}$.
+
+\textbf{Step 3: Show the joint asymptotic distribution of $\tau_{\all,\tilde{T}}$ and $\estsigmasq_{\ad,2,\tilde{T}}$}
+
+To show the joint asymptotic distribution in Theorem \eqref{theorem:asymptotic-page}, we need to show the asymptotic covariance between $\tau_{\all,\tilde{T}} - \tau$ and $\estsigmasq_{\ad,2,\tilde{T}} - \sigma_\varepsilon^2$ is 0. As an intermediate step, we first show their asymptotic covariance conditional on $\tilde{T} = T$ is 0. 
+\begin{align*}
+   & \estsigmasq_{\ad,2,\tilde{T}} - \sigma_\varepsilon^2 = \underbrace{\frac{1}{|\mathcal{S}_{\ad,2}| \tilde{T}} \sum_{i \in \mathcal{S}_{\ad,2},t \leq \tilde{T}} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) }_{e_1}
+  + \underbrace{\frac{1}{|\mathcal{S}_{\ad,2}| \tilde{T} (\tilde{T}-1)} \sum_{i\in \mathcal{S}_{\ad,2}, t,s\leq \tilde{T}: t\neq s} \varepsilon_{it} \varepsilon_{is}}_{e_2}   +  O_p\left( \frac{1}{N} \right)
+\end{align*}
+
+Note that the non-leading terms of $\sqrt{N} \left(\estsigmasq_{\ad,2,\tilde{T}} - \sigma^2_\varepsilon\right)$ is at the order of $O_p\left(1/\sqrt{N}\right)$, and the order of $\sqrt{N}(\hat{\tau}_{\all,\tilde{T}} - \tau)$ is $O_p(1)$. Therefore, their product is at the order of $O_p\left(1/\sqrt{N}\right) = o_p(1)$. Equivalently, the asymptotic covariance between non-leading terms of $\estsigmasq_{\ad,1,\tilde{T}} - \sigma^2_\varepsilon$ and $\hat{\tau}_{\all,\tilde{T}} - \tau$ is $0$ conditional on $\tilde{T} = T$. For notation simplicity, let 
+\[\tilde{\zeta}_{is} = \funfrac(\bm{\omega}_{\all,1:\tilde{T}}(N),\tilde{T})^\I \zeta_{is}  \]
+and then we can write the estimation error of $\hat{\tau}_{\all,\tilde{T}}$ as 
+\[\hat{\tau}_{\all,\tilde{T}} - \tau = \frac{1}{N\tilde{T}} \sum_{i, s\leq \tilde{T}} \tilde{\zeta}_{is} \varepsilon_{is}. \]
+
+Next we show the covariance between $\hat{\tau}_{\all,T} - \tau$ and $e_1$ conditional on $\tilde{T} = T$. Note that
+\begin{align*}
+    & \+E\left[ N \tilde{T} \cdot \left( \frac{1}{N\tilde{T}} \sum_{i,t} \tilde\zeta_{it} \varepsilon_{it} \right) \left(  \frac{1}{|\mathcal{S}_{\ad,2}|\tilde{T}} \sum_{i\in\mathcal{S}_{\ad,2},t\leq\tilde{T}} (\varepsilon_{it}^2 - \sigma_\varepsilon^2 ) \right)\mid \tilde{N} = N,  \tilde{T} = T \right] \\
+    =& \underbrace{\frac{1}{ |\mathcal{S}_{\ad,2}| T} \sum_{i \in \mathcal{S}_{\ad,2},t \leq T} \+E\left[ \tilde\zeta_{it} \varepsilon_{it} (\varepsilon_{it}^2 - \sigma_\varepsilon^2)\mid \tilde{N} = N,  \tilde{T} = T\right]}_{A} \\ 
+    &+ \underbrace{\frac{1}{ |\mathcal{S}_{\ad,2}| T} \sum_{(i,t) \neq (j,s), j \in \mathcal{S}_{\ad,2}} \+E\left[ \tilde\zeta_{it} \varepsilon_{it} (\varepsilon_{js}^2 - \sigma_\varepsilon^2) \mid \tilde{N} = N,  \tilde{T} = T\right]}_{B}.
+\end{align*}
+
+For term $A$,  for any $i \in \mathcal{S}_{\ad,2}$, and for any $N$, 
+\begin{flalign*}
+    & \+E\left[ \tilde\zeta_{it} \varepsilon_{it} (\varepsilon_{it}^2 - \sigma_\varepsilon^2)\mid \tilde{N} = N, \tilde{T} = T \right] \\
+    =& \+E\left[ \tilde\zeta_{it} \left( \+E\left[  \varepsilon_{it}^3  \mid \tilde{N} = N, \tilde{T} = T, Z\right] - \+E[\varepsilon_{it} \mid \tilde{N} = N, \tilde{T} = T, Z] \cdot \sigma_\varepsilon^2  \right)\mid \tilde{N} = N, \tilde{T} = T \right]   \\
+    =& \+E\left[ \zeta_{it} \left( \+E\left[  \varepsilon_{it}^3 \right] - \+E[\varepsilon_{it} ] \cdot \sigma_\varepsilon^2  \right) \mid \tilde{N} = N, \tilde{T} = T\right]  & \tag{$\varepsilon_{it}$ is independent of $\tilde{T}$ and $Z$ for $i \in \mathcal{S}_{\ad,2}$ } \\
+    =& 0
+\end{flalign*}
+and therefore $A = 0$. 
+
+For term $B$, for any $j \in \mathcal{S}_{\ad,2}$ and any $i$ (with $(i,t) \neq (j,s)$), and for any $N$
+\begin{flalign*}
+    & \+E\left[ \tilde\zeta_{it} \varepsilon_{it} (\varepsilon_{js}^2 - \sigma_\varepsilon^2)\mid \tilde{N} = N, \tilde{T} = T \right] \\
+    =&  \+E\left[\tilde\zeta_{it} \cdot \+E\left[\varepsilon_{it} (\varepsilon_{js}^2 - \sigma_\varepsilon^2)\mid \tilde{N} = N, \tilde{T} = T, Z \right] \mid \tilde{N} = N, \tilde{T} = T\right] \\
+    =& \+E\left[\tilde\zeta_{it} \cdot \+E\left[ \varepsilon_{it} \cdot \+E\left[  \varepsilon_{js}^2 - \sigma_\varepsilon^2 \mid \tilde{N} = N, \tilde{T} = T, Z, \varepsilon_{it} \right]\mid \tilde{N} = N, \tilde{T} = T, Z \right]\mid \tilde{N} = N, \tilde{T} = T\right]  \\
+    =&  \+E\left[\tilde\zeta_{it} \cdot \+E\left[ \varepsilon_{it} \cdot \+E\left[  \varepsilon_{js}^2 - \sigma_\varepsilon^2 \right]\mid \tilde{N} = N, \tilde{T} = T, Z \right]\mid \tilde{N} = N, \tilde{T} = T\right] & \tag{$\varepsilon_{js}$ is independent of $\tilde{N}$, $\tilde{T}$, $Z$ and $\varepsilon_{it}$}\\
+    =& \tilde\zeta_{it} \cdot \+E\left[ \varepsilon_{it} \cdot 0\mid \tilde{N} = N,  \tilde{T} = T, Z \right] = 0
+\end{flalign*}
+and therefore $B = 0$. As both $A = 0$ and $B = 0$, the covariance between $\hat{\tau}_{\all,T} - \tau$ and $a_1$ is 0 for any $N$ and $T$.
+
+For the covariance between $\hat{\tau}_{\all,\tilde{T}} - \tau$ and $e_2$ conditional on $\tilde{T} = T$, 
+\begin{align*}
+        & \+E\left[NT \cdot \left( \frac{1}{N \tilde{T}} \sum_{i,t \leq \tilde{T}} \tilde\zeta_{it} \varepsilon_{it} \right) \left( \frac{1}{|\mathcal{S}_{\ad,1}| \tilde{T} (\tilde{T}-1)} \sum_{i \in \mathcal{S}_{\ad,1}, t\neq s \leq \tilde{T}} \varepsilon_{it} \varepsilon_{is}  \right) \mid \tilde{N} = N, \tilde{T} = T \right]\\
+    =&  \frac{1}{|\mathcal{S}_{\ad,1}|  T (T-1)} \sum_{i \in [N],j \in \mathcal{S}_{\ad,1}, t, s, u: u \neq s} \+E\bigg[ \tilde\zeta_{it} \cdot \underbrace{\+E \left[ \varepsilon_{it} \varepsilon_{ju} \varepsilon_{js} \mid \tilde{N} = N,  \tilde{T} = T, Z\right]}_{0} \mid \tilde{N} = N,  \tilde{T} = T\bigg] = 0
+\end{align*}
+where $\+E \left[ \varepsilon_{it} \varepsilon_{ju} \varepsilon_{js} \mid \tilde{N} = N, \tilde{T} = T, Z\right] = 0$ follows that at least one of $(j,u)$ and $(j,s)$ does not equal to $(i,t)$, given that $u \neq s$. Suppose $(j,s) \neq (i,t)$. Then 
+\begin{flalign*}
+    & \+E \left[ \varepsilon_{it} \varepsilon_{ju} \varepsilon_{js} \mid \tilde{N} = N, \tilde{T} = T, Z\right] \\ 
+    =&\+E \left[ \varepsilon_{it} \varepsilon_{ju} \+E\left[\varepsilon_{js} \mid \tilde{N} = N,  \tilde{T} = T, Z, \varepsilon_{it}, \varepsilon_{ju}\right]  \mid \tilde{N} = N, \tilde{T} = T, Z\right] \\
+    =&\+E \left[ \varepsilon_{it} \varepsilon_{ju} \+E\left[\varepsilon_{js}\right]  \mid \tilde{N} = N, \tilde{T} = T, Z\right] & \tag{$\varepsilon_{js}$ is independent of $\tilde{N}$, $\tilde{T}$, $Z$, $\varepsilon_{it}$ and $\varepsilon_{ju}$}\\
+    =& \+E \left[ \varepsilon_{it} \varepsilon_{ju} \cdot 0 \mid \tilde{N} = N, \tilde{T} = T, Z\right] = 0
+\end{flalign*}
+
+Therefore, the covariance between $\hat{\tau}_{\all,\tilde{T}} - \tau$ and $e_2$ is 0 conditional on $\tilde{T}= T$. Together with the zero covariance between $\hat{\tau}_{\all,\tilde T} - \tau$ and $e_1$ conditional on $\tilde{T} = T$, and zero asymptotic covariance between $\hat{\tau}_{\all,\tilde T} - \tau$ and non-leading terms of $\estsigmasq_{\ad,2,\tilde T} - \sigma_\varepsilon^2 $ conditional on $\tilde{T} = T$, we have finished showing that the asymptotic covariance between $\hat{\tau}_{\all,\tilde T} - \tau$ and $\estsigmasq_{\ad,2,\tilde T} - \sigma_\varepsilon^2 $ is zero conditional on $\tilde T= T$. As this holds on any value of $\tilde T$ and $\tilde T$ can only take finitely many values, the unconditional asymptotic covariance between $\hat{\tau}_{\all,\tilde T} - \tau$ and $\estsigmasq_{\ad,2,\tilde T} - \sigma_\varepsilon^2 $ is also zero. 
+
+Next we apply multivariate martingale CLT to $\hat{\tau}_{\all,\tilde T}$ and $\estsigmasq_{\ad,2}$. The conditions for the CLT can be verified similarly to the previous steps. Then we have  
+\begin{align}
+        \sqrt{N} \cdot \begin{bmatrix}
+    \big(\tilde{T}\funfrac(\bm{\omega}_{\all,1:\tilde{T}},\tilde{T})/\sigma_\varepsilon^2\big)^{1/2} \cdot \left( \hat{\tau}_{\all,\tilde{T}} - \tau\right) \vspace{0.3cm}  \\ \big(\tilde{T} p_{\ad,2}/\xi^{\dagger 2}_{\varepsilon,\tilde{T}} \big)^{1/2} \cdot \big(\estsigmasq_{\ad,2,\tilde{T}} - \sigma_\varepsilon^2 \big)
+        \end{bmatrix}
+        \stackrel{d}{\longrightarrow } \mathcal{N} \left(\bm{0}, I_2 \right)
+    \end{align}
+This concludes the proof of Theorem \ref{theorem:asymptotic-page}. \halmos
+
+
+\end{proof}
