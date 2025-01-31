@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Create test-content directory if it doesn't exist
+mkdir -p test-content
+
+# Copy only specific files
+cp ../vault/index.md ../vault/about.md ../vault/science.math.md ../vault/science.math.Functional\ Analysis.Kernel\ Methods.md test-content/
+
 # Build the site
 npx quartz build --directory test-content
 
