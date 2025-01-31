@@ -6,17 +6,59 @@
       <description>Last 10 notes on 🪴 Quartz 4.0</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
+    <title>List_3_Int_Add_to_Zero</title>
+    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</link>
+    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</guid>
+    <description></description>
+    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
+  </item><item>
     <title>About This Site</title>
     <link>https://quartz.jzhao.xyz/about</link>
     <guid>https://quartz.jzhao.xyz/about</guid>
     <description>About This Digital Garden Welcome to my digital garden! This is where I share my notes, thoughts, and learnings about various topics including: Mathematics and Statistics Machine ...</description>
-    <pubDate>Fri, 31 Jan 2025 19:33:17 GMT</pubDate>
+    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
   </item><item>
     <title>Welcome to My Knowledge Base</title>
     <link>https://quartz.jzhao.xyz/</link>
     <guid>https://quartz.jzhao.xyz/</guid>
     <description>Welcome to My Knowledge Base This is my personal knowledge base where I share my notes and thoughts on various topics. Recent Notes About This Site Test Note Mathematics Statistics Main Categories Mathematics and Statistics Machine Learning Engineering System Design About This is a digital garden built with Obsidian and Quartz.</description>
-    <pubDate>Fri, 31 Jan 2025 19:33:17 GMT</pubDate>
+    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
+  </item><item>
+    <title>WritingGoodFeedback</title>
+    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</link>
+    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</guid>
+    <description>,.</description>
+    <pubDate>Wed, 01 Jan 2025 14:24:00 GMT</pubDate>
+  </item><item>
+    <title>Estimators</title>
+    <link>https://quartz.jzhao.xyz/science.stats.Estimators</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.Estimators</guid>
+    <description> An estimator is a statistic (function of data) that outputs a value for some parameter of the data generating process. Examples: Analytical Solution dv.paragraph(dv.current().visual); Note = this.lead Details Supporting Content Back Matter Source based_on:: References Terms Target Tasks Questions Template Help Basic Template Structure How to Use Links How to Use Tags How to Search Notes Plugins Needed Find Latest Updates .</description>
+    <pubDate>Sun, 06 Oct 2024 10:53:00 GMT</pubDate>
+  </item><item>
+    <title>Stats</title>
+    <link>https://quartz.jzhao.xyz/science.stats</link>
+    <guid>https://quartz.jzhao.xyz/science.stats</guid>
+    <description></description>
+    <pubDate>Tue, 15 Feb 2022 11:44:12 GMT</pubDate>
+  </item><item>
+    <title>Confidence Intervals</title>
+    <link>https://quartz.jzhao.xyz/science.stats.Confidence-Intervals</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.Confidence-Intervals</guid>
+    <description>In a frequentist setting, confidence intervals can be taken from the MLE + CLT via the identity: P(-z_{\alpha/2}&lt;\sqrt(I(\theta)*(\hat{\theta}-\theta)) &lt; z_{\alpha/2})\approx ...</description>
+    <pubDate>Sun, 06 Feb 2022 20:45:59 GMT</pubDate>
+  </item><item>
+    <title>A/B Testing or Experimental Design</title>
+    <link>https://quartz.jzhao.xyz/science.stats.AB-Testing</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.AB-Testing</guid>
+    <description>From DataInterviewPro Controlled experiments (e.g. clinical trials). Usually when we run experiments, we want to see difference in certain seed.Product Management.Product Metrics.User Based Metrics (Digital Products), e.g.</description>
+    <pubDate>Sun, 16 Jan 2022 19:11:52 GMT</pubDate>
+  </item><item>
+    <title>Large Correlation Matrices in R</title>
+    <link>https://quartz.jzhao.xyz/science.stats.Correlation-and-Covariance</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.Correlation-and-Covariance</guid>
+    <description>var(v) = \Sigma(v_i-E(v))^2 = E[(X-\mu)^2] cov(X,Y) = \Sigma((x_i-E(x))(y_i-E(y)))/n or (n-1) for sample covariance cor(X,Y) = \frac{cov(X,Y)}{\sqrt{var(X)*var(Y)}} Pearson ...</description>
+    <pubDate>Mon, 10 Jan 2022 23:06:30 GMT</pubDate>
   </item>
     </channel>
   </rss>
