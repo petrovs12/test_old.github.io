@@ -6,23 +6,23 @@
       <description>Last 10 notes on 🪴 Quartz 4.0</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>List_3_Int_Add_to_Zero</title>
-    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</link>
-    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</guid>
-    <description></description>
-    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
-  </item><item>
     <title>About This Site</title>
     <link>https://quartz.jzhao.xyz/about</link>
     <guid>https://quartz.jzhao.xyz/about</guid>
     <description>About This Digital Garden Welcome to my digital garden! This is where I share my notes, thoughts, and learnings about various topics including: Mathematics and Statistics Machine ...</description>
-    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
+    <pubDate>Fri, 31 Jan 2025 19:34:43 GMT</pubDate>
   </item><item>
     <title>Welcome to My Knowledge Base</title>
     <link>https://quartz.jzhao.xyz/</link>
     <guid>https://quartz.jzhao.xyz/</guid>
     <description>Welcome to My Knowledge Base This is my personal knowledge base where I share my notes and thoughts on various topics. Recent Notes About This Site Test Note Mathematics Statistics Main Categories Mathematics and Statistics Machine Learning Engineering System Design About This is a digital garden built with Obsidian and Quartz.</description>
-    <pubDate>Fri, 31 Jan 2025 19:34:15 GMT</pubDate>
+    <pubDate>Fri, 31 Jan 2025 19:34:43 GMT</pubDate>
+  </item><item>
+    <title>List_3_Int_Add_to_Zero</title>
+    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</link>
+    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</guid>
+    <description></description>
+    <pubDate>Fri, 31 Jan 2025 19:34:43 GMT</pubDate>
   </item><item>
     <title>WritingGoodFeedback</title>
     <link>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</link>
@@ -42,6 +42,18 @@
     <description></description>
     <pubDate>Tue, 15 Feb 2022 11:44:12 GMT</pubDate>
   </item><item>
+    <title>Embeddings</title>
+    <link>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Embeddings</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Embeddings</guid>
+    <description>Embedding is the same thing as discovering a science.stats.Latent Variables representation and the goal is meaningful science.stats.Dimensionality Reduction ...</description>
+    <pubDate>Sun, 13 Feb 2022 00:50:34 GMT</pubDate>
+  </item><item>
+    <title>Bahnadau Attention mechanism</title>
+    <link>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Attention-Mechanisms</link>
+    <guid>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Attention-Mechanisms</guid>
+    <description>Let’s start with training inputs x_1,x_2,...,x_n as input sequence and y_1,y_2,...,y_n as target sequence. Then we will have the following model: Compute h_i = concat(h_{i,forward},h_{i,backward}), encoding of 2 LSTM’s, one ran forward and one ran backward only on x- the input sequence.</description>
+    <pubDate>Sat, 12 Feb 2022 23:31:10 GMT</pubDate>
+  </item><item>
     <title>Confidence Intervals</title>
     <link>https://quartz.jzhao.xyz/science.stats.Confidence-Intervals</link>
     <guid>https://quartz.jzhao.xyz/science.stats.Confidence-Intervals</guid>
@@ -53,12 +65,6 @@
     <guid>https://quartz.jzhao.xyz/science.stats.AB-Testing</guid>
     <description>From DataInterviewPro Controlled experiments (e.g. clinical trials). Usually when we run experiments, we want to see difference in certain seed.Product Management.Product Metrics.User Based Metrics (Digital Products), e.g.</description>
     <pubDate>Sun, 16 Jan 2022 19:11:52 GMT</pubDate>
-  </item><item>
-    <title>Large Correlation Matrices in R</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Correlation-and-Covariance</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Correlation-and-Covariance</guid>
-    <description>var(v) = \Sigma(v_i-E(v))^2 = E[(X-\mu)^2] cov(X,Y) = \Sigma((x_i-E(x))(y_i-E(y)))/n or (n-1) for sample covariance cor(X,Y) = \frac{cov(X,Y)}{\sqrt{var(X)*var(Y)}} Pearson ...</description>
-    <pubDate>Mon, 10 Jan 2022 23:06:30 GMT</pubDate>
   </item>
     </channel>
   </rss>

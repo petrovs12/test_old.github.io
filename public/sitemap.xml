@@ -1,15 +1,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
     <loc>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</loc>
-    <lastmod>2025-01-31T19:34:15.044Z</lastmod>
+    <lastmod>2025-01-31T19:34:43.429Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</loc>
     <lastmod>2025-01-01T14:24:00.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/about</loc>
-    <lastmod>2025-01-31T19:34:15.044Z</lastmod>
+    <lastmod>2025-01-31T19:34:43.430Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/</loc>
-    <lastmod>2025-01-31T19:34:15.044Z</lastmod>
+    <lastmod>2025-01-31T19:34:43.430Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/science.stats.AB-Testing</loc>
     <lastmod>2022-01-16T19:11:52.726Z</lastmod>
@@ -19,6 +19,18 @@
   </url><url>
     <loc>https://quartz.jzhao.xyz/science.stats.Correlation-and-Covariance</loc>
     <lastmod>2022-01-10T23:06:30.425Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Attention-Mechanisms</loc>
+    <lastmod>2022-02-12T23:31:10.411Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Embeddings</loc>
+    <lastmod>2022-02-13T00:50:34.284Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks.Language-Models</loc>
+    <lastmod>2022-01-16T16:13:23.580Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/science.stats.Deep-Neural-Networks</loc>
+    <lastmod>2022-01-10T17:29:59.979Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/science.stats.Estimators</loc>
     <lastmod>2024-10-06T10:53:00.000Z</lastmod>
