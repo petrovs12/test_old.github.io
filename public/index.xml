@@ -6,11 +6,17 @@
       <description>Last 10 notes on 🪴 Quartz 4.0</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Test Site</title>
+    <title>About This Site</title>
+    <link>https://quartz.jzhao.xyz/about</link>
+    <guid>https://quartz.jzhao.xyz/about</guid>
+    <description>About This Digital Garden Welcome to my digital garden! This is where I share my notes, thoughts, and learnings about various topics including: Mathematics and Statistics Machine ...</description>
+    <pubDate>Fri, 31 Jan 2025 19:33:17 GMT</pubDate>
+  </item><item>
+    <title>Welcome to My Knowledge Base</title>
     <link>https://quartz.jzhao.xyz/</link>
     <guid>https://quartz.jzhao.xyz/</guid>
-    <description>Welcome This is a test page.</description>
-    <pubDate>Fri, 31 Jan 2025 19:29:17 GMT</pubDate>
+    <description>Welcome to My Knowledge Base This is my personal knowledge base where I share my notes and thoughts on various topics. Recent Notes About This Site Test Note Mathematics Statistics Main Categories Mathematics and Statistics Machine Learning Engineering System Design About This is a digital garden built with Obsidian and Quartz.</description>
+    <pubDate>Fri, 31 Jan 2025 19:33:17 GMT</pubDate>
   </item>
     </channel>
   </rss>
