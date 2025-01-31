@@ -6,65 +6,11 @@
       <description>Last 10 notes on 🪴 Quartz 4.0</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>About This Site</title>
-    <link>https://quartz.jzhao.xyz/about</link>
-    <guid>https://quartz.jzhao.xyz/about</guid>
-    <description>About This Digital Garden Welcome to my digital garden! This is where I share my notes, thoughts, and learnings about various topics including: Mathematics and Statistics Machine ...</description>
-    <pubDate>Fri, 31 Jan 2025 19:35:00 GMT</pubDate>
-  </item><item>
-    <title>Welcome to My Knowledge Base</title>
+    <title>Welcome</title>
     <link>https://quartz.jzhao.xyz/</link>
     <guid>https://quartz.jzhao.xyz/</guid>
-    <description>Welcome to My Knowledge Base This is my personal knowledge base where I share my notes and thoughts on various topics. Recent Notes About This Site Test Note Mathematics Statistics Main Categories Mathematics and Statistics Machine Learning Engineering System Design About This is a digital garden built with Obsidian and Quartz.</description>
-    <pubDate>Fri, 31 Jan 2025 19:35:00 GMT</pubDate>
-  </item><item>
-    <title>List_3_Int_Add_to_Zero</title>
-    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</link>
-    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/Ninja/List_3_Int_Add_to_Zero</guid>
-    <description></description>
-    <pubDate>Fri, 31 Jan 2025 19:35:00 GMT</pubDate>
-  </item><item>
-    <title>Kernel Regression Methods</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Kernel-Regression-Methods</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Kernel-Regression-Methods</guid>
-    <description>Of course related to science.math.Functional Analysis.Kernel Methods … The basic idea would be to start with a adataset of the kind &quot;&quot;X”, “Y”, and then model the function ...</description>
-    <pubDate>Sun, 26 Jan 2025 12:31:59 GMT</pubDate>
-  </item><item>
-    <title>WritingGoodFeedback</title>
-    <link>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</link>
-    <guid>https://quartz.jzhao.xyz/Engineering/Interviewing/WritingGoodFeedback</guid>
-    <description>,.</description>
-    <pubDate>Wed, 01 Jan 2025 14:24:00 GMT</pubDate>
-  </item><item>
-    <title>object recognition in video</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.private.object-recognition-in-video</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.private.object-recognition-in-video</guid>
-    <description>understand task, object detection, scale, image/video can have multiple objects, what are the dowrnstream tasks: ads/recs train’ing data bounding boxes/segmentataion labels,? ...</description>
-    <pubDate>Sat, 07 Dec 2024 17:33:34 GMT</pubDate>
-  </item><item>
-    <title>hirarchical topic classifier</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.hirarchical-topic-classifier</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.hirarchical-topic-classifier</guid>
-    <description>Description Given a hierarchy of labels, how would you label a given item. Question Statement How to obtain the ground truth? How do you obtain the training data? How to determine the terminal level of the label in the hierarchy? How do you handle similar labels across different paths in the tree? Loss function? Bonus points if candidate talks about Hyperbolic geometric space.</description>
-    <pubDate>Sat, 07 Dec 2024 17:10:22 GMT</pubDate>
-  </item><item>
-    <title>Find and Answer similar questions</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Find-and-Answer-similar-questions</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Find-and-Answer-similar-questions</guid>
-    <description>Many people use groups every day they use these groups to ask and answer questions. However, unfortunately, like the search in this group is not perfect and there might be question duplicate or might be related questions there also might be people we want to prompt who based on the previous activity and might be a good good person to try to answer this particular question how would you design such system so so that you can find an answer for similar questions in the group? so this is a general.</description>
-    <pubDate>Sat, 07 Dec 2024 17:04:22 GMT</pubDate>
-  </item><item>
-    <title>Vision System for Car</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Vision-System-for-Car</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Vision-System-for-Car</guid>
-    <description>So far a vision system for driving car we may want to cover as follows first what kind of objects do we want to recognize and why what is the downstream task? How do you get training data? ...</description>
-    <pubDate>Sat, 07 Dec 2024 17:02:02 GMT</pubDate>
-  </item><item>
-    <title>Cold Start Problem</title>
-    <link>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Cold-Start-Problem</link>
-    <guid>https://quartz.jzhao.xyz/science.stats.Machine-Learning.Cold-Start-Problem</guid>
-    <description></description>
-    <pubDate>Sat, 07 Dec 2024 16:45:20 GMT</pubDate>
+    <description>Welcome to My Knowledge Base This is the public landing page for my knowledge base. Feel free to explore the content!.</description>
+    <pubDate>Fri, 31 Jan 2025 19:40:42 GMT</pubDate>
   </item>
     </channel>
   </rss>
